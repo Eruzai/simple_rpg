@@ -1,6 +1,6 @@
 from random import randint
 
-class PlayerCharacter:
+class NewPlayerCharacter:
   def __init__(self, name):
     self.name = name
     self.job = "Novice"
@@ -38,17 +38,3 @@ class PlayerCharacter:
     print(f"Intellect: {self.intellect}")
     print(f"armor: {self.armor}")
     print(f"barrier: {self.barrier}")
-
-userInputName = input("You start playing as a Novice!\nGive your character a name -> ")
-
-player1 = PlayerCharacter(userInputName)
-player2 = PlayerCharacter(userInputName)
-
-player1.display_stats()
-player2.display_stats()
-
-player1.class_change()
-player2.class_change()
-
-player1.display_stats()
-player2.display_stats()
