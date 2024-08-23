@@ -24,7 +24,7 @@ class NewPlayerCharacter:
   
   def level_up(self):
     self.level += 1
-    self.experienceNeeded += self.experienceNeeded * 1.25 // 1
+    self.experienceNeeded += 100 + self.experienceNeeded * 0.25 // 1
     if self.job == "Novice":
       self.maxHealth += randint(2, 5)
       self.maxMagic += randint(1, 3)
