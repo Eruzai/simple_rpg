@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 
 class NewPlayerCharacter:
   def __init__(self, name):
@@ -6,6 +6,7 @@ class NewPlayerCharacter:
     self.job = "Novice"
     self.level = 1
     self.experience = 0
+    self.experienceNeeded = 100
     self.maxHealth = randint(15, 25)
     self.maxMagic = randint(10, 20)
     self.health = self.maxHealth
@@ -23,6 +24,34 @@ class NewPlayerCharacter:
   
   def level_up(self):
     self.level += 1
+    self.experienceNeeded += self.experienceNeeded * 1.25 // 1
+    if self.job == "Novice":
+      self.maxHealth += randint(2, 5)
+      self.maxMagic += randint(1, 3)
+      self.health = self.maxHealth
+      self.magic = self.maxMagic
+      self.strength += randint(1, 3)
+      self.intellect += randint(1, 3)
+    elif self.job == "Warrior":
+      self.maxHealth += randint(4, 7)
+      self.maxMagic += choice(0, 0, 0, 1, 2)
+      self.health = self.maxHealth
+      self.magic = self.maxMagic
+      self.strength += randint(3, 5)
+      self.intellect += choice(0, 0, 0, 1, 2)
+      self.armor += choice(0, 0, 0, 0, 1, 2, 3)
+      self.barrier += choice(0, 0, 0, 1)
+    elif self.job == "Wizard":
+      self.maxHealth += randint(2, 5)
+      self.maxMagic += randint(4, 7)
+      self.health = self.maxHealth
+      self.magic = self.maxMagic
+      self.strength += choice(0, 0, 0, 1, 2)
+      self.intellect += randint(3, 5)
+      self.armor += choice(0, 0, 0, 1)
+      self.barrier += choice(0, 0, 0, 0, 1, 2, 3)
+    print(f"{self.name} leveled up!")
+    self.display_stats(self)
   
   def class_change(self):
     userSelectedClass = input("What class will you choose? Warrior or Wizard?\nType War for Warrior or Wiz for Wizard! -> ")
