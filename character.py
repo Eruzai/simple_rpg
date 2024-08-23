@@ -22,6 +22,12 @@ class NewPlayerCharacter:
     self.feet = None
     self.ring = None
   
+  def damage_taken(self, damage):
+    self.health -= damage
+    if self.health <= 0:
+      print(f"{self.name} has been defeated! Oh no!")
+      # game_over()
+  
   def level_up(self):
     self.level += 1
     self.experienceNeeded += 100 + self.experienceNeeded * 0.25 // 1
