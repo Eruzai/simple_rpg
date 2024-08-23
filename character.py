@@ -34,24 +34,24 @@ class NewPlayerCharacter:
       self.intellect += randint(1, 3)
     elif self.job == "Warrior":
       self.maxHealth += randint(4, 7)
-      self.maxMagic += choice(0, 0, 0, 1, 2)
+      self.maxMagic += choice([0, 0, 0, 1, 2])
       self.health = self.maxHealth
       self.magic = self.maxMagic
       self.strength += randint(3, 5)
-      self.intellect += choice(0, 0, 0, 1, 2)
-      self.armor += choice(0, 0, 0, 0, 1, 2, 3)
-      self.barrier += choice(0, 0, 0, 1)
+      self.intellect += choice([0, 0, 0, 1, 2])
+      self.armor += choice([0, 0, 0, 0, 1, 2, 3])
+      self.barrier += choice([0, 0, 0, 1])
     elif self.job == "Wizard":
       self.maxHealth += randint(2, 5)
       self.maxMagic += randint(4, 7)
       self.health = self.maxHealth
       self.magic = self.maxMagic
-      self.strength += choice(0, 0, 0, 1, 2)
+      self.strength += choice([0, 0, 0, 1, 2])
       self.intellect += randint(3, 5)
-      self.armor += choice(0, 0, 0, 1)
-      self.barrier += choice(0, 0, 0, 0, 1, 2, 3)
-    print(f"{self.name} leveled up!")
-    self.display_stats(self)
+      self.armor += choice([0, 0, 0, 1])
+      self.barrier += choice([0, 0, 0, 0, 1, 2, 3])
+    print(f"{self.name} leveled up! Hurray!")
+    self.display_stats()
   
   def class_change(self):
     userSelectedClass = input("What class will you choose? Warrior or Wizard?\nType War for Warrior or Wiz for Wizard! -> ")
@@ -60,18 +60,26 @@ class NewPlayerCharacter:
       self.maxHealth += randint(15, 25)
       self.strength += randint(5, 15)
       self.armor = randint(5, 15)
+      self.barrier = randint(0, 5)
+      print(f"{self.name} Has changed his job to Warrior!")
+      self.display_stats()
     elif userSelectedClass == "Wiz":
       self.job = "Wizard"
       self.maxHealth += randint(5, 15)
       self.maxMagic += randint(15, 25)
       self.intellect += randint(5, 15)
+      self.armor = randint(0, 5)
       self.barrier = randint(5, 15)
+      print(f"{self.name} Has changed his job to Wizard!")
+      self.display_stats()
     else:
       print("I don't understand... try again!")
       self.class_change()
   
   def display_stats(self):
     print(f"{self.name} the {self.job}'s stats!")
+    print(f"Level: {self.level}")
+    print(f"Experience to next Level up: {self.experienceNeeded - self.experience}")
     print(f"Health: {self.health}/{self.maxHealth}")
     print(f"Magic: {self.magic}/{self.maxMagic}")
     print(f"Strength: {self.strength}")
