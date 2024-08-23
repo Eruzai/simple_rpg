@@ -17,7 +17,6 @@ class Location:
   def encounterEnemy(self):
     self.enemy = self.enemies[choice(self.encounterArray)]()
     print(f"{self.enemy.name} appears before you!")
-    self.enemy.display_stats()
   
   def explore(self):
     print(f"you explore the {self.name}")
