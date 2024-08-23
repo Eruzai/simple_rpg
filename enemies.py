@@ -16,10 +16,10 @@ class Enemy:
     print(f"Health: {self.health}")
     print(f"Strength: {self.strength}")
     print(f"Intellect: {self.intellect}")
-    if hasattr(self, 'armor'):
-      print(f"Armor: {self.armor}")
-    if hasattr(self, 'barrier'):
-      print(f"Barrier: {self.barrier}")
+    if hasattr(self, 'physicalDef'):
+      print(f"Physical Defense: {self.physicalDef}")
+    if hasattr(self, 'magicDef'):
+      print(f"Magic Defense: {self.magicDef}")
 
 class Rat(Enemy):
   def __init__(self):
@@ -40,8 +40,8 @@ class MysteriousShadow(Enemy):
     self.health = 100
     self.strength = 100
     self.intellect = 100
-    self.armor = 30
-    self.barrier = 30
+    self.physicalDef = 30
+    self.magicDef = 30
 
 class SmallSlime(Enemy):
   def __init__(self):
@@ -52,7 +52,7 @@ class SmallSlime(Enemy):
     self.health = randint(2, 5) * (1.5 ** self.level) // 1
     self.strength = randint(1, 3) * (1.15 ** self.level) // 1
     self.intellect = 0
-    self.armor = randint(15, 30)
+    self.physicalDef = randint(15, 30)
 
 class Slime(Enemy):
   def __init__(self):
@@ -63,7 +63,7 @@ class Slime(Enemy):
     self.health = randint(5, 10) * (1.5 ** self.level) // 1
     self.strength = randint(1, 5) * (1.15 ** self.level) // 1
     self.intellect = 0
-    self.armor = randint(25, 40)
+    self.physicalDef = randint(25, 40)
 
 class Goblin(Enemy):
   def __init__(self):
@@ -84,5 +84,5 @@ class ShinySlime(Enemy):
     self.health = randint(7, 10) * (1.5 ** self.level) // 1
     self.strength = randint(3, 5) * (1.25 ** self.level) // 1
     self.intellect = randint(3, 5) * (1.25 ** self.level) // 1
-    self.armor = randint(35, 50)
-    self.barrier = randint(35, 70)
+    self.physicalDef = randint(35, 50)
+    self.magicDef = randint(35, 70)
