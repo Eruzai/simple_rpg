@@ -1,71 +1,48 @@
-from random import randint
+from random import choice
 
-class TownOfRespite:
-  name = "Town of Respite"
-
+class Location:
+  def __init__(self) -> None:
+     pass
+  
   def findTreasure(self):
     print("you've found something shiny on the ground!")
   
-  def nothingInteresting(self):
+  def findNothing(self):
     print("you walk around and find nothing interesting.")
 
-  def explore(self):
-    chance = randint(1, 50)
-    if chance == 1:
-      self.findTreasure()
-    elif chance > 1:
-      self.nothingInteresting()
-
-class FieldsOfBeginning:
-  name = "Fields of Beginning"
-
-  def findTreasure(self):
-    print("You stumble across a treasure lying in the grass!")
-    # roll chance to find out what loot is
-
   def encounterEnemy(self):
     print("An enemy appears before you!")
-    # roll chance to find out what the enemy is
-
+  
   def explore(self):
-    chance = randint(1, 5)
+    print(f"you explore the {self.name}")
+    chance = choice(self.choiceArray)
     if chance == 1:
       self.findTreasure()
-    elif chance > 1:
+    elif chance == 2:
       self.encounterEnemy()
+    elif chance == 3:
+      self.findNothing()
 
-class MiddlingMarrow:
-  name = "Middling Marrow"
+class TownOfRespite(Location):
+  def __init__(self):
+    super().__init__()
+    self.name = "Town of Respite"
+    self.choiceArray = [1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 
-  def findTreasure(self):
-    print("You stumble across a treasure lying in the grass!")
-    # roll chance to find out what loot is
+class FieldsOfBeginning(Location):
+  def __init__(self):
+    super().__init__()
+    self.name = "Fields of Beginning"
+    self.choiceArray = [1, 2, 2, 2, 3]
 
-  def encounterEnemy(self):
-    print("An enemy appears before you!")
-    # roll chance to find out what the enemy is
+class MiddlingMarrow(Location):
+  def __init__(self):
+    super().__init__()
+    self.name = "Middling Marrow"
+    self.choiceArray = [1, 2, 2, 2, 2, 2, 3, 3]
 
-  def explore(self):
-    chance = randint(1, 5)
-    if chance == 1:
-      self.findTreasure()
-    elif chance > 1:
-      self.encounterEnemy()
-
-class KeepOfTheEnd:
-  name = "Keep of the End"
-
-  def findTreasure(self):
-    print("You stumble across a treasure lying in the grass!")
-    # roll chance to find out what loot is
-
-  def encounterEnemy(self):
-    print("An enemy appears before you!")
-    # roll chance to find out what the enemy is
-
-  def explore(self):
-    chance = randint(1, 5)
-    if chance == 1:
-      self.findTreasure()
-    elif chance > 1:
-      self.encounterEnemy()
+class KeepOfTheEnd(Location):
+  def __init__(self):
+    super().__init__()
+    self.name = "Keep of the End"
+    self.choiceArray = [1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3]
