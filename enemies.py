@@ -21,6 +21,27 @@ class Enemy:
     if hasattr(self, 'barrier'):
       print(f"Barrier: {self.barrier}")
 
+class Rat(Enemy):
+  def __init__(self):
+    super().__init__()
+    self.name = "Rat"
+    self.level = randint(1, 2)
+    self.experience = 15 * (1.15 ** self.level) // 1
+    self.health = randint(2, 3) * (1.25 ** self.level) // 1
+    self.strength = randint(1, 2) * (1.25 ** self.level) // 1
+    self.intellect = 0
+
+class MysteriousShadow(Enemy):
+  def __init__(self):
+    super().__init__()
+    self.name = "Mysterious Shadow"
+    self.level = 20
+    self.experience = 100000
+    self.health = 100
+    self.strength = 100
+    self.intellect = 100
+    self.armor = 30
+    self.barrier = 30
 
 class SmallSlime(Enemy):
   def __init__(self):
@@ -31,7 +52,7 @@ class SmallSlime(Enemy):
     self.health = randint(2, 5) * (1.5 ** self.level) // 1
     self.strength = randint(1, 3) * (1.15 ** self.level) // 1
     self.intellect = 0
-    self.armor = randint(25, 50)
+    self.armor = randint(15, 30)
 
 class Slime(Enemy):
   def __init__(self):
@@ -42,7 +63,7 @@ class Slime(Enemy):
     self.health = randint(5, 10) * (1.5 ** self.level) // 1
     self.strength = randint(1, 5) * (1.15 ** self.level) // 1
     self.intellect = 0
-    self.armor = randint(35, 50)
+    self.armor = randint(25, 40)
 
 class Goblin(Enemy):
   def __init__(self):
@@ -65,25 +86,3 @@ class ShinySlime(Enemy):
     self.intellect = randint(3, 5) * (1.25 ** self.level) // 1
     self.armor = randint(35, 50)
     self.barrier = randint(35, 70)
-
-class Rat(Enemy):
-  def __init__(self):
-    super().__init__()
-    self.name = "Rat"
-    self.level = randint(1, 2)
-    self.experience = 15 * (1.15 ** self.level) // 1
-    self.health = randint(2, 3) * (1.25 ** self.level) // 1
-    self.strength = randint(1, 2) * (1.25 ** self.level) // 1
-    self.intellect = 0
-
-class MysteriousShadow(Enemy):
-  def __init__(self):
-    super().__init__()
-    self.name = "Mysterious Shadow"
-    self.level = 20
-    self.experience = 100000
-    self.health = 100
-    self.strength = 100
-    self.intellect = 100
-    self.armor = 30
-    self.barrier = 30
