@@ -9,6 +9,8 @@ player = character.NewPlayerCharacter(userInputName)
 player.display_stats()
 
 location = locations.TownOfRespite
+fighting = False
+treasure = False
 
 while player.health > 0:
   while location == locations.TownOfRespite:
