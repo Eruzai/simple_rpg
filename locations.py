@@ -12,9 +12,9 @@ class TownOfRespite:
   def explore(self):
     chance = randint(1, 50)
     if chance == 1:
-      self.findTreasure(self)
+      self.findTreasure()
     elif chance > 1:
-      self.nothingInteresting(self)
+      self.nothingInteresting()
 
 class FieldsOfBeginning:
   name = "Fields of Beginning"
@@ -30,6 +30,42 @@ class FieldsOfBeginning:
   def explore(self):
     chance = randint(1, 5)
     if chance == 1:
-      self.findTreasure(self)
+      self.findTreasure()
     elif chance > 1:
-      self.encounterEnemy(self)
+      self.encounterEnemy()
+
+class MiddlingMarrow:
+  name = "Middling Marrow"
+
+  def findTreasure(self):
+    print("You stumble across a treasure lying in the grass!")
+    # roll chance to find out what loot is
+
+  def encounterEnemy(self):
+    print("An enemy appears before you!")
+    # roll chance to find out what the enemy is
+
+  def explore(self):
+    chance = randint(1, 5)
+    if chance == 1:
+      self.findTreasure()
+    elif chance > 1:
+      self.encounterEnemy()
+
+class KeepOfTheEnd:
+  name = "Keep of the End"
+
+  def findTreasure(self):
+    print("You stumble across a treasure lying in the grass!")
+    # roll chance to find out what loot is
+
+  def encounterEnemy(self):
+    print("An enemy appears before you!")
+    # roll chance to find out what the enemy is
+
+  def explore(self):
+    chance = randint(1, 5)
+    if chance == 1:
+      self.findTreasure()
+    elif chance > 1:
+      self.encounterEnemy()
