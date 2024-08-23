@@ -34,26 +34,41 @@ class TownOfRespite(Location):
     super().__init__()
     self.name = "Town of Respite"
     self.exploreArray = [1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
-    self.enemies = [enemies.Rat, enemies.MysteriousShadow]
+    self.enemies = [enemies.Rat,
+                    enemies.MysteriousShadow]
     self.encounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-    self.dialog = ["You nearly miss stepping on a rat. Yikes!", "You walk around and take a breather, It's hard work being an adventurer!", "You hear someone talking about how the fields are full of slimes these days, and some of them are really shiny!", "You feel like you're being watched, and not by rats...", "You hear tales of people dissapearing in town recently, maybe it's the rats?", "Something of a shadow moved in the corner of your vision. It was probably nothing..."]
+    self.dialog = ["You nearly miss stepping on a rat. Yikes!",
+                   "You walk around and take a breather, It's hard work being an adventurer!",
+                   "You hear someone talking about how the fields are full of slimes these days, and some of them are really shiny!",
+                   "You feel like you're being watched, and not by rats...",
+                   "You hear tales of people dissapearing in town recently, maybe it's the rats?",
+                   "Something of a shadow moved in the corner of your vision. It was probably nothing..."]
     self.dialogArray = [0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5]
 
 class FieldsOfBeginning(Location):
   def __init__(self):
     super().__init__()
     self.name = "Fields of Beginning"
-    self.exploreArray = [1, 2, 2, 2, 3]
-    self.enemies = [enemies.SmallSlime, enemies.Slime, enemies.Goblin, enemies.ShinySlime]
+    self.exploreArray = [1, 2, 2, 2, 3, 3, 3]
+    self.enemies = [enemies.SmallSlime,
+                    enemies.Slime,
+                    enemies.Goblin,
+                    enemies.ShinySlime]
     self.encounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3]
-    self.dialog = ["You take a deep breath. The air smells so fresh here.", "It's very easy to walk here, the grass is a bit spongey under your feet.", "It'd be nice if the slimes didn't blend in so well with the grass...", "You sit down for a bit and rest", "Goblins are strong and slimes are tough.", "Don't eat the slimes!", "Sometimes you see something shiny move in the distance."]
+    self.dialog = ["You take a deep breath. The air smells so fresh here.",
+                   "It's very easy to walk here, the grass is a bit spongey under your feet.",
+                   "It'd be nice if the slimes didn't blend in so well with the grass...",
+                   "You sit down for a bit and rest",
+                   "Goblins are strong and slimes are tough.",
+                   "Don't eat the slimes!",
+                   "Sometimes you see something shiny move in the distance."]
     self.dialogArray = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6]
 
 class MiddlingMarrow(Location):
   def __init__(self):
     super().__init__()
     self.name = "Middling Marrow"
-    self.exploreArray = [1, 2, 2, 2, 2, 2, 3, 3]
+    self.exploreArray = [1, 2, 2, 2, 2, 2, 3, 3, 3]
 
 class KeepOfTheEnd(Location):
   def __init__(self):
