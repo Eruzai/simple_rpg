@@ -13,8 +13,8 @@ class NewPlayerCharacter:
     self.magic = self.maxMagic
     self.strength = randint(5, 20)
     self.intellect = randint(5, 15)
-    self.armor = 0
-    self.barrier = 0
+    self.physicalDef = 0
+    self.magicDef = 0
     self.head = None
     self.body = None
     self.weapon = None
@@ -27,6 +27,10 @@ class NewPlayerCharacter:
     if self.health <= 0:
       print(f"{self.name} has been defeated! Oh no!")
       # game_over()
+
+  def rest(self):
+    self.health = self.maxHealth
+    self.magic = self.maxMagic
   
   def level_up(self):
     self.level += 1
@@ -45,8 +49,8 @@ class NewPlayerCharacter:
       self.magic = self.maxMagic
       self.strength += randint(3, 5)
       self.intellect += choice([0, 0, 0, 1, 2])
-      self.armor += choice([0, 0, 0, 0, 1, 2, 3])
-      self.barrier += choice([0, 0, 0, 1])
+      self.physicalDef += choice([0, 0, 0, 0, 1, 2, 3])
+      self.magicDef += choice([0, 0, 0, 1])
     elif self.job == "Wizard":
       self.maxHealth += randint(2, 5)
       self.maxMagic += randint(4, 7)
@@ -54,8 +58,8 @@ class NewPlayerCharacter:
       self.magic = self.maxMagic
       self.strength += choice([0, 0, 0, 1, 2])
       self.intellect += randint(3, 5)
-      self.armor += choice([0, 0, 0, 1])
-      self.barrier += choice([0, 0, 0, 0, 1, 2, 3])
+      self.physicalDef += choice([0, 0, 0, 1])
+      self.magicDef += choice([0, 0, 0, 0, 1, 2, 3])
     print(f"{self.name} leveled up! Hurray!")
     self.display_stats()
   
@@ -65,8 +69,8 @@ class NewPlayerCharacter:
       self.job = "Warrior"
       self.maxHealth += randint(15, 25)
       self.strength += randint(5, 15)
-      self.armor = randint(5, 15)
-      self.barrier = randint(0, 5)
+      self.physicalDef = randint(5, 15)
+      self.magicDef = randint(0, 5)
       print(f"{self.name} Has changed his job to Warrior!")
       self.display_stats()
     elif userSelectedClass == "Wiz":
@@ -74,8 +78,8 @@ class NewPlayerCharacter:
       self.maxHealth += randint(5, 15)
       self.maxMagic += randint(15, 25)
       self.intellect += randint(5, 15)
-      self.armor = randint(0, 5)
-      self.barrier = randint(5, 15)
+      self.physicalDef = randint(0, 5)
+      self.magicDef = randint(5, 15)
       print(f"{self.name} Has changed his job to Wizard!")
       self.display_stats()
     else:
@@ -90,8 +94,8 @@ class NewPlayerCharacter:
     print(f"Magic: {self.magic}/{self.maxMagic}")
     print(f"Strength: {self.strength}")
     print(f"Intellect: {self.intellect}")
-    print(f"armor: {self.armor}")
-    print(f"barrier: {self.barrier}")
+    print(f"Physical Defense: {self.physicalDef}")
+    print(f"Magic Defense: {self.magicDef}")
   
   def display_equipment(self):
     print(f"{self.name} the {self.job}'s equipment!")
