@@ -68,6 +68,7 @@ class NewPlayerCharacter:
     if userSelectedClass == "War":
       self.job = "Warrior"
       self.maxHealth += randint(15, 25)
+      self.health = self.maxHealth
       self.strength += randint(5, 15)
       self.physicalDef = randint(5, 15)
       self.magicDef = randint(0, 5)
@@ -77,6 +78,8 @@ class NewPlayerCharacter:
       self.job = "Wizard"
       self.maxHealth += randint(5, 15)
       self.maxMagic += randint(15, 25)
+      self.health = self.maxHealth
+      self.magic = self.maxMagic
       self.intellect += randint(5, 15)
       self.physicalDef = randint(0, 5)
       self.magicDef = randint(5, 15)
