@@ -42,7 +42,14 @@ while player.health > 0:
         location.enemy = None
       else:
         print("That's not a valid action")
-    
+    if location.enemy:
+      print(f"You gain {location.enemy.experience} experience points!")
+      player.experience += location.enemy.experience
+      location.enemy = None
+    while player.experienceNeeded <= player.experience:
+      player.level_up()
+      if player.job == "Novice" and player.level == 5:
+        player.class_change()
   elif userInputAction == "l":
     print("You open your map and find a few interesting locations nearby...\nLocations:\n  't' - Town of Respite\n  'f' - Fields of Beginning (levels 1 - 5)\n  'm' - Middling Marrow (levels 6 - 10)\n  'k' - Keep of the End (levels 11 - 15)")
     userInputLocation = input("Where would you like to go? -> ")
