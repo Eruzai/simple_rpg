@@ -19,11 +19,11 @@ while player.health > 0:
   userInputAction = input("What do you do? -> ")
 
   if userInputAction == "e":
-    print("You explore a bit")
     location.explore()
 
     if location.enemy:
       encounter.Fight.battle(location.enemy, player)
+      location.enemy = None
 
   elif userInputAction == "l":
     print("You open your map and find a few interesting locations nearby...\nLocations:\n  't' - Town of Respite\n  'f' - Fields of Beginning (levels 1 - 5)\n  'm' - Middling Marrow (levels 6 - 10)\n  'k' - Keep of the End (levels 11 - 15)")
