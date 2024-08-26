@@ -14,10 +14,12 @@ class Fight:
         print(f"You attempt to attack {enemy.name} with a physical attack!")
         enemy.damage_taken(damage, "physical")
 
-      elif userInputAction == "m":
+      elif userInputAction == "m" and player.magic > 0:
         damage = player.intellect
         print(f"You attempt to attack {enemy.name} with a magical attack!")
         enemy.damage_taken(damage, "magical")
+        player.magic -= 1
+        print(f"You have {player.magic}/{player.maxMagic} magic points remaining.")
 
       elif userInputAction == "i":
         enemy.display_stats()
