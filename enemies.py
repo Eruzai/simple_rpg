@@ -1,14 +1,24 @@
 from random import randint
 
 class Enemy:
-  def __init__(self) -> None:
-    pass
+  def __init__(self):
+    self.name = None
+    self.health = 0
+    self.strength = 0
+    self.intellect = 0
+    self.physicalDef = 0
+    self.magicDef = 0
 
-  def damage_taken(self, damage):
+  def damage_taken(self, basedamage, attackType):
+    damage = basedamage
+    multiplier = 0
+    if attackType == "physical":
+      multiplier = self.physicalDef / 100
+    elif attackType == "magical":
+      multiplier = self.magicDef / 100
+    damage -= basedamage * multiplier // 1
     self.health -= damage
-    if self.health <= 0:
-      print(f"{self.name} has been vanquished!")
-      # end_encounter()
+    print(f"{self.name} takes {damage} points of {attackType} damage!")
   
   def display_stats(self):
     print(f"You reveal {self.name}'s secrets!")
@@ -29,7 +39,6 @@ class Rat(Enemy):
     self.experience = 15 * (1.15 ** self.level) // 1
     self.health = randint(2, 3) * (1.25 ** self.level) // 1
     self.strength = randint(1, 2) * (1.25 ** self.level) // 1
-    self.intellect = 0
 
 class MysteriousShadow(Enemy):
   def __init__(self):
@@ -51,7 +60,6 @@ class SmallSlime(Enemy):
     self.experience = 15 * (1.5 ** self.level) // 1
     self.health = randint(2, 5) * (1.5 ** self.level) // 1
     self.strength = randint(1, 3) * (1.15 ** self.level) // 1
-    self.intellect = 0
     self.physicalDef = randint(15, 30)
 
 class Slime(Enemy):
@@ -62,7 +70,6 @@ class Slime(Enemy):
     self.experience = 30 * (1.5 ** self.level) // 1
     self.health = randint(5, 10) * (1.5 ** self.level) // 1
     self.strength = randint(1, 5) * (1.15 ** self.level) // 1
-    self.intellect = 0
     self.physicalDef = randint(25, 40)
 
 class Goblin(Enemy):
@@ -73,7 +80,6 @@ class Goblin(Enemy):
     self.experience = 50 * (1.5 ** self.level) // 1
     self.health = randint(5, 10) * (1.15 ** self.level) // 1
     self.strength = randint(3, 5) * (1.35 ** self.level) // 1
-    self.intellect = 0
 
 class ShinySlime(Enemy):
   def __init__(self):
