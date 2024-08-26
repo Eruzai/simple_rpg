@@ -38,8 +38,8 @@ while player.health > 0:
       location = locations.FieldsOfBeginning()
 
     elif userInputLocation == "m":
-      print(f"You leave the {location.name} and travel to the Middling Marrow")
-      location = locations.MiddlingMarrow()
+      print(f"You leave the {location.name} and travel to the Middling Marsh")
+      location = locations.MiddlingMarsh()
 
     elif userInputLocation == "f":
       print(f"You leave the {location.name} and travel to the Keep of the End")

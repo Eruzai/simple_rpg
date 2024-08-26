@@ -67,7 +67,7 @@ class FieldsOfBeginning(Location):
                    "Sometimes you see something shiny move in the distance."]
     self.dialogArray = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6]
 
-class MiddlingMarrow(Location):
+class MiddlingMarsh(Location):
   def __init__(self):
     super().__init__()
     self.name = "Middling Marsh"
