@@ -1,3 +1,4 @@
+from random import choice
 
 class Fight:
   def __init__(self) -> None:
@@ -23,7 +24,6 @@ class Fight:
 
       elif userInputAction == "r":
         print(f"You run away from {enemy.name}")
-        enemy = None
         break
 
       else:
@@ -33,7 +33,6 @@ class Fight:
         print(f"{enemy.name} has been vanquished!")
         print(f"You gain {enemy.experience} experience points!")
         player.experience += enemy.experience
-        enemy = None
 
         while player.experienceNeeded <= player.experience:
           player.level_up()
@@ -42,8 +41,13 @@ class Fight:
             player.class_change()
         break
       
-      damage = 10
+      damage = enemy.strength
       attackType = "physical"
+      if enemy.strength and enemy.intellect:
+        attackType = choice(["physical", "magical"])
+      if attackType == "magical":
+        damage = enemy.intellect
+      
       player.damage_taken(damage, attackType)
       print(f"{enemy.name} attacks you with a {attackType} attack!\nYou take {damage} points of damage!")
 
