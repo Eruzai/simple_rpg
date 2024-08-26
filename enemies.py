@@ -69,7 +69,7 @@ class Slime(Enemy):
     self.level = randint(1, 5)
     self.experience = 30 * (1.5 ** self.level) // 1
     self.health = randint(5, 10) * (1.5 ** self.level) // 1
-    self.strength = randint(1, 5) * (1.15 ** self.level) // 1
+    self.strength = randint(3, 5) * (1.15 ** self.level) // 1
     self.physicalDef = randint(25, 40)
 
 class Goblin(Enemy):
@@ -88,7 +88,7 @@ class ShinySlime(Enemy):
     self.level = randint(5, 7)
     self.experience = 100 * (1.5 ** self.level) // 1
     self.health = randint(7, 10) * (1.5 ** self.level) // 1
-    self.strength = randint(3, 5) * (1.25 ** self.level) // 1
+    self.strength = randint(5, 7) * (1.25 ** self.level) // 1
     self.intellect = randint(3, 5) * (1.25 ** self.level) // 1
     self.physicalDef = randint(35, 50)
     self.magicDef = randint(35, 70)
