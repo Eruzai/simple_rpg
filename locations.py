@@ -34,8 +34,10 @@ class TownOfRespite(Location):
     self.name = "Town of Respite"
     self.exploreArray = [1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
     self.enemies = [enemies.Rat,
+                    enemies.RabidDog,
+                    enemies.TinySlime,
                     enemies.MysteriousShadow]
-    self.encounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+    self.encounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3]
     self.dialog = ["You nearly miss stepping on a rat. Yikes!",
                    "You walk around and take a breather, It's hard work being an adventurer!",
                    "You hear someone talking about how the fields are full of slimes these days, and some of them are really shiny!",
@@ -52,8 +54,10 @@ class FieldsOfBeginning(Location):
     self.enemies = [enemies.SmallSlime,
                     enemies.Slime,
                     enemies.Goblin,
+                    enemies.SmallSpider,
+                    enemies.LesserWindElemental,
                     enemies.ShinySlime]
-    self.encounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3]
+    self.encounterArray = [0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5]
     self.dialog = ["You take a deep breath. The air smells so fresh here.",
                    "It's very easy to walk here, the grass is a bit spongey under your feet.",
                    "It'd be nice if the slimes didn't blend in so well with the grass...",
@@ -66,8 +70,24 @@ class FieldsOfBeginning(Location):
 class MiddlingMarrow(Location):
   def __init__(self):
     super().__init__()
-    self.name = "Middling Marrow"
+    self.name = "Middling Marsh"
     self.exploreArray = [1, 2, 2, 2, 2, 2, 3, 3, 3]
+    self.enemies = [enemies.MarshSpider,
+                    enemies.Zombie,
+                    enemies.GiantRat,
+                    enemies.DarkSerpent,
+                    enemies.Witch,
+                    enemies.WretchedCrow,
+                    enemies.MarshHorror]
+    self.encounterArray = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 6]
+    self.dialog = ["This place is covered in the stench of death.",
+                   "A chill wind blows and you hear the sound of chittering and a faint moaning nearby...",
+                   "Everything is in shades of grey and brown, It's not a pretty sight.",
+                   "You've heard tales of this place, but none compare to actually experiencing it",
+                   "Witches are rumoured to have taken up residence here...",
+                   "You sometimes feel the ground move beneath your feet. Almost as if it were alive...",
+                   "A giant shapeless horror is moving in the distance. Probably best to avoid it..."]
+    self.dialogArray = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6]
 
 class KeepOfTheEnd(Location):
   def __init__(self):
