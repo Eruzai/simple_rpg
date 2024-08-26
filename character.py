@@ -22,12 +22,16 @@ class NewPlayerCharacter:
     self.feet = None
     self.ring = None
   
-  def damage_taken(self, damage):
+  def damage_taken(self, basedamage, attackType):
+    damage = basedamage
+    multiplier = 0
+    if attackType == "physical":
+      multiplier = self.physicalDef / 100  
+    elif attackType == "magical":
+      multiplier = self.magicDef / 100
+    damage -= basedamage * multiplier // 1
     self.health -= damage
-    if self.health <= 0:
-      print(f"{self.name} has been defeated! Oh no!")
-      # game_over()
-
+    
   def rest(self):
     self.health = self.maxHealth
     self.magic = self.maxMagic
