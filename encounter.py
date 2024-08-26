@@ -50,6 +50,7 @@ class Fight:
       
       player.damage_taken(damage, attackType)
       print(f"{enemy.name} attacks you with a {attackType} attack!\nYou take {damage} points of damage!")
+      print(f"You have {player.health}/{player.maxHealth} health points left!")
 
       if player.health <= 0:
         print(f"{player.name} has been defeated! Oh no!")
