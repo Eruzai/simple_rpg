@@ -87,10 +87,28 @@ class MiddlingMarsh(Location):
                    "Witches are rumoured to have taken up residence here...",
                    "You sometimes feel the ground move beneath your feet. Almost as if it were alive...",
                    "A giant shapeless horror is moving in the distance. Probably best to avoid it..."]
-    self.dialogArray = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6]
+    self.dialogArray = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6]
 
 class KeepOfTheEnd(Location):
   def __init__(self):
     super().__init__()
     self.name = "Keep of the End"
     self.exploreArray = [1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3]
+    self.enemies = [enemies.WalkingArmor,
+                    enemies.StoneSpider,
+                    enemies.AncientSpectre,
+                    enemies.ColumnWyrm,
+                    enemies.ShadowyCaster,
+                    enemies.DancingBlades,
+                    enemies.VoidBeast,
+                    enemies.TheEnd]
+    self.encounterArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8]
+    self.dialog = ["There is no light except for what is provided by the torches on the walls. And even that isn't much to see by...",
+                   "The floor is rocky and uneven. This castle must have been built eons ago.",
+                   "The air is cold and damp. Just keep moving...",
+                   "There are strange sounds coming from all over. It's difficult to pinpoint exactly from where they come...",
+                   "You sense an incredible evil here. One that must be eliminated!",
+                   "Everything here is dangerous, even the armour!",
+                   "The end comes for all of us",
+                   "The end is inevitable",
+                   "You can not escape your fate..."]
