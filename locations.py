@@ -112,4 +112,4 @@ class KeepOfTheEnd(Location):
                    "The end comes for all of us",
                    "The end is inevitable",
                    "You can not escape your fate..."]
-    self.dialoArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8]
+    self.dialogArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8]
