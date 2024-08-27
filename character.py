@@ -11,7 +11,7 @@ class NewPlayerCharacter:
     self.maxMagic = randint(10, 20)
     self.health = self.maxHealth
     self.magic = self.maxMagic
-    self.strength = randint(5, 20)
+    self.strength = randint(5, 15)
     self.intellect = randint(5, 15)
     self.physicalDef = 0
     self.magicDef = 0
@@ -40,14 +40,14 @@ class NewPlayerCharacter:
     self.level += 1
     self.experienceNeeded += 100 + self.experienceNeeded * 0.25 // 1
     if self.job == "Novice":
-      self.maxHealth += randint(2, 5)
+      self.maxHealth += randint(5, 10)
       self.maxMagic += randint(1, 3)
       self.health = self.maxHealth
       self.magic = self.maxMagic
       self.strength += randint(1, 3)
       self.intellect += randint(1, 3)
     elif self.job == "Warrior":
-      self.maxHealth += randint(4, 7)
+      self.maxHealth += randint(12, 25)
       self.maxMagic += choice([0, 0, 0, 1, 2])
       self.health = self.maxHealth
       self.magic = self.maxMagic
@@ -56,12 +56,12 @@ class NewPlayerCharacter:
       self.physicalDef += choice([0, 0, 0, 0, 1, 2, 3])
       self.magicDef += choice([0, 0, 0, 1])
     elif self.job == "Wizard":
-      self.maxHealth += randint(2, 5)
+      self.maxHealth += randint(12, 18)
       self.maxMagic += randint(4, 7)
       self.health = self.maxHealth
       self.magic = self.maxMagic
       self.strength += choice([0, 0, 0, 1, 2])
-      self.intellect += randint(3, 5)
+      self.intellect += randint(4, 8)
       self.physicalDef += choice([0, 0, 0, 1])
       self.magicDef += choice([0, 0, 0, 0, 1, 2, 3])
     print(f"{self.name} leveled up! Hurray!")
@@ -71,7 +71,7 @@ class NewPlayerCharacter:
     userSelectedClass = input("What class will you choose? Warrior or Wizard?\nType War for Warrior or Wiz for Wizard! -> ")
     if userSelectedClass == "War":
       self.job = "Warrior"
-      self.maxHealth += randint(15, 25)
+      self.maxHealth += randint(25, 40)
       self.health = self.maxHealth
       self.strength += randint(5, 15)
       self.physicalDef = randint(5, 15)
@@ -80,11 +80,11 @@ class NewPlayerCharacter:
       self.display_stats()
     elif userSelectedClass == "Wiz":
       self.job = "Wizard"
-      self.maxHealth += randint(5, 15)
+      self.maxHealth += randint(15, 30)
       self.maxMagic += randint(15, 25)
       self.health = self.maxHealth
       self.magic = self.maxMagic
-      self.intellect += randint(5, 15)
+      self.intellect += randint(8, 17)
       self.physicalDef = randint(0, 5)
       self.magicDef = randint(5, 15)
       print(f"{self.name} Has changed his job to Wizard!")
