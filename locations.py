@@ -102,7 +102,7 @@ class KeepOfTheEnd(Location):
                     enemies.DancingBlades,
                     enemies.VoidBeast,
                     enemies.TheEnd]
-    self.encounterArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8]
+    self.encounterArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7]
     self.dialog = ["There is no light except for what is provided by the torches on the walls. And even that isn't much to see by...",
                    "The floor is rocky and uneven. This castle must have been built eons ago.",
                    "The air is cold and damp. Just keep moving...",
