@@ -45,6 +45,9 @@ class Fight:
       
       damage = enemy.strength
       attackType = "physical"
+      if enemy.stength == 0:
+        damage = enemy.intellect
+        attackType = "magical"
       if enemy.strength and enemy.intellect:
         attackType = choice(["physical", "magical"])
       if attackType == "magical":
