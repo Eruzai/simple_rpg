@@ -87,7 +87,7 @@ class MiddlingMarsh(Location):
                    "Witches are rumoured to have taken up residence here...",
                    "You sometimes feel the ground move beneath your feet. Almost as if it were alive...",
                    "A giant shapeless horror is moving in the distance. Probably best to avoid it..."]
-    self.dialogArray = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6]
+    self.dialogArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6]
 
 class KeepOfTheEnd(Location):
   def __init__(self):
@@ -112,3 +112,4 @@ class KeepOfTheEnd(Location):
                    "The end comes for all of us",
                    "The end is inevitable",
                    "You can not escape your fate..."]
+    self.dialoArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8]
