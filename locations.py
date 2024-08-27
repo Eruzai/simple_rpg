@@ -16,6 +16,7 @@ class Location:
 
   def encounterEnemy(self):
     self.enemy = self.enemies[choice(self.encounterArray)]()
+    self.enemy.draw()
     print(f"A level {self.enemy.level} {self.enemy.name} appears before you!")
   
   def explore(self):
