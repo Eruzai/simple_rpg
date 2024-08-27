@@ -7,12 +7,12 @@ class NewPlayerCharacter:
     self.level = 1
     self.experience = 0
     self.experienceNeeded = 100
-    self.maxHealth = randint(15, 25)
-    self.maxMagic = randint(10, 20)
+    self.maxHealth = randint(40, 60)
+    self.maxMagic = randint(10, 15)
     self.health = self.maxHealth
     self.magic = self.maxMagic
-    self.strength = randint(5, 15)
-    self.intellect = randint(5, 15)
+    self.strength = randint(10, 15)
+    self.intellect = randint(10, 15)
     self.physicalDef = 0
     self.magicDef = 0
     self.head = None
