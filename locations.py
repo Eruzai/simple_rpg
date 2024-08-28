@@ -7,20 +7,18 @@ class Location:
      self.treasure = None
   
   def findTreasure(self):
-    print("you've found something shiny on the ground!")
+    print("you've found something shiny on the ground!\n")
   
   def findNothing(self):
     chance = choice(self.dialogArray)
     dialog = self.dialog[chance]
-    print(f"{dialog}")
+    print(f"{dialog}\n")
 
   def encounterEnemy(self):
     self.enemy = self.enemies[choice(self.encounterArray)]()
-    self.enemy.draw()
-    print(f"A level {self.enemy.level} {self.enemy.name} appears before you!")
   
   def explore(self):
-    print(f"you explore the {self.name}")
+    print(f"you explore the {self.name}\n")
     chance = choice(self.exploreArray)
     if chance == 1:
       self.findTreasure()
@@ -56,7 +54,7 @@ class FieldsOfBeginning(Location):
                     enemies.Slime,
                     enemies.Goblin,
                     enemies.SmallSpider,
-                    enemies.LesserWindElemental,
+                    enemies.WindElemental,
                     enemies.ShinySlime]
     self.encounterArray = [0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5]
     self.dialog = ["You take a deep breath. The air smells so fresh here.",

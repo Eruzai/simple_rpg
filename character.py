@@ -64,7 +64,7 @@ class NewPlayerCharacter:
       self.intellect += randint(4, 8)
       self.physicalDef += choice([0, 0, 0, 1])
       self.magicDef += choice([0, 0, 0, 0, 1, 2, 3])
-    print(f"{self.name} leveled up! Hurray!")
+    
     self.display_stats()
   
   def class_change(self):
@@ -76,7 +76,7 @@ class NewPlayerCharacter:
       self.strength += randint(5, 15)
       self.physicalDef = randint(5, 15)
       self.magicDef = randint(0, 5)
-      print(f"{self.name} Has changed his job to Warrior!")
+      print(f"{self.name} Has changed his job to Warrior!\n")
       self.display_stats()
     elif userSelectedClass == "Wiz":
       self.job = "Wizard"
@@ -87,10 +87,10 @@ class NewPlayerCharacter:
       self.intellect += randint(8, 17)
       self.physicalDef = randint(0, 5)
       self.magicDef = randint(5, 15)
-      print(f"{self.name} Has changed his job to Wizard!")
+      print(f"{self.name} Has changed his job to Wizard!\n")
       self.display_stats()
     else:
-      print("I don't understand... try again!")
+      print("I don't understand... try again!\n")
       self.class_change()
   
   def display_stats(self):
@@ -102,7 +102,7 @@ class NewPlayerCharacter:
     print(f"Strength: {self.strength}")
     print(f"Intellect: {self.intellect}")
     print(f"Physical Defense: {self.physicalDef}")
-    print(f"Magic Defense: {self.magicDef}")
+    print(f"Magic Defense: {self.magicDef}\n")
   
   def display_equipment(self):
     print(f"{self.name} the {self.job}'s equipment!")
@@ -111,4 +111,4 @@ class NewPlayerCharacter:
     print(f"Weapon: {self.weapon}")
     print(f"Legs: {self.legs}")
     print(f"Feet: {self.feet}")
-    print(f"Ring: {self.ring}")
+    print(f"Ring: {self.ring}\n")
