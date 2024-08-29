@@ -17,10 +17,10 @@ art.town_of_respite()
 location = locations.TownOfRespite()
 
 while player.health > 0:
-  print(f"You are walking around the {location.name}.\n\nActions:\n  'e' - explore\n  'l' - leave")
+  print(f"You are walking around the {location.name}.\n\nActions:\n  'e' - explore\n  'i' - inspect stats and equipment\n  'l' - leave")
 
   if location.name == "Town of Respite":
-    print("  'r' - rest at the inn\n  'i' - inspect stats and equipment")
+    print("  'r' - rest at the inn")
     
   userInputAction = input("What do you want to do? -> ")
 
@@ -76,7 +76,7 @@ while player.health > 0:
     print("Your health and magic are restored!\n")
     player.rest()
 
-  elif userInputAction == "i" and location.name == "Town of Respite":
+  elif userInputAction == "i":
     print("You inspect yourself and your equipment")
     art.stat_heading()
     player.display_stats()
