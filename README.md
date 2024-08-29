@@ -3,6 +3,6 @@ A project to get familiar with Python's objects and classes as well as other pyt
 
 To play:
 1. clone/fork repo
-2. navigate to simple_rpg using your command line
+2. navigate to simple_rpg using your command line (if on windows use powershell)
 3. type 'python game.py'
 4. follow command line prompts to play!
