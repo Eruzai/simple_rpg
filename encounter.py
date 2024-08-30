@@ -1,4 +1,6 @@
 import ascii_art
+from enemies import Enemy
+from character import NewPlayerCharacter as Character
 from random import choice
 
 art = ascii_art.Draw()
@@ -7,7 +9,7 @@ class Fight:
   def __init__(self) -> None:
     pass
   
-  def battle(enemy, player):
+  def battle(enemy: Enemy, player: Character):
     while enemy:
       print(f"You have {player.health}/{player.maxHealth} health points.")
       print(f"You have {player.magic}/{player.maxMagic} magic points.\n")
@@ -42,19 +44,23 @@ class Fight:
       if enemy.health <= 0:
         art.victory()
         print(f"{enemy.name} has been vanquished!")
-        print(f"You gain {enemy.experience} experience points!\n")
+        print(f"You gain {enemy.experience} experience points and 1 Job Skill Point!\n")
         player.experience += enemy.experience
-        player.job.skillLevel = 5
+        player.job.skillPoints += 1
 
         while player.experienceNeeded <= player.experience:
           art.level_up()
           player.level_up()
 
-        if player.job.skillLevel == 5 and player.job.unlockableJobs and (list(player.job.unlockableJobs.keys())[0] not in player.unlockedJobs.keys()):
-          art.job_unlock()
-          for jobName, jobObject in player.job.unlockableJobs.items():
-            player.unlock_job(jobObject, jobName)
-            print(f"{jobName} unlocked!\n")
+        while player.job.skillPointsNeeded <= player.job.skillPoints:
+          art.skill_up()
+          player.job.skill_up()
+          print(f"{player.job.name} skill level is now level {player.job.skillLevel}\n")
+          if player.job.skillLevel == 5 and player.job.unlockableJobs and (list(player.job.unlockableJobs.keys())[0] not in player.unlockedJobs.keys()):
+            art.job_unlock()
+            for jobName, jobObject in player.job.unlockableJobs.items():
+              player.unlock_job(jobObject, jobName)
+              print(f"{jobName} unlocked!\n")
         break
       
       art.enemy_attack()
