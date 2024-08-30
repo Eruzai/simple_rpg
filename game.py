@@ -19,9 +19,12 @@ location = locations.TownOfRespite()
 while player.health > 0:
   print(f"You are walking around the {location.name}.\n\nActions:\n  'e' - explore\n  'i' - inspect stats and equipment\n  'l' - leave")
 
+  if len(player.unlockedJobs) > 1:
+    print("  'c' - change current job")
+
   if location.name == "Town of Respite":
     print("  'r' - rest at the inn")
-    
+
   userInputAction = input("What do you want to do? -> ")
 
   if userInputAction == "e":
@@ -82,6 +85,13 @@ while player.health > 0:
     player.display_stats()
     art.equipment_heading()
     player.display_equipment()
+
+  elif userInputAction == "c":
+    print("You can switch your current job to any of these:")
+    for jobName in player.unlockedJobs:
+      print(f"  {jobName}")
+    userInputJob = input("Which job would you like to change to? (type full name) -> ")
+    player.switch_job(userInputJob)
 
   else:
     print("You can't do that!")
