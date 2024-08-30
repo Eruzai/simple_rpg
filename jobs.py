@@ -1,8 +1,9 @@
 class Job:
   def __init__(self):
     self.unlockableJobs = None
-    self.skillLevel = 0
+    self.skillLevel = 1
     self.skillPoints = 0
+    self.skillPointsNeeded = 5
 
   def skill_up(self):
     self.skillLevel += 1
@@ -13,7 +14,6 @@ class Novice(Job):
     super().__init__()
     self.name = "Novice"
     self.unlockableJobs = {"Magician": Magician, "Fighter": Fighter}
-    self.skillPointsNeeded = 5
     self.healthMultiplier = 1
     self.magicMultiplier = 1
     self.strengthMultiplier = 1
@@ -26,7 +26,6 @@ class Magician(Job):
     super().__init__()
     self.name = "Magician"
     self.unlockableJobs = {"Wizard": Wizard, "Sage": Sage}
-    self.skillPointsNeeded = 5
     self.healthMultiplier = 1.25
     self.magicMultiplier = 1.5
     self.strengthMultiplier = 1
@@ -39,7 +38,6 @@ class Fighter(Job):
     super().__init__()
     self.name = "Fighter"
     self.unlockableJobs = {"Warrior": Warrior, "Berserker": Berserker}
-    self.skillPointsNeeded = 5
     self.healthMultiplier = 1.5
     self.magicMultiplier = 1
     self.strengthMultiplier = 1.5
@@ -51,7 +49,6 @@ class Wizard(Job):
   def __init__(self):
     super().__init__()
     self.name = "Wizard"
-    self.skillPointsNeeded = 5
     self.healthMultiplier = 1.5
     self.magicMultiplier = 2
     self.strengthMultiplier = 1.25
@@ -63,7 +60,6 @@ class Sage(Job):
   def __init__(self):
     super().__init__()
     self.name = "Sage"
-    self.skillPointsNeeded = 5
     self.healthMultiplier = 1.75
     self.magicMultiplier = 2
     self.strengthMultiplier = 1.25
@@ -75,7 +71,6 @@ class Warrior(Job):
   def __init__(self):
     super().__init__()
     self.name = "Warrior"
-    self.skillPointsNeeded = 5
     self.healthMultiplier = 2
     self.magicMultiplier = 1
     self.strengthMultiplier = 2.5
@@ -87,7 +82,6 @@ class Berserker(Job):
   def __init__(self):
     super().__init__()
     self.name = "Berserker"
-    self.skillPointsNeeded = 5
     self.healthMultiplier = 2.5
     self.magicMultiplier = 1
     self.strengthMultiplier = 2
