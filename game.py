@@ -91,9 +91,10 @@ while player.health > 0:
     for jobName in player.unlockedJobs:
       print(f"  {jobName}")
     userInputJob = input("Which job would you like to change to? (type full name) -> ")
+    art.job_changed()
     player.switch_job(userInputJob)
 
   else:
     print("You can't do that!")
 
-art.game_over
+art.game_over()
