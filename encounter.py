@@ -44,14 +44,17 @@ class Fight:
         print(f"{enemy.name} has been vanquished!")
         print(f"You gain {enemy.experience} experience points!\n")
         player.experience += enemy.experience
+        player.job.skillLevel = 5
 
         while player.experienceNeeded <= player.experience:
           art.level_up()
           player.level_up()
 
-          if player.job == "Novice" and player.level == 5:
-            art.job_unlock()
-            player.class_change()
+        if player.job.skillLevel == 5 and player.job.unlockableJobs and (list(player.job.unlockableJobs.keys())[0] not in player.unlockedJobs.keys()):
+          art.job_unlock()
+          for jobName, jobObject in player.job.unlockableJobs.items():
+            player.unlock_job(jobObject, jobName)
+            print(f"{jobName} unlocked!\n")
         break
       
       art.enemy_attack()
@@ -65,8 +68,8 @@ class Fight:
       if attackType == "magical":
         damage = enemy.intellect
       
+      print(f"{enemy.name} attacks you with a {attackType} attack!\n")
       player.damage_taken(damage, attackType)
-      print(f"{enemy.name} attacks you with a {attackType} attack!\nYou take {damage} points of damage!\n")
 
       if player.health <= 0:
         art.defeat()
