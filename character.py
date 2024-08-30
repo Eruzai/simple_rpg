@@ -56,7 +56,9 @@ class NewPlayerCharacter:
   def display_stats(self):
     print(f"{self.name} the {self.job.name}'s stats!")
     print(f"Level: {self.level}")
-    print(f"Experience to next Level up: {self.experienceNeeded - self.experience}")
+    print(f"Experience to Next Level up: {self.experienceNeeded - self.experience}")
+    print(f"Job Level: {self.job.skillLevel}")
+    print(f"Job Points to Next Skill Level: {self.job.skillPointsNeeded - self.job.skillPoints}")
     print(f"Health: {self.health}/{self.maxHealth}")
     print(f"Magic: {self.magic}/{self.maxMagic}")
     print(f"Strength: {self.strength}")
