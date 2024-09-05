@@ -31,6 +31,7 @@ class GameState:
     }
     with open(fileName, 'wb') as file:
       pickle.dump(data, file)
+      print("Game has been saved")
 
   def load_game(fileChoice, playerInfo: Character):
     fileName = f"saved_games/{fileChoice}"
@@ -57,4 +58,4 @@ class GameState:
       playerInfo.feet = data['feet']
       playerInfo.ring = data['ring']
       playerInfo.calculate_stats()
-      playerInfo.display_stats()
+      print("Game successfully loaded")
