@@ -33,7 +33,7 @@ while player.health > 0:
     print("  'c' - change current job")
 
   if location.name == "Town of Respite":
-    print("  'r' - rest at the inn and save game")
+    print("  'r' - rest at the inn and save game\n  'q' - quit game")
 
   userInputAction = input("What do you want to do? -> ")
 
@@ -108,6 +108,9 @@ while player.health > 0:
     userInputJob = input("Which job would you like to change to? (type full name) -> ")
     art.job_changed()
     player.switch_job(userInputJob)
+
+  elif userInputAction == "q":
+    player.health = 0
 
   else:
     print("You can't do that!")
