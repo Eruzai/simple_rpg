@@ -1,13 +1,23 @@
-import character, locations, encounter, ascii_art
+import game_state, character, locations, encounter, ascii_art
 
 art = ascii_art.Draw()
 
 art.welcome()
 art.title()
 
-userInputName = input("Enter your character's name -> ")
+print("Actions:\n  'n' - start new game\n  'l' - load game")
+userInputLoadGame = input("-> ")
 
-player = character.NewPlayerCharacter(userInputName)
+if userInputLoadGame == 'l':
+  print("Save files:\n  '1' - file1\n  '2' - file2\n  '3' - file3")
+  fileNumber = input("Choose save file -> ")
+  fileLocation = f"file{fileNumber}"
+  player = character.NewPlayerCharacter('noname')
+  game_state.GameState.load_game(fileLocation, player)
+elif userInputLoadGame == 'n':
+  userInputName = input("Enter your character's name -> ")
+  player = character.NewPlayerCharacter(userInputName)
+  fileLocation = None
 
 art.stat_heading()
 player.display_stats()
@@ -23,7 +33,7 @@ while player.health > 0:
     print("  'c' - change current job")
 
   if location.name == "Town of Respite":
-    print("  'r' - rest at the inn")
+    print("  'r' - rest at the inn and save game")
 
   userInputAction = input("What do you want to do? -> ")
 
@@ -78,6 +88,11 @@ while player.health > 0:
     art.rest()
     print("Your health and magic are restored!\n")
     player.rest()
+    if fileLocation is None:
+      print("Save files:\n  '1' - file1\n  '2' - file2\n  '3' - file3")
+      fileNumber = input("Choose save file -> ")
+      fileLocation = f"file{fileNumber}"
+    game_state.GameState.save_game(fileLocation, player)
 
   elif userInputAction == "i":
     print("You inspect yourself and your equipment")
