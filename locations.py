@@ -1,5 +1,5 @@
+import enemies, equipment
 from random import choice
-import enemies
 
 class Location:
   def __init__(self):
@@ -7,7 +7,7 @@ class Location:
      self.treasure = None
   
   def findTreasure(self):
-    print("you've found something shiny on the ground!\n")
+    self.treasure = self.treasures[choice(self.treasureArray)]()
   
   def findNothing(self):
     chance = choice(self.dialogArray)
@@ -37,6 +37,14 @@ class TownOfRespite(Location):
                     enemies.TinySlime,
                     enemies.MysteriousShadow]
     self.encounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3]
+    self.treasures = [equipment.Ring,
+                      equipment.Hat,
+                      equipment.Robe,
+                      equipment.Sword,
+                      equipment.Shoes,
+                      equipment.Loop,
+                      equipment.Pants]
+    self.treasureArray = [0, 1, 2, 3, 4, 5, 6]
     self.dialog = ["You nearly miss stepping on a rat. Yikes!",
                    "You walk around and take a breather, It's hard work being an adventurer!",
                    "You hear someone talking about how the fields are full of slimes these days, and some of them are really shiny!",
@@ -57,6 +65,14 @@ class FieldsOfBeginning(Location):
                     enemies.WindElemental,
                     enemies.ShinySlime]
     self.encounterArray = [0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5]
+    self.treasures = [equipment.Ring,
+                      equipment.Hat,
+                      equipment.Robe,
+                      equipment.Sword,
+                      equipment.Shoes,
+                      equipment.Loop,
+                      equipment.Pants]
+    self.treasureArray = [0, 1, 2, 3, 4, 5, 6]
     self.dialog = ["You take a deep breath. The air smells so fresh here.",
                    "It's very easy to walk here, the grass is a bit spongey under your feet.",
                    "It'd be nice if the slimes didn't blend in so well with the grass...",
@@ -79,6 +95,14 @@ class MiddlingMarsh(Location):
                     enemies.WretchedCrow,
                     enemies.MarshHorror]
     self.encounterArray = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 6]
+    self.treasures = [equipment.Ring,
+                      equipment.Hat,
+                      equipment.Robe,
+                      equipment.Sword,
+                      equipment.Shoes,
+                      equipment.Loop,
+                      equipment.Pants]
+    self.treasureArray = [0, 1, 2, 3, 4, 5, 6]
     self.dialog = ["This place is covered in the stench of death.",
                    "A chill wind blows and you hear the sound of chittering and a faint moaning nearby...",
                    "Everything is in shades of grey and brown, It's not a pretty sight.",
@@ -102,6 +126,14 @@ class KeepOfTheEnd(Location):
                     enemies.VoidBeast,
                     enemies.TheEnd]
     self.encounterArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7]
+    self.treasures = [equipment.Ring,
+                      equipment.Hat,
+                      equipment.Robe,
+                      equipment.Sword,
+                      equipment.Shoes,
+                      equipment.Loop,
+                      equipment.Pants]
+    self.treasureArray = [0, 1, 2, 3, 4, 5, 6]
     self.dialog = ["There is no light except for what is provided by the torches on the walls. And even that isn't much to see by...",
                    "The floor is rocky and uneven. This castle must have been built eons ago.",
                    "The air is cold and damp. Just keep moving...",
