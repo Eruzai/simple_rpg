@@ -16,18 +16,18 @@ class NewPlayerCharacter:
     self.baseIntellect = randint(10, 15)
     self.basePhysicalDef = 0
     self.baseMagicDef = 0
-    self.head = None
-    self.body = None
-    self.weapon = None
-    self.legs = None
-    self.feet = None
-    self.ring = None
-    self.totalItemStats = {"maxHealth": 0,
-                      "maxMagic": 0,
-                      "strength": 0,
-                      "intellect": 0,
-                      "physicalDef": 0,
-                      "magicDef": 0}
+    self.equipment = {"head": None,
+                      "body": None,
+                      "weapon": None,
+                      "legs": None,
+                      "feet": None,
+                      "ring": None}
+    self.totalEquipmentStats = {"maxHealth": 0,
+                                "maxMagic": 0,
+                                "strength": 0,
+                                "intellect": 0,
+                                "physicalDef": 0,
+                                "magicDef": 0}
     self.maxHealth = self.baseMaxHealth
     self.maxMagic = self.baseMaxMagic
     self.health = self.maxHealth
@@ -38,12 +38,12 @@ class NewPlayerCharacter:
     self.magicDef = 0
 
   def calculate_stats(self):
-    self.maxHealth = self.baseMaxHealth * self.job.healthMultiplier // 1
-    self.maxMagic = self.baseMaxMagic * self.job.magicMultiplier // 1
-    self.strength = self.baseStrength * self.job.strengthMultiplier // 1
-    self.intellect = self.baseIntellect * self.job.intellectMultiplier // 1
-    self.physicalDef = self.basePhysicalDef + self.job.physicalDef
-    self.magicDef = self.baseMagicDef + self.job.magicDef
+    self.maxHealth = self.baseMaxHealth * self.job.healthMultiplier // 1 + self.totalEquipmentStats["maxHealth"]
+    self.maxMagic = self.baseMaxMagic * self.job.magicMultiplier // 1 + self.totalEquipmentStats["maxMagic"]
+    self.strength = self.baseStrength * self.job.strengthMultiplier // 1 + self.totalEquipmentStats["strength"]
+    self.intellect = self.baseIntellect * self.job.intellectMultiplier // 1 + self.totalEquipmentStats["intellect"]
+    self.physicalDef = self.basePhysicalDef + self.totalEquipmentStats["physicalDef"] + self.job.physicalDef
+    self.magicDef = self.baseMagicDef + self.totalEquipmentStats["magicDef"] + self.job.magicDef
     if self.health > self.maxHealth:
       self.health = self.maxHealth
     if self.magic > self.maxMagic:
@@ -51,19 +51,20 @@ class NewPlayerCharacter:
 
   def unequip_item(self, item: Item):
     slot = item.equipSlot
-    setattr(self, slot, None)
+    self.equipment[slot] = None
     for stat, value in item.stats.items():
-      self.totalItemStats[stat] -= value
+      self.totalEquipmentStats[stat] -= value
+    self.calculate_stats()
 
   def equip_item(self, item: Item):
     slot = item.equipSlot
-    itemEquipped = getattr(self, slot)
+    itemEquipped = self.equipment[slot]
     if itemEquipped is not None:
       self.unequip_item(itemEquipped)
-    setattr(self, slot, item)
+    self.equipment[slot] = item
     for stat, value in item.stats.items():
-      self.totalItemStats[stat] += value
-
+      self.totalEquipmentStats[stat] += value
+    self.calculate_stats()
   
   def damage_taken(self, basedamage, attackType):
     damage = basedamage
@@ -91,12 +92,10 @@ class NewPlayerCharacter:
   
   def display_equipment(self):
     print(f"{self.name} the {self.job.name}'s equipment!")
-    print(f"Head: {self.head}")
-    print(f"Body: {self.body}")
-    print(f"Weapon: {self.weapon}")
-    print(f"Legs: {self.legs}")
-    print(f"Feet: {self.feet}")
-    print(f"Ring: {self.ring}\n")
+    for slot, item in self.equipment.items():
+      item_name = item.name if item is not None else "None"
+      print(f"{slot}: {item_name}")
+    print("")
 
   def rest(self):
     self.health = self.maxHealth
