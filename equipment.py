@@ -39,3 +39,38 @@ class Robe(Item):
     self.stats["maxMagic"] = 50
     self.stats["intellect"] = 50
     self.stats["magicDef"] = 15
+
+class Pants(Item):
+  def __init__(self):
+    super().__init__()
+    self.name = "Pants of Stats"
+    self.equipSlot = "legs"
+    self.stats["maxHealth"] = 50
+    self.stats["strength"] = 5
+    self.stats["physicalDef"] = 5
+
+class Shoes(Item):
+  def __init__(self):
+    super().__init__()
+    self.name = "Shoes of Stats"
+    self.equipSlot = "feet"
+    self.stats["maxHealth"] = 15
+    self.stats["maxMagic"] = 5
+    self.stats["intellect"] = 50
+    self.stats["magicDef"] = 5
+
+class Hat(Item):
+  def __init__(self):
+    super().__init__()
+    self.name = "Hat of Stats"
+    self.equipSlot = "head"
+    self.stats["intellect"] = 5
+    self.stats["magicDef"] = 5
+
+class Sword(Item):
+  def __init__(self):
+    super().__init__()
+    self.name = "Sword of Stats"
+    self.equipSlot = "weapon"
+    self.stats["strength"] = 5
+    self.stats["intellect"] = 5
