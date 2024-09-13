@@ -41,6 +41,10 @@ class NewPlayerCharacter:
       self.health = self.maxHealth
     if self.magic > self.maxMagic:
       self.magic = self.maxMagic
+
+  def equip_item(self, item):
+    slot = item.equipSlot
+    setattr(self, slot, item)
   
   def damage_taken(self, basedamage, attackType):
     damage = basedamage
