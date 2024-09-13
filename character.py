@@ -1,5 +1,6 @@
-from random import randint
 import jobs
+from equipment import Item
+from random import randint
 
 class NewPlayerCharacter:
   def __init__(self, name):
@@ -21,6 +22,12 @@ class NewPlayerCharacter:
     self.legs = None
     self.feet = None
     self.ring = None
+    self.totalItemStats = {"maxHealth": 0,
+                      "maxMagic": 0,
+                      "strength": 0,
+                      "intellect": 0,
+                      "physicalDef": 0,
+                      "magicDef": 0}
     self.maxHealth = self.baseMaxHealth
     self.maxMagic = self.baseMaxMagic
     self.health = self.maxHealth
@@ -42,9 +49,11 @@ class NewPlayerCharacter:
     if self.magic > self.maxMagic:
       self.magic = self.maxMagic
 
-  def equip_item(self, item):
+  def equip_item(self, item: Item):
     slot = item.equipSlot
     setattr(self, slot, item)
+    for stat, value in item.stats.items():
+      self.totalItemStats[stat] += value
   
   def damage_taken(self, basedamage, attackType):
     damage = basedamage
