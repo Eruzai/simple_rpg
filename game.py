@@ -1,4 +1,4 @@
-import game_state, character, locations, encounter, ascii_art
+import game_state, character, locations, encounter, found_treasure, ascii_art
 
 art = ascii_art.Draw()
 
@@ -47,6 +47,11 @@ while player.health > 0:
       location.enemy.draw()
       encounter.Fight.battle(location.enemy, player)
       location.enemy = None
+    
+    if location.treasure:
+      print(f"You've discovered a {location.treasure.name} lying on the ground!")
+      found_treasure.Treasure.equip_item(location.treasure, player)
+      location.treasure = None
 
   elif userInputAction == "l":
     art.open_map()
