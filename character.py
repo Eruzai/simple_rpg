@@ -49,11 +49,21 @@ class NewPlayerCharacter:
     if self.magic > self.maxMagic:
       self.magic = self.maxMagic
 
+  def unequip_item(self, item: Item):
+    slot = item.equipSlot
+    setattr(self, slot, None)
+    for stat, value in item.stats.items():
+      self.totalItemStats[stat] -= value
+
   def equip_item(self, item: Item):
     slot = item.equipSlot
+    itemEquipped = getattr(self, slot)
+    if itemEquipped is not None:
+      self.unequip_item(itemEquipped)
     setattr(self, slot, item)
     for stat, value in item.stats.items():
       self.totalItemStats[stat] += value
+
   
   def damage_taken(self, basedamage, attackType):
     damage = basedamage
