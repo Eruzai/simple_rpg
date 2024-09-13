@@ -22,12 +22,8 @@ class GameState:
       'baseIntellect': playerInfo.baseIntellect,
       'basePhysicalDef': playerInfo.basePhysicalDef,
       'baseMagicDef': playerInfo.baseMagicDef,
-      'head': playerInfo.head,
-      'body': playerInfo.body,
-      'weapon': playerInfo.weapon,
-      'legs': playerInfo.legs,
-      'feet': playerInfo.feet,
-      'ring': playerInfo.ring
+      'equipment': playerInfo.equipment,
+      'totalEquipmentStats': playerInfo.totalEquipmentStats
     }
     with open(fileName, 'wb') as file:
       pickle.dump(data, file)
@@ -51,11 +47,7 @@ class GameState:
       playerInfo.baseIntellect = data['baseIntellect']
       playerInfo.basePhysicalDef = data['basePhysicalDef']
       playerInfo.baseMagicDef = data['baseMagicDef']
-      playerInfo.head = data['head']
-      playerInfo.body = data['body']
-      playerInfo.weapon = data['weapon']
-      playerInfo.legs = data['legs']
-      playerInfo.feet = data['feet']
-      playerInfo.ring = data['ring']
+      playerInfo.equipment = data['equipment']
+      playerInfo.totalEquipmentStats = data['totalEquipmentStats']
       playerInfo.calculate_stats()
       print("Game successfully loaded")
