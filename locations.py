@@ -37,14 +37,9 @@ class TownOfRespite(Location):
                     enemies.TinySlime,
                     enemies.MysteriousShadow]
     self.encounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3]
-    self.treasures = [equipment.Ring,
-                      equipment.Hat,
-                      equipment.Robe,
-                      equipment.Sword,
-                      equipment.Shoes,
-                      equipment.Loop,
-                      equipment.Pants]
-    self.treasureArray = [0, 1, 2, 3, 4, 5, 6]
+    self.treasures = [equipment.StrangeRing,
+                      equipment.FragmentOfHope]
+    self.treasureArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
     self.dialog = ["You nearly miss stepping on a rat. Yikes!",
                    "You walk around and take a breather, It's hard work being an adventurer!",
                    "You hear someone talking about how the fields are full of slimes these days, and some of them are really shiny!",
@@ -65,14 +60,18 @@ class FieldsOfBeginning(Location):
                     enemies.WindElemental,
                     enemies.ShinySlime]
     self.encounterArray = [0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5]
-    self.treasures = [equipment.Ring,
-                      equipment.Hat,
-                      equipment.Robe,
-                      equipment.Sword,
-                      equipment.Shoes,
-                      equipment.Loop,
-                      equipment.Pants]
-    self.treasureArray = [0, 1, 2, 3, 4, 5, 6]
+    self.treasures = [equipment.RustyHelm,
+                      equipment.ClothCap,
+                      equipment.RustyMail,
+                      equipment.FrayedRobe,
+                      equipment.LeatherSandals,
+                      equipment.ClothSandals,
+                      equipment.AdventuringPants,
+                      equipment.WanderingPants,
+                      equipment.ShortSword,
+                      equipment.GnarledStaff,
+                      equipment.GreenRing]
+    self.treasureArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     self.dialog = ["You take a deep breath. The air smells so fresh here.",
                    "It's very easy to walk here, the grass is a bit spongey under your feet.",
                    "It'd be nice if the slimes didn't blend in so well with the grass...",
@@ -95,14 +94,29 @@ class MiddlingMarsh(Location):
                     enemies.WretchedCrow,
                     enemies.MarshHorror]
     self.encounterArray = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 6]
-    self.treasures = [equipment.Ring,
-                      equipment.Hat,
-                      equipment.Robe,
-                      equipment.Sword,
-                      equipment.Shoes,
-                      equipment.Loop,
-                      equipment.Pants]
-    self.treasureArray = [0, 1, 2, 3, 4, 5, 6]
+    self.treasures = [equipment.HornedHelm,
+                      equipment.HeavyHelm,
+                      equipment.WitchHat,
+                      equipment.MysticCap,
+                      equipment.SpikedMail,
+                      equipment.SolidChestplate,
+                      equipment.WitchRobe,
+                      equipment.MysticGarb,
+                      equipment.SpurredGreaves,
+                      equipment.HeavyBoots,
+                      equipment.WitchSlippers,
+                      equipment.MysticSandals,
+                      equipment.SpurredLeggings,
+                      equipment.PlateLeggings,
+                      equipment.WitchPants,
+                      equipment.MysticSlacks,
+                      equipment.BrutalAxe,
+                      equipment.Defender,
+                      equipment.WitchStaff,
+                      equipment.MysticRod,
+                      equipment.BlackRing,
+                      equipment.WhiteRing]
+    self.treasureArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
     self.dialog = ["This place is covered in the stench of death.",
                    "A chill wind blows and you hear the sound of chittering and a faint moaning nearby...",
                    "Everything is in shades of grey and brown, It's not a pretty sight.",
@@ -126,14 +140,12 @@ class KeepOfTheEnd(Location):
                     enemies.VoidBeast,
                     enemies.TheEnd]
     self.encounterArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7]
-    self.treasures = [equipment.Ring,
-                      equipment.Hat,
-                      equipment.Robe,
-                      equipment.Sword,
-                      equipment.Shoes,
-                      equipment.Loop,
-                      equipment.Pants]
-    self.treasureArray = [0, 1, 2, 3, 4, 5, 6]
+    self.treasures = [equipment.FragmentOfShadow,
+                      equipment.NullFragment,
+                      equipment.VoidFragment,
+                      equipment.ChromaticRing,
+                      equipment.UnwieldlyEnd]
+    self.treasureArray = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 4]
     self.dialog = ["There is no light except for what is provided by the torches on the walls. And even that isn't much to see by...",
                    "The floor is rocky and uneven. This castle must have been built eons ago.",
                    "The air is cold and damp. Just keep moving...",
