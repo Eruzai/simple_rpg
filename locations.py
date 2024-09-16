@@ -1,4 +1,5 @@
 import enemies, equipment
+from print_delay import PrintText
 from random import choice
 
 class Location:
@@ -12,13 +13,13 @@ class Location:
   def findNothing(self):
     chance = choice(self.dialogArray)
     dialog = self.dialog[chance]
-    print(f"{dialog}\n")
+    PrintText.Print_with_delay(f"{dialog}\n")
 
   def encounterEnemy(self):
     self.enemy = self.enemies[choice(self.encounterArray)]()
   
   def explore(self):
-    print(f"you explore the {self.name}\n")
+    PrintText.Print_with_delay(f"you explore the {self.name}\n")
     chance = choice(self.exploreArray)
     if chance == 1:
       self.findTreasure()

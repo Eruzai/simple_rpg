@@ -1,3 +1,4 @@
+from print_delay import PrintText
 from random import randint, choice
 
 class Item:
@@ -7,9 +8,9 @@ class Item:
     self.stats = {}
 
   def item_stats(self):
-    print(f"{self.name} improves:")
+    PrintText.Print_with_delay(f"{self.name} improves:\n")
     for key, value in self.stats.items():
-      print(f"  {key} by {value}")
+      PrintText.Print_with_delay(f"  {key} by {value}\n")
 
 class RustyHelm(Item):
   def __init__(self):

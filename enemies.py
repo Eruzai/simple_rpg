@@ -1,4 +1,5 @@
 import ascii_art
+from print_delay import PrintText
 from random import randint
 
 art = ascii_art.Draw()
@@ -23,18 +24,18 @@ class Enemy:
       multiplier = self.magicDef / 100
     damage -= basedamage * multiplier // 1
     self.health -= damage
-    print(f"{self.name} takes {damage} points of {attackType} damage!\n")
+    PrintText.Print_with_delay(f"{self.name} takes {damage} points of {attackType} damage!\n")
   
   def display_stats(self):
-    print(f"You reveal {self.name}'s secrets!")
-    print(f"Level: {self.level}")
-    print(f"Health: {self.health}")
-    print(f"Strength: {self.strength}")
-    print(f"Intellect: {self.intellect}")
+    PrintText.Print_with_delay(f"You reveal {self.name}'s secrets!\n")
+    PrintText.Print_with_delay(f"Level: {self.level}\n")
+    PrintText.Print_with_delay(f"Health: {self.health}\n")
+    PrintText.Print_with_delay(f"Strength: {self.strength}\n")
+    PrintText.Print_with_delay(f"Intellect: {self.intellect}\n")
     if hasattr(self, 'physicalDef'):
-      print(f"Physical Defense: {self.physicalDef}")
+      PrintText.Print_with_delay(f"Physical Defense: {self.physicalDef}\n")
     if hasattr(self, 'magicDef'):
-      print(f"Magic Defense: {self.magicDef}")
+      PrintText.Print_with_delay(f"Magic Defense: {self.magicDef}\n")
 
 class Rat(Enemy):
   def __init__(self):

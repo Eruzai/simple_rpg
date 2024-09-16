@@ -1,4 +1,5 @@
 from character import NewPlayerCharacter as Character
+from print_delay import PrintText
 import pickle
 
 class GameState:
@@ -27,7 +28,7 @@ class GameState:
     }
     with open(fileName, 'wb') as file:
       pickle.dump(data, file)
-      print("Game has been saved")
+      PrintText.Print_with_delay("Game has been saved\n")
 
   def load_game(fileChoice, playerInfo: Character):
     fileName = f"saved_games/{fileChoice}"
@@ -50,4 +51,4 @@ class GameState:
       playerInfo.equipment = data['equipment']
       playerInfo.totalEquipmentStats = data['totalEquipmentStats']
       playerInfo.calculate_stats()
-      print("Game successfully loaded")
+      PrintText.Print_with_delay("Game successfully loaded")

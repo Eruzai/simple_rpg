@@ -1,4 +1,5 @@
 import jobs
+from print_delay import PrintText
 from equipment import Item
 from random import randint
 
@@ -75,26 +76,26 @@ class NewPlayerCharacter:
       multiplier = self.magicDef / 100
     damage -= basedamage * multiplier // 1
     self.health -= damage
-    print(f"You take {damage} points of damage!\n")
+    PrintText.Print_with_delay(f"You take {damage} points of damage!\n")
 
   def display_stats(self):
-    print(f"{self.name} the {self.job.name}'s stats!")
-    print(f"Level: {self.level}")
-    print(f"Experience to Next Level up: {self.experienceNeeded - self.experience}")
-    print(f"Job Level: {self.job.skillLevel}")
-    print(f"Job Points to Next Skill Level: {self.job.skillPointsNeeded - self.job.skillPoints}")
-    print(f"Health: {self.health}/{self.maxHealth}")
-    print(f"Magic: {self.magic}/{self.maxMagic}")
-    print(f"Strength: {self.strength}")
-    print(f"Intellect: {self.intellect}")
-    print(f"Physical Defense: {self.physicalDef}")
-    print(f"Magic Defense: {self.magicDef}\n")
+    PrintText.Print_with_delay(f"{self.name} the {self.job.name}'s stats!\n")
+    PrintText.Print_with_delay(f"Level: {self.level}\n")
+    PrintText.Print_with_delay(f"Experience to Next Level up: {self.experienceNeeded - self.experience}\n")
+    PrintText.Print_with_delay(f"Job Level: {self.job.skillLevel}\n")
+    PrintText.Print_with_delay(f"Job Points to Next Skill Level: {self.job.skillPointsNeeded - self.job.skillPoints}\n")
+    PrintText.Print_with_delay(f"Health: {self.health}/{self.maxHealth}\n")
+    PrintText.Print_with_delay(f"Magic: {self.magic}/{self.maxMagic}\n")
+    PrintText.Print_with_delay(f"Strength: {self.strength}\n")
+    PrintText.Print_with_delay(f"Intellect: {self.intellect}\n")
+    PrintText.Print_with_delay(f"Physical Defense: {self.physicalDef}\n")
+    PrintText.Print_with_delay(f"Magic Defense: {self.magicDef}\n")
   
   def display_equipment(self):
-    print(f"{self.name} the {self.job.name}'s equipment!")
+    PrintText.Print_with_delay(f"{self.name} the {self.job.name}'s equipment!\n")
     for slot, item in self.equipment.items():
       item_name = item.name if item is not None else "None"
-      print(f"{slot}: {item_name}")
+      PrintText.Print_with_delay(f"{slot}: {item_name}\n")
     print("")
 
   def rest(self):

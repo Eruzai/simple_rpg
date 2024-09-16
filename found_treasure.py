@@ -1,5 +1,6 @@
 from equipment import Item
 from character import NewPlayerCharacter as Character
+from print_delay import PrintText
 
 class Treasure():
   def __init__(self) -> None:
@@ -9,17 +10,17 @@ class Treasure():
     slot = treasure.equipSlot
     if player.equipment[slot]:
       equipedItem = player.equipment[slot]
-      print("Currently equiped item:")
+      PrintText.Print_with_delay("Currently equiped item:\n")
       equipedItem.item_stats()
-      print("Found item:")
+      PrintText.Print_with_delay("Found item:\n")
       treasure.item_stats()
-      print(f"Would you like to replace your equiped {equipedItem.name} with found {treasure.name}?")
+      PrintText.Print_with_delay(f"Would you like to replace your equiped {equipedItem.name} with found {treasure.name}?\n")
       userEquipChoice = input("'y' or 'n' -> ")
       if userEquipChoice == 'y':
         player.equip_item(treasure)
-        print(f"you equiped the {treasure.name}.")
+        PrintText.Print_with_delay(f"you equiped the {treasure.name}.\n")
       else:
-        print(f"you leave the {treasure.name} on the ground and carry on.")
+        PrintText.Print_with_delay(f"you leave the {treasure.name} on the ground and carry on.\n")
     else:
       player.equip_item(treasure)
-      print(f"you equiped the {treasure.name}.")
+      PrintText.Print_with_delay(f"you equiped the {treasure.name}.\n")
