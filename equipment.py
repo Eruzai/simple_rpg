@@ -90,6 +90,7 @@ class ShortSword(Item):
     self.name = "Short Sword"
     self.equipSlot = "Weapon"
     self.stats["strength"] = randint(5, 10)
+    self.stats["intellect"] = randint(3, 5)
 
 class GnarledStaff(Item):
   def __init__(self):
@@ -98,6 +99,7 @@ class GnarledStaff(Item):
     self.equipSlot = "weapon"
     self.stats["maxMagic"] = randint(5, 10)
     self.stats["intellect"] = randint(8, 15)
+    self.stats["strength"] = randint(3, 5)
 
 class GreenRing(Item):
   def __init__(self):
@@ -264,6 +266,7 @@ class BrutalAxe(Item):
     self.name = "Brutal Axe"
     self.equipSlot = "Weapon"
     self.stats["strength"] = randint(20, 30)
+    self.stats["intellect"] = randint(4, 8)
 
 class Defender(Item):
   def __init__(self):
@@ -271,6 +274,7 @@ class Defender(Item):
     self.name = "Defender"
     self.equipSlot = "Weapon"
     self.stats["strength"] = randint(15, 20)
+    self.stats["intellect"] = randint(6, 10)
     self.stats["physicalDef"] = randint(5, 10)
     self.stats["magicDef"] = randint(3, 7)
 
@@ -281,6 +285,7 @@ class WitchStaff(Item):
     self.equipSlot = "weapon"
     self.stats["maxMagic"] = randint(15, 20)
     self.stats["intellect"] = randint(30, 40)
+    self.stats["strength"] = randint(5, 8)
 
 class MysticRod(Item):
   def __init__(self):
@@ -289,6 +294,7 @@ class MysticRod(Item):
     self.equipSlot = "weapon"
     self.stats["maxMagic"] = randint(20, 30)
     self.stats["intellect"] = randint(20, 30)
+    self.stats["strength"] = randint(8, 12)
     self.stats["physicalDef"] = randint(3, 7)
     self.stats["magicDef"] = randint(5, 10)
 
@@ -329,7 +335,7 @@ class FragmentOfShadow(Item):
   def __init__(self):
     super().__init__()
     self.name = "Fragment of Shadow"
-    self.equipSlot = choice["head", "body", "legs", "feet"]
+    self.equipSlot = choice(["head", "body", "legs", "feet"])
     self.stats["maxHealth"] = randint(25, 45)
     self.stats["strength"] = randint(5, 10)
     self.stats["physicalDef"] = randint(8, 12)
@@ -339,7 +345,7 @@ class NullFragment(Item):
   def __init__(self):
     super().__init__()
     self.name = "Null Fragment"
-    self.equipSlot = choice["head", "body", "legs", "feet"]
+    self.equipSlot = choice(["head", "body", "legs", "feet"])
     self.stats["maxHealth"] = randint(15, 30)
     self.stats["maxMagic"] = randint(5, 10)
     self.stats["intellect"] = randint(8, 12)
@@ -350,7 +356,7 @@ class VoidFragment(Item):
   def __init__(self):
     super().__init__()
     self.name = "Void Fragment"
-    self.equipSlot = choice["head", "body", "legs", "feet"]
+    self.equipSlot = choice(["head", "body", "legs", "feet"])
     self.stats["maxHealth"] = randint(20, 35)
     self.stats["maxMagic"] = randint(3, 8)
     self.stats["strength"] = randint(3, 7)
@@ -384,7 +390,7 @@ class FragmentOfHope(Item):
   def __init__(self):
     super().__init__()
     self.name = "Fragment of Hope"
-    self.equipSlot = choice["head", "body", "legs", "feet"]
+    self.equipSlot = choice(["head", "body", "legs", "feet"])
     self.stats["maxHealth"] = randint(50, 150)
     self.stats["maxMagic"] = randint(25, 50)
     self.stats["strength"] = randint(15, 25)
