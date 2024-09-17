@@ -4,7 +4,7 @@ from random import choice
 
 class Location:
   def __init__(self):
-     self.enemy = None
+     self.encounter = None
      self.treasure = None
   
   def findTreasure(self):
@@ -16,7 +16,10 @@ class Location:
     PrintText.Print_with_delay(f"{dialog}\n")
 
   def encounterEnemy(self):
-    self.enemy = self.enemies[choice(self.encounterArray)]()
+    enemyGroup = []
+    for enemyIndex in choice(self.encounterArray):
+      enemyGroup.append(self.enemies[enemyIndex]())
+    self.encounter = enemyGroup
   
   def explore(self):
     PrintText.Print_with_delay(f"you explore the {self.name}\n")
@@ -37,7 +40,7 @@ class TownOfRespite(Location):
                     enemies.RabidDog,
                     enemies.TinySlime,
                     enemies.MysteriousShadow]
-    self.encounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3]
+    self.encounterArray = [[0, 0], [0, 0, 0, 0, 0], [0, 0, 1], [1, 1], [0, 1], [0, 0, 2], [2, 2], [1, 2], [1, 1, 1], [0, 1, 2], [0, 0, 0, 1], [0, 0, 0], [3]]
     self.treasures = [equipment.StrangeRing,
                       equipment.FragmentOfHope]
     self.treasureArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
