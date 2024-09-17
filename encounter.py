@@ -13,11 +13,12 @@ class Fight:
     self.experienceEarned = 0
 
   def attack(self, attackType, encounter, player):
-    PrintText.Print_with_delay("Choose target:\n")
-    for index, enemy in enumerate(encounter):
-      print(f"  {index + 1} - {enemy.name}")
-    self.targetIndex = int(input("enter number for target -> ")) - 1
-    self.target = encounter[self.targetIndex]
+    if len(encounter) > 1:
+      PrintText.Print_with_delay("Choose target:\n")
+      for index, enemy in enumerate(encounter):
+        print(f"  {index + 1} - {enemy.name}")
+      self.targetIndex = int(input("enter number for target -> ")) - 1
+      self.target = encounter[self.targetIndex]
     art.attack()
     damage = player.strength
     PrintText.Print_with_delay(f"You attempt to attack {self.target.name} with a {attackType} attack!\n")
