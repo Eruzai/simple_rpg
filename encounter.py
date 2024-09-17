@@ -10,43 +10,57 @@ class Fight:
   def __init__(self) -> None:
     pass
   
-  def battle(enemy: Enemy, player: Character):
-    while enemy:
+  def battle(encounter: Enemy, player: Character):
+    while encounter:
+      target = encounter[0]
+      totalExperience = 0
       PrintText.Print_with_delay(f"You have {player.health}/{player.maxHealth} health points.\n")
-      PrintText.Print_with_delay(f"You have {player.magic}/{player.maxMagic} magic points.\n")
-      PrintText.Print_with_delay("Actions:\n  'a' - physical attack\n  'm' - magical attack\n  'i' - inspect enemy\n  'r' - run away\n")
+      PrintText.Print_with_delay(f"You have {player.magic}/{player.maxMagic} magic points.\n\n")
+      print("Actions:\n  'a' - physical attack\n  'm' - magical attack\n  'i' - inspect enemy\n  'r' - run away\n")
       userInputAction = input("What do you do? -> ")
 
       if userInputAction == "a":
+        PrintText.Print_with_delay("Choose target:\n")
+        for index, enemy in enumerate(encounter):
+          print(f"  {index + 1} - {enemy.name}")
+        target = encounter[int(input("enter number for target -> ")) - 1].name
         art.attack()
         damage = player.strength
-        PrintText.Print_with_delay(f"You attempt to attack {enemy.name} with a physical attack!\n")
-        enemy.damage_taken(damage, "physical")
+        PrintText.Print_with_delay(f"You attempt to attack {target} with a physical attack!\n")
+        target.damage_taken(damage, "physical")
 
       elif userInputAction == "m" and player.magic > 0:
+        PrintText.Print_with_delay("Choose target:")
+        for index, enemy in enumerate(encounter):
+          print(f"  {index + 1} - {enemy.name}")
+        target = encounter[int(input("enter number for target -> ")) - 1].name
         art.attack()
         damage = player.intellect
-        PrintText.Print_with_delay(f"You attempt to attack {enemy.name} with a magical attack!\n")
-        enemy.damage_taken(damage, "magical")
+        PrintText.Print_with_delay(f"You attempt to attack {target} with a magical attack!\n")
+        target.damage_taken(damage, "magical")
         player.magic -= 1
 
       elif userInputAction == "i":
         art.inspect_enemy()
-        enemy.display_stats()
+        for enemy in encounter:
+          enemy.display_stats()
 
       elif userInputAction == "r":
         art.escape()
-        PrintText.Print_with_delay(f"You ran away from {enemy.name}\n")
+        PrintText.Print_with_delay(f"You escaped!\n")
         break
 
       else:
         PrintText.Print_with_delay("That's not a valid action\n")
 
-      if enemy.health <= 0:
+      if target.health <= 0:
+        totalExperience += target.experience
+
+      if len(encounter) is 0:
         art.victory()
-        PrintText.Print_with_delay(f"{enemy.name} has been vanquished!\n")
-        PrintText.Print_with_delay(f"You gain {enemy.experience} experience points and 1 Job Skill Point!\n")
-        player.experience += enemy.experience
+        PrintText.Print_with_delay("All enemies have been vanquished!\n")
+        PrintText.Print_with_delay(f"You gain {totalExperience} experience points and 1 Job Skill Point!\n")
+        player.experience += totalExperience
         player.job.skillPoints += 1
 
         while player.experienceNeeded <= player.experience:
