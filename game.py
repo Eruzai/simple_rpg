@@ -6,11 +6,11 @@ art = ascii_art.Draw()
 art.welcome()
 art.title()
 
-print("Actions:\n  'n' - start new game\n  'l' - load game\n\n")
+print("Actions:\n  'n' - start new game\n  'l' - load game\n")
 userInputLoadGame = input("-> ")
 
 if userInputLoadGame == 'l':
-  print("Save files:\n  '1' - file1\n  '2' - file2\n  '3' - file3\n\n")
+  print("Save files:\n  '1' - file1\n  '2' - file2\n  '3' - file3\n")
   fileNumber = input("Choose save file -> ")
   fileLocation = f"file{fileNumber}"
   player = character.NewPlayerCharacter('noname')
@@ -49,11 +49,12 @@ while player.health > 0:
         PrintText.Print_with_delay(f"A level {enemy.level} {enemy.name}\n")
         enemy.draw()
       PrintText.Print_with_delay("Appears before you! Begin battle!\n")
-      encounter.Fight.battle(location.encounter, player)
+      battle = encounter.Fight()
+      battle.battle(location.encounter, player)
       location.encounter = None
     
     if location.treasure:
-      PrintText.Print_with_delay(f"You've discovered a {location.treasure.name} lying on the ground!\n")
+      PrintText.Print_with_delay(f"You've discovered a {location.treasure.name} lying on the ground!\n\n")
       found_treasure.Treasure.equip_item(location.treasure, player)
       location.treasure = None
 

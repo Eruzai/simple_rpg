@@ -77,6 +77,7 @@ class NewPlayerCharacter:
     damage -= damage * multiplier // 1
     self.health -= damage
     PrintText.Print_with_delay(f"You take {damage} points of damage!\n")
+    print("")
 
   def display_stats(self):
     PrintText.Print_with_delay(f"{self.name} the {self.job.name}'s stats!\n")

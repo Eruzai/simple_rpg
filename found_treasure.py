@@ -28,6 +28,6 @@ class Treasure():
       userEquipChoice = input("'y' or 'n' -> ")
       if userEquipChoice == 'y':
         player.equip_item(treasure)
-        PrintText.Print_with_delay(f"you equiped the {treasure.name}.\n")
+        PrintText.Print_with_delay(f"You equiped the {treasure.name}.\n")
       else:
-        PrintText.Print_with_delay(f"you leave the {treasure.name} on the ground and carry on.\n")
+        PrintText.Print_with_delay(f"You leave the {treasure.name} on the ground and carry on.\n")

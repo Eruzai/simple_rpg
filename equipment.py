@@ -11,6 +11,7 @@ class Item:
     PrintText.Print_with_delay(f"{self.name} improves:\n")
     for key, value in self.stats.items():
       PrintText.Print_with_delay(f"  {key} by {value}\n")
+    print("")
 
 class RustyHelm(Item):
   def __init__(self):

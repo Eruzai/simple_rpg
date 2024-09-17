@@ -36,6 +36,7 @@ class Enemy:
       PrintText.Print_with_delay(f"Physical Defense: {self.physicalDef}\n")
     if hasattr(self, 'magicDef'):
       PrintText.Print_with_delay(f"Magic Defense: {self.magicDef}\n")
+    print("")
 
 class Rat(Enemy):
   def __init__(self):
