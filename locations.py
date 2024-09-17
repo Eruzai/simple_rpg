@@ -63,7 +63,7 @@ class FieldsOfBeginning(Location):
                     enemies.SmallSpider,
                     enemies.WindElemental,
                     enemies.ShinySlime]
-    self.encounterArray = [[0, 0], [0, 0, 1], [0, 0, 0,], [1, 1], [2, 2, 3, 3] [2, 2], [0, 2], [1, 2], [2, 3], [3, 3, 3], [4], [2, 4], [2, 2, 3], [1, 1, 4], [0, 1, 5]]
+    self.encounterArray = [[0, 0], [0, 0, 1], [0, 0, 0,], [1, 1], [2, 2, 3, 3], [2, 2], [0, 2], [1, 2], [2, 3], [3, 3, 3], [4], [2, 4], [2, 2, 3], [1, 1, 4], [0, 1, 5]]
     self.treasures = [equipment.RustyHelm,
                       equipment.ClothCap,
                       equipment.RustyMail,
