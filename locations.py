@@ -32,7 +32,7 @@ class TownOfRespite(Location):
   def __init__(self):
     super().__init__()
     self.name = "Town of Respite"
-    self.exploreArray = [1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+    self.exploreArray = [1, 1, 2, 2, 2, 2, 2, 3, 3, 3]
     self.enemies = [enemies.Rat,
                     enemies.RabidDog,
                     enemies.TinySlime,
@@ -53,7 +53,7 @@ class FieldsOfBeginning(Location):
   def __init__(self):
     super().__init__()
     self.name = "Fields of Beginning"
-    self.exploreArray = [1, 2, 2, 2, 3, 3, 3]
+    self.exploreArray = [1, 1, 2, 2, 2, 2, 2, 3, 3, 3]
     self.enemies = [enemies.SmallSlime,
                     enemies.Slime,
                     enemies.Goblin,
@@ -86,7 +86,7 @@ class MiddlingMarsh(Location):
   def __init__(self):
     super().__init__()
     self.name = "Middling Marsh"
-    self.exploreArray = [1, 2, 2, 2, 2, 2, 3, 3, 3]
+    self.exploreArray = [1, 1, 2, 2, 2, 2, 2, 3, 3, 3]
     self.enemies = [enemies.MarshSpider,
                     enemies.Zombie,
                     enemies.GiantRat,
@@ -131,7 +131,7 @@ class KeepOfTheEnd(Location):
   def __init__(self):
     super().__init__()
     self.name = "Keep of the End"
-    self.exploreArray = [1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3]
+    self.exploreArray = [1, 1, 2, 2, 2, 2, 2, 3, 3, 3]
     self.enemies = [enemies.WalkingArmor,
                     enemies.StoneSpider,
                     enemies.AncientSpectre,
