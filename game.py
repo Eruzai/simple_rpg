@@ -6,11 +6,11 @@ art = ascii_art.Draw()
 art.welcome()
 art.title()
 
-PrintText.Print_with_delay("Actions:\n  'n' - start new game\n  'l' - load game\n")
+print("Actions:\n  'n' - start new game\n  'l' - load game\n\n")
 userInputLoadGame = input("-> ")
 
 if userInputLoadGame == 'l':
-  PrintText.Print_with_delay("Save files:\n  '1' - file1\n  '2' - file2\n  '3' - file3\n")
+  print("Save files:\n  '1' - file1\n  '2' - file2\n  '3' - file3\n\n")
   fileNumber = input("Choose save file -> ")
   fileLocation = f"file{fileNumber}"
   player = character.NewPlayerCharacter('noname')
@@ -28,13 +28,14 @@ art.town_of_respite()
 location = locations.TownOfRespite()
 
 while player.health > 0:
-  PrintText.Print_with_delay(f"You are walking around the {location.name}.\n\nActions:\n  'e' - explore\n  'i' - inspect stats and equipment\n  'l' - leave\n")
+  PrintText.Print_with_delay(f"You are walking around the {location.name}.\n")
+  print("Actions:\n  'e' - explore\n  'i' - inspect stats and equipment\n  'l' - leave\n")
 
   if len(player.unlockedJobs) > 1:
-    PrintText.Print_with_delay("  'c' - change current job\n")
+    print("  'c' - change current job")
 
   if location.name == "Town of Respite":
-    PrintText.Print_with_delay("  'r' - rest at the inn and save game\n  'q' - quit game\n")
+    print("  'r' - rest at the inn and save game\n  'q' - quit game\n")
 
   userInputAction = input("What do you want to do? -> ")
 
@@ -42,12 +43,14 @@ while player.health > 0:
     art.exploring()
     location.explore()
 
-    if location.enemy:
+    if location.encounter:
       art.battle_notification()
-      PrintText.Print_with_delay(f"A level {location.enemy.level} {location.enemy.name} appears before you!\n")
-      location.enemy.draw()
-      encounter.Fight.battle(location.enemy, player)
-      location.enemy = None
+      for enemy in location.encounter:
+        PrintText.Print_with_delay(f"A level {enemy.level} {enemy.name}\n")
+        enemy.draw()
+      PrintText.Print_with_delay("Appears before you! Begin battle!\n")
+      encounter.Fight.battle(location.encounter, player)
+      location.encounter = None
     
     if location.treasure:
       PrintText.Print_with_delay(f"You've discovered a {location.treasure.name} lying on the ground!\n")
@@ -56,7 +59,8 @@ while player.health > 0:
 
   elif userInputAction == "l":
     art.open_map()
-    PrintText.Print_with_delay("There are a few interesting locations nearby...\n\nLocations:\n  't' - Town of Respite\n  'f' - Fields of Beginning (levels 1 - 5)\n  'm' - Middling Marrow (levels 6 - 10)\n  'k' - Keep of the End (levels 11 - 15)\n")
+    PrintText.Print_with_delay("There are a few interesting locations nearby...\n")
+    print("Locations:\n  't' - Town of Respite\n  'f' - Fields of Beginning (levels 1 - 5)\n  'm' - Middling Marrow (levels 6 - 10)\n  'k' - Keep of the End (levels 11 - 15)\n")
     userInputLocation = input("Where would you like to go? -> ")
 
     if userInputLocation == "t":
@@ -95,7 +99,7 @@ while player.health > 0:
     PrintText.Print_with_delay("Your health and magic are restored!\n")
     player.rest()
     if fileLocation is None:
-      PrintText.Print_with_delay("Save files:\n  '1' - file1\n  '2' - file2\n  '3' - file3\n")
+      print("Save files:\n  '1' - file1\n  '2' - file2\n  '3' - file3\n")
       fileNumber = input("Choose save file -> ")
       fileLocation = f"file{fileNumber}"
     game_state.GameState.save_game(fileLocation, player)
@@ -110,7 +114,7 @@ while player.health > 0:
   elif userInputAction == "c":
     PrintText.Print_with_delay("You can switch your current job to any of these:\n")
     for jobName in player.unlockedJobs:
-      PrintText.Print_with_delay(f"  {jobName}\n")
+      print(f"  {jobName}\n")
     userInputJob = input("Which job would you like to change to? (type full name) -> ")
     art.job_changed()
     player.switch_job(userInputJob)
