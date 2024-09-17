@@ -1,7 +1,7 @@
 import jobs
 from print_delay import PrintText
 from equipment import Item
-from random import randint
+from random import randint, choice
 
 class NewPlayerCharacter:
   def __init__(self, name):
@@ -68,13 +68,13 @@ class NewPlayerCharacter:
     self.calculate_stats()
   
   def damage_taken(self, basedamage, attackType):
-    damage = basedamage
+    damage = basedamage * choice([0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.5]) // 1
     multiplier = 0
     if attackType == "physical":
       multiplier = self.physicalDef / 100  
     elif attackType == "magical":
       multiplier = self.magicDef / 100
-    damage -= basedamage * multiplier // 1
+    damage -= damage * multiplier // 1
     self.health -= damage
     PrintText.Print_with_delay(f"You take {damage} points of damage!\n")
 

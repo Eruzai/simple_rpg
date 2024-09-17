@@ -1,6 +1,6 @@
 import ascii_art
 from print_delay import PrintText
-from random import randint
+from random import randint, choice
 
 art = ascii_art.Draw()
 
@@ -16,7 +16,7 @@ class Enemy:
     self.magicDef = 0
 
   def damage_taken(self, basedamage, attackType):
-    damage = basedamage
+    damage = basedamage * choice([0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.5]) // 1
     multiplier = 0
     if attackType == "physical":
       multiplier = self.physicalDef / 100
