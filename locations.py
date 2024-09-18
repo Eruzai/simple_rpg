@@ -48,7 +48,7 @@ class TownOfRespite(Location):
                    "You walk around and take a breather, It's hard work being an adventurer!",
                    "You hear someone talking about how the fields are full of slimes these days, and some of them are really shiny!",
                    "You feel like you're being watched, and not by rats...",
-                   "You hear tales of people dissapearing in town recently, maybe it's the rats?",
+                   "You hear tales of people disappearing in town recently, maybe it's the rats?",
                    "Something of a shadow moved in the corner of your vision. It was probably nothing..."]
     self.dialogArray = [0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5]
 
