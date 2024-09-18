@@ -1,4 +1,5 @@
 import jobs
+import abilities
 from print_delay import PrintText
 from equipment import Item
 from random import randint, choice
@@ -8,6 +9,7 @@ class NewPlayerCharacter:
     self.name = name
     self.unlockedJobs = {"Novice": jobs.Novice()}
     self.job = self.unlockedJobs["Novice"]
+    self.abilities = {"BasicAttack": abilities.BasicAttack(), "BasicMagicAttack": abilities.BasicMagicAttack(), "Cleave": abilities.Cleave(), "RapidStrikes": abilities.RapidStrikes(), "ChaoticMagic": abilities.ChaoticMagic(), "Explosion": abilities.Explosion()}
     self.level = 1
     self.experience = 0
     self.experienceNeeded = 100
