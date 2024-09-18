@@ -12,6 +12,9 @@ Game features:
  - equipable items
  - ascii art
 
+ Known issues:
+  - incorrect action prompts can cause game to crash
+
 To play:
 1. clone/fork repo
 2. navigate to simple_rpg using your command line (if on windows use powershell)
