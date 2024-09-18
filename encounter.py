@@ -21,10 +21,12 @@ class Fight:
       ConsoleCommands.clear_console()
 
       if userInputAction == "f":
+        abilities = []
         for abilityName in player.abilities:
-          print(f"  {abilityName}")
-        userInputAbility = input("Choose an ability -> ")
-        player.abilities[userInputAbility].execute(encounter, player)
+          abilities.append(abilityName)
+          print(f"  {len(abilities)} - {abilityName}")
+        userInputAbility = int(input("Choose an ability -> ")) - 1
+        player.abilities[abilities[userInputAbility]].execute(encounter, player)
 
       elif userInputAction == "i":
         Draw.inspect_enemy()
