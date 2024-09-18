@@ -7,6 +7,7 @@ Game features:
  - multiple unlockable jobs
  - multiple locations
  - enemies unique to locations
+ - fight groups of enemies!
  - treasures
  - equipable items
  - ascii art
