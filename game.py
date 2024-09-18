@@ -120,12 +120,14 @@ while player.health > 0:
 
   elif userInputAction == "c":
     PrintText.Print_with_delay("You can switch your current job to any of these:\n")
+    jobs = []
     for jobName in player.unlockedJobs:
-      print(f"  {jobName}")
-    userInputJob = input("Which job would you like to change to? (type full name) -> ")
+      jobs.append(jobName)
+      print(f"  {len(jobs)} - {jobName}")
+    userInputJob = int(input("Which job would you like to change to? -> ")) - 1
     ConsoleCommands.clear_console()
     Draw.job_changed()
-    player.switch_job(userInputJob)
+    player.switch_job(jobs[userInputJob])
 
   elif userInputAction == "q":
     player.health = 0
