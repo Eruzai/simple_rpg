@@ -2,6 +2,7 @@ import ascii_art
 from enemies import Enemy
 from character import NewPlayerCharacter as Character
 from print_delay import PrintText
+from console import ConsoleCommands
 from random import choice
 
 art = ascii_art.Draw()
@@ -11,6 +12,7 @@ class Fight:
     self.target = None
     self.targetIndex = None
     self.experienceEarned = 0
+    self.jobPointsEarned = 0
 
   def attack(self, attackType, encounter, player):
     if len(encounter) > 1:
@@ -18,6 +20,7 @@ class Fight:
       for index, enemy in enumerate(encounter):
         print(f"  {index + 1} - {enemy.name}")
       self.targetIndex = int(input("enter number for target -> ")) - 1
+      ConsoleCommands.clear_console()
       self.target = encounter[self.targetIndex]
     art.attack()
     damage = player.strength
@@ -32,6 +35,7 @@ class Fight:
       PrintText.Print_with_delay(f"You have {player.magic}/{player.maxMagic} magic points.\n\n")
       print("Actions:\n  'a' - physical attack\n  'm' - magical attack\n  'i' - inspect enemy\n  'r' - run away\n")
       userInputAction = input("What do you do? -> ")
+      ConsoleCommands.clear_console()
 
       if userInputAction == "a":
         self.attack("physical", encounter, player)
@@ -56,14 +60,15 @@ class Fight:
       if self.target.health <= 0:
         PrintText.Print_with_delay(f"{self.target.name} has been defeated!\n")
         self.experienceEarned += self.target.experience
+        self.jobPointsEarned += 1
         del encounter[self.targetIndex]
 
       if len(encounter) is 0:
         art.victory()
         PrintText.Print_with_delay("All enemies have been vanquished!\n")
-        PrintText.Print_with_delay(f"You gain {self.experienceEarned} experience points and 1 Job Skill Point!\n")
+        PrintText.Print_with_delay(f"You gain {self.experienceEarned} experience points and {self.jobPointsEarned} Job Skill Points!\n")
         player.experience += self.experienceEarned
-        player.job.skillPoints += 1
+        player.job.skillPoints += self.jobPointsEarned
 
         while player.experienceNeeded <= player.experience:
           art.level_up()

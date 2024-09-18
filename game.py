@@ -1,4 +1,5 @@
 import game_state, character, locations, encounter, found_treasure, ascii_art
+from console import ConsoleCommands
 from print_delay import PrintText
 
 art = ascii_art.Draw()
@@ -8,15 +9,18 @@ art.title()
 
 print("Actions:\n  'n' - start new game\n  'l' - load game\n")
 userInputLoadGame = input("-> ")
+ConsoleCommands.clear_console()
 
 if userInputLoadGame == 'l':
   print("Save files:\n  '1' - file1\n  '2' - file2\n  '3' - file3\n")
   fileNumber = input("Choose save file -> ")
+  ConsoleCommands.clear_console()
   fileLocation = f"file{fileNumber}"
   player = character.NewPlayerCharacter('noname')
   game_state.GameState.load_game(fileLocation, player)
 elif userInputLoadGame == 'n':
   userInputName = input("Enter your character's name -> ")
+  ConsoleCommands.clear_console()
   player = character.NewPlayerCharacter(userInputName)
   fileLocation = None
 
@@ -38,6 +42,7 @@ while player.health > 0:
     print("  'r' - rest at the inn and save game\n  'q' - quit game\n")
 
   userInputAction = input("What do you want to do? -> ")
+  ConsoleCommands.clear_console()
 
   if userInputAction == "e":
     art.exploring()
@@ -63,6 +68,7 @@ while player.health > 0:
     PrintText.Print_with_delay("There are a few interesting locations nearby...\n")
     print("Locations:\n  't' - Town of Respite\n  'f' - Fields of Beginning (levels 1 - 5)\n  'm' - Middling Marrow (levels 6 - 10)\n  'k' - Keep of the End (levels 11 - 15)\n")
     userInputLocation = input("Where would you like to go? -> ")
+    ConsoleCommands.clear_console()
 
     if userInputLocation == "t":
       art.travelling()
@@ -102,6 +108,7 @@ while player.health > 0:
     if fileLocation is None:
       print("Save files:\n  '1' - file1\n  '2' - file2\n  '3' - file3\n")
       fileNumber = input("Choose save file -> ")
+      ConsoleCommands.clear_console()
       fileLocation = f"file{fileNumber}"
     game_state.GameState.save_game(fileLocation, player)
 
@@ -115,8 +122,9 @@ while player.health > 0:
   elif userInputAction == "c":
     PrintText.Print_with_delay("You can switch your current job to any of these:\n")
     for jobName in player.unlockedJobs:
-      print(f"  {jobName}\n")
+      print(f"  {jobName}")
     userInputJob = input("Which job would you like to change to? (type full name) -> ")
+    ConsoleCommands.clear_console()
     art.job_changed()
     player.switch_job(userInputJob)
 
