@@ -1,11 +1,10 @@
-import game_state, character, locations, encounter, found_treasure, ascii_art
+import game_state, character, locations, encounter, found_treasure
+from ascii_art import Draw
 from console import ConsoleCommands
 from print_delay import PrintText
 
-art = ascii_art.Draw()
-
-art.welcome()
-art.title()
+Draw.welcome()
+Draw.title()
 
 print("Actions:\n  'n' - start new game\n  'l' - load game\n")
 userInputLoadGame = input("-> ")
@@ -24,11 +23,11 @@ elif userInputLoadGame == 'n':
   player = character.NewPlayerCharacter(userInputName)
   fileLocation = None
 
-art.stat_heading()
+Draw.stat_heading()
 player.display_stats()
 
-art.welcome()
-art.town_of_respite()
+Draw.welcome()
+Draw.town_of_respite()
 location = locations.TownOfRespite()
 
 while player.health > 0:
@@ -45,11 +44,11 @@ while player.health > 0:
   ConsoleCommands.clear_console()
 
   if userInputAction == "e":
-    art.exploring()
+    Draw.exploring()
     location.explore()
 
     if location.encounter:
-      art.battle_notification()
+      Draw.battle_notification()
       for enemy in location.encounter:
         PrintText.Print_with_delay(f"A level {enemy.level} {enemy.name}\n")
         enemy.draw()
@@ -64,45 +63,45 @@ while player.health > 0:
       location.treasure = None
 
   elif userInputAction == "l":
-    art.open_map()
+    Draw.open_map()
     PrintText.Print_with_delay("There are a few interesting locations nearby...\n")
     print("Locations:\n  't' - Town of Respite\n  'f' - Fields of Beginning (levels 1 - 5)\n  'm' - Middling Marrow (levels 6 - 10)\n  'k' - Keep of the End (levels 11 - 15)\n")
     userInputLocation = input("Where would you like to go? -> ")
     ConsoleCommands.clear_console()
 
     if userInputLocation == "t":
-      art.travelling()
+      Draw.travelling()
       PrintText.Print_with_delay(f"You leave the {location.name} and head towards the Town of Respite\n")
-      art.welcome()
-      art.town_of_respite()
+      Draw.welcome()
+      Draw.town_of_respite()
       location = locations.TownOfRespite()
 
     elif userInputLocation == "f":
-      art.travelling()
+      Draw.travelling()
       PrintText.Print_with_delay(f"You leave the {location.name} and head towards the Fields of Beginning\n")
-      art.welcome()
-      art.fields_of_beginning()
+      Draw.welcome()
+      Draw.fields_of_beginning()
       location = locations.FieldsOfBeginning()
 
     elif userInputLocation == "m":
-      art.travelling()
+      Draw.travelling()
       PrintText.Print_with_delay(f"You leave the {location.name} and head towards the Middling Marsh\n")
-      art.welcome()
-      art.middling_marsh()
+      Draw.welcome()
+      Draw.middling_marsh()
       location = locations.MiddlingMarsh()
 
     elif userInputLocation == "k":
-      art.travelling()
+      Draw.travelling()
       PrintText.Print_with_delay(f"You leave the {location.name} and head towards the Keep of the End\n")
-      art.welcome()
-      art.keep_of_the_end()
+      Draw.welcome()
+      Draw.keep_of_the_end()
       location = locations.KeepOfTheEnd()
 
     else:
       PrintText.Print_with_delay("That place doesn't exist!\n")
 
   elif userInputAction == "r" and location.name == "Town of Respite":
-    art.rest()
+    Draw.rest()
     PrintText.Print_with_delay("Your health and magic are restored!\n")
     player.rest()
     if fileLocation is None:
@@ -114,9 +113,9 @@ while player.health > 0:
 
   elif userInputAction == "i":
     PrintText.Print_with_delay("You inspect yourself and your equipment\n")
-    art.stat_heading()
+    Draw.stat_heading()
     player.display_stats()
-    art.equipment_heading()
+    Draw.equipment_heading()
     player.display_equipment()
 
   elif userInputAction == "c":
@@ -125,7 +124,7 @@ while player.health > 0:
       print(f"  {jobName}")
     userInputJob = input("Which job would you like to change to? (type full name) -> ")
     ConsoleCommands.clear_console()
-    art.job_changed()
+    Draw.job_changed()
     player.switch_job(userInputJob)
 
   elif userInputAction == "q":
@@ -134,4 +133,4 @@ while player.health > 0:
   else:
     PrintText.Print_with_delay("You can't do that!\n")
 
-art.game_over()
+Draw.game_over()
