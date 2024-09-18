@@ -1,8 +1,6 @@
-import ascii_art
+from ascii_art import Draw
 from print_delay import PrintText
 from random import randint, choice
-
-art = ascii_art.Draw()
 
 class Enemy:
   def __init__(self):
@@ -51,7 +49,7 @@ class Rat(Enemy):
       self.strength += randint(1, 2)
   
   def draw(self):
-    art.rat()
+    Draw.rat()
 
 class RabidDog(Enemy):
   def __init__(self):
@@ -67,7 +65,7 @@ class RabidDog(Enemy):
       self.strength += randint(1, 2)
   
   def draw(self):
-    art.rabid_dog()
+    Draw.rabid_dog()
 
 class TinySlime(Enemy):
   def __init__(self):
@@ -85,7 +83,7 @@ class TinySlime(Enemy):
       self.physicalDef += randint(1, 3)
 
   def draw(self):
-    art.tiny_slime()
+    Draw.tiny_slime()
 
 class MysteriousShadow(Enemy):
   def __init__(self):
@@ -100,7 +98,7 @@ class MysteriousShadow(Enemy):
     self.magicDef = 50
 
   def draw(self):
-    art.mysterious_shadow()
+    Draw.mysterious_shadow()
 
 class SmallSlime(Enemy):
   def __init__(self):
@@ -118,7 +116,7 @@ class SmallSlime(Enemy):
       self.physicalDef += randint(3, 5)
 
   def draw(self):
-    art.small_slime()
+    Draw.small_slime()
 
 class Slime(Enemy):
   def __init__(self):
@@ -136,7 +134,7 @@ class Slime(Enemy):
       self.physicalDef += randint(4, 6)
 
   def draw(self):
-    art.slime()
+    Draw.slime()
 
 class Goblin(Enemy):
   def __init__(self):
@@ -152,7 +150,7 @@ class Goblin(Enemy):
       self.strength += randint(2, 4)
 
   def draw(self):
-    art.goblin()
+    Draw.goblin()
 
 class SmallSpider(Enemy):
   def __init__(self):
@@ -168,7 +166,7 @@ class SmallSpider(Enemy):
       self.strength += randint(1, 3)
 
   def draw(self):
-    art.small_spider()
+    Draw.small_spider()
 
 class WindElemental(Enemy):
   def __init__(self):
@@ -186,7 +184,7 @@ class WindElemental(Enemy):
       self.magicDef += randint(3, 7)
 
   def draw(self):
-    art.wind_elemental()
+    Draw.wind_elemental()
 
 class ShinySlime(Enemy):
   def __init__(self):
@@ -208,7 +206,7 @@ class ShinySlime(Enemy):
       self.magicDef += randint(3, 7)
 
   def draw(self):
-    art.shiny_slime()
+    Draw.shiny_slime()
 
 class MarshSpider(Enemy):
   def __init__(self):
@@ -226,7 +224,7 @@ class MarshSpider(Enemy):
       self.physicalDef += randint(1, 3)
 
   def draw(self):
-    art.marsh_spider()
+    Draw.marsh_spider()
 
 class Zombie(Enemy):
   def __init__(self):
@@ -244,7 +242,7 @@ class Zombie(Enemy):
       self.physicalDef += randint(1, 3)
 
   def draw(self):
-    art.zombie()
+    Draw.zombie()
 
 class GiantRat(Enemy):
   def __init__(self):
@@ -260,7 +258,7 @@ class GiantRat(Enemy):
       self.strength += randint(2, 3)
 
   def draw(self):
-    art.giant_rat()
+    Draw.giant_rat()
 
 class DarkSerpent(Enemy):
   def __init__(self):
@@ -276,7 +274,7 @@ class DarkSerpent(Enemy):
       self.strength += randint(2, 4)
 
   def draw(self):
-    art.dark_serpent()
+    Draw.dark_serpent()
 
 class Witch(Enemy):
   def __init__(self):
@@ -296,7 +294,7 @@ class Witch(Enemy):
       self.magicDef += randint(3, 5)
 
   def draw(self):
-    art.witch()
+    Draw.witch()
 
 class WretchedCrow(Enemy):
   def __init__(self):
@@ -314,7 +312,7 @@ class WretchedCrow(Enemy):
       self.physicalDef += randint(3, 5)
 
   def draw(self):
-    art.wretched_crow()
+    Draw.wretched_crow()
 
 class MarshHorror(Enemy):
   def __init__(self):
@@ -336,7 +334,7 @@ class MarshHorror(Enemy):
       self.magicDef += randint(2, 4)
 
   def draw(self):
-    art.marsh_horror()
+    Draw.marsh_horror()
 
 class WalkingArmor(Enemy):
   def __init__(self):
@@ -354,7 +352,7 @@ class WalkingArmor(Enemy):
       self.physicalDef += randint(1, 3)
 
   def draw(self):
-    art.walking_armor()
+    Draw.walking_armor()
 
 class StoneSpider(Enemy):
   def __init__(self):
@@ -371,7 +369,7 @@ class StoneSpider(Enemy):
       self.physicalDef += randint(1, 3)
 
   def draw(self):
-    art.stone_spider()
+    Draw.stone_spider()
 
 class AncientSpectre(Enemy):
   def __init__(self):
@@ -393,7 +391,7 @@ class AncientSpectre(Enemy):
       self.magicDef += randint(2, 4)
 
   def draw(self):
-    art.ancient_spectre()
+    Draw.ancient_spectre()
 
 class ColumnWyrm(Enemy):
   def __init__(self):
@@ -411,7 +409,7 @@ class ColumnWyrm(Enemy):
       self.intellect += randint(1, 2)
 
   def draw(self):
-    art.column_wyrm()
+    Draw.column_wyrm()
 
 class ShadowyCaster(Enemy):
   def __init__(self):
@@ -433,7 +431,7 @@ class ShadowyCaster(Enemy):
       self.magicDef += randint(2, 4)
 
   def draw(self):
-    art.shadowy_caster()
+    Draw.shadowy_caster()
 
 class DancingBlades(Enemy):
   def __init__(self):
@@ -451,7 +449,7 @@ class DancingBlades(Enemy):
       self.physicalDef += randint(2, 4)
 
   def draw(self):
-    art.dancing_blades()
+    Draw.dancing_blades()
 
 class VoidBeast(Enemy):
   def __init__(self):
@@ -469,7 +467,7 @@ class VoidBeast(Enemy):
       self.intellect += randint(1, 7)
 
   def draw(self):
-    art.void_beast()
+    Draw.void_beast()
 
 class TheEnd(Enemy):
   def __init__(self):
@@ -484,4 +482,4 @@ class TheEnd(Enemy):
     self.magicDef = 30
 
   def draw(self):
-    art.the_end()
+    Draw.the_end()
