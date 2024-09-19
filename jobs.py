@@ -15,7 +15,7 @@ class Job:
   def skill_up(self, player):
     self.skillLevel += 1
     self.skillPointsNeeded += 5 + self.skillPointsNeeded * 0.25 // 1
-    PrintText.Print_with_delay(f"{self.name} skill level is now level {self.skillLevel}\n{self.skillPointsNeeded} points to next job level up!\n")
+    PrintText.Print_with_delay(f"{self.name} skill level is now level {self.skillLevel}\n{self.skillPointsNeeded - self.skillPoints} points to next job level up!\n")
     if self.skillLevel == 3:
       self.unlock_ability(self.unlockableAbilities[0](), player)
     if self.skillLevel == 5:
@@ -49,6 +49,8 @@ class Magician(Job):
     super().__init__()
     self.name = "Magician"
     self.unlockableJobs = {"Wizard": Wizard, "Sage": Sage}
+    self.startingAbility = abilities.QuickCast()
+    self.unlockableAbilities = [abilities.MagicBlast, abilities.FocusMagic]
     self.healthMultiplier = 1.25
     self.magicMultiplier = 1.5
     self.strengthMultiplier = 1
@@ -61,6 +63,8 @@ class Fighter(Job):
     super().__init__()
     self.name = "Fighter"
     self.unlockableJobs = {"Warrior": Warrior, "Berserker": Berserker}
+    self.startingAbility = abilities.RapidStrikes()
+    self.unlockableAbilities = [abilities.WildStrikes, abilities.FocusStrike]
     self.healthMultiplier = 1.5
     self.magicMultiplier = 1
     self.strengthMultiplier = 1.5
