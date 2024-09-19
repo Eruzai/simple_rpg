@@ -63,13 +63,7 @@ class Fight:
 
         while player.job.skillPointsNeeded <= player.job.skillPoints:
           Draw.skill_up()
-          player.job.skill_up()
-          PrintText.Print_with_delay(f"{player.job.name} skill level is now level {player.job.skillLevel}\n")
-          if player.job.skillLevel == 5 and player.job.unlockableJobs and (list(player.job.unlockableJobs.keys())[0] not in player.unlockedJobs.keys()):
-            Draw.job_unlock()
-            for jobName, jobObject in player.job.unlockableJobs.items():
-              player.unlock_job(jobObject, jobName)
-              PrintText.Print_with_delay(f"{jobName} unlocked!\n")
+          player.job.skill_up(player)
         break
       
       Draw.enemy_attack()
