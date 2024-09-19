@@ -119,6 +119,9 @@ class NewPlayerCharacter:
   def switch_job(self, jobName):
     self.remove_abilities(self.job.unlockedAbilities)
     self.job = self.unlockedJobs[jobName]
+    if hasattr(self.job, 'startingAbility'):
+      self.abilities[self.job.startingAbility.name] = self.job.startingAbility
+      self.job.unlockedAbilities[self.job.startingAbility.name] = self.job.startingAbility
     self.add_abilities(self.job.unlockedAbilities)
     self.calculate_stats()
     self.display_stats()
