@@ -9,7 +9,7 @@ class NewPlayerCharacter:
     self.name = name
     self.unlockedJobs = {"Novice": jobs.Novice()}
     self.job = self.unlockedJobs["Novice"]
-    self.abilities = {"BasicAttack": abilities.BasicAttack(), "BasicMagicAttack": abilities.BasicMagicAttack(), "Cleave": abilities.Cleave(), "RapidStrikes": abilities.RapidStrikes(), "ChaoticMagic": abilities.ChaoticMagic(), "Explosion": abilities.Explosion()}
+    self.abilities = {"Attack": abilities.Attack(), "Magic Bolt": abilities.MagicBolt()}
     self.level = 1
     self.experience = 0
     self.experienceNeeded = 100
@@ -108,8 +108,18 @@ class NewPlayerCharacter:
   def unlock_job(self, jobObject, jobName):
     self.unlockedJobs[jobName] = jobObject()
   
+  def remove_abilities(self, jobAbilities):
+    for ability in jobAbilities:
+      del self.abilities[ability]
+
+  def add_abilities(self, jobAbilities):
+    for abilityName, abilityObject in jobAbilities.items():
+      self.abilities[abilityName] = abilityObject
+
   def switch_job(self, jobName):
+    self.remove_abilities(self.job.unlockedAbilities)
     self.job = self.unlockedJobs[jobName]
+    self.add_abilities(self.job.unlockedAbilities)
     self.calculate_stats()
     self.display_stats()
 
