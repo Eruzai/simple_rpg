@@ -11,6 +11,7 @@ class GameState:
     data = {
       'name': playerInfo.name,
       'unlockedJobs': playerInfo.unlockedJobs,
+      'abilities': playerInfo.abilities,
       'job': playerInfo.job,
       'level': playerInfo.level,
       'experience': playerInfo.experience,
@@ -36,6 +37,7 @@ class GameState:
       data = pickle.load(file)
       playerInfo.name = data['name']
       playerInfo.unlockedJobs = data['unlockedJobs']
+      playerInfo.abilities = data['abilities']
       playerInfo.job = data['job']
       playerInfo.level = data['level']
       playerInfo.experience = data['experience']
