@@ -1,19 +1,42 @@
+import abilities
+from print_delay import PrintText
+from ascii_art import Draw
+
 class Job:
   def __init__(self):
-    self.unlockableJobs = None
+    self.name = ""
+    self.unlockableJobs = {}
+    self.unlockedAbilities = {}
+    self.unlockableAbilities = []
     self.skillLevel = 1
     self.skillPoints = 0
     self.skillPointsNeeded = 5
 
-  def skill_up(self):
+  def skill_up(self, player):
     self.skillLevel += 1
     self.skillPointsNeeded += 5 + self.skillPointsNeeded * 0.25 // 1
+    PrintText.Print_with_delay(f"{self.name} skill level is now level {self.skillLevel}\n{self.skillPointsNeeded} points to next job level up!\n")
+    if self.skillLevel == 3:
+      self.unlock_ability(self.unlockableAbilities[0](), player)
+    if self.skillLevel == 5:
+      self.unlock_ability(self.unlockableAbilities[1](), player)
+      if self.unlockableJobs:
+        Draw.job_unlock()
+        for jobName, jobObject in self.unlockableJobs.items():
+          player.unlock_job(jobObject, jobName)
+          PrintText.Print_with_delay(f"{jobName} unlocked!\n")
+
+  def unlock_ability(self, ability, player):
+    self.unlockedAbilities[ability.name] = ability
+    player.abilities[ability.name] = ability
+    PrintText.Print_with_delay(f"A new ability for {self.name}, {ability.name} unlocked!\n")
 
 class Novice(Job):
   def __init__(self):
     super().__init__()
     self.name = "Novice"
     self.unlockableJobs = {"Magician": Magician, "Fighter": Fighter}
+    self.unlockableAbilities = [abilities.LuckyStrike, abilities.DoubleStrike]
     self.healthMultiplier = 1
     self.magicMultiplier = 1
     self.strengthMultiplier = 1
