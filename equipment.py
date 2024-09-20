@@ -28,7 +28,7 @@ class ClothCap(Item):
     self.name = "Cloth Cap"
     self.equipSlot = "head"
     self.stats["maxHealth"] = randint(3, 7)
-    self.stats["maxMagic"] = randint(1, 3)
+    self.stats["maxAbilityPoints"] = randint(1, 3)
     self.stats["intellect"] = randint(1, 3)
     self.stats["magicDef"] = randint(1, 3)
 
@@ -46,7 +46,7 @@ class FrayedRobe(Item):
     self.name = "Frayed Robe"
     self.equipSlot = "body"
     self.stats["maxHealth"] = randint(5, 10)
-    self.stats["maxMagic"] = randint(3, 7)
+    self.stats["maxAbilityPoints"] = randint(3, 7)
     self.stats["intellect"] = randint(1, 3)
     self.stats["magicDef"] = randint(2, 5)
 
@@ -81,7 +81,7 @@ class WanderingPants(Item):
     self.name = "Wandering Pants"
     self.equipSlot = "legs"
     self.stats["maxHealth"] = randint(3, 7)
-    self.stats["maxMagic"] = randint(2, 5)
+    self.stats["maxAbilityPoints"] = randint(2, 5)
     self.stats["intellect"] = randint(1, 3)
     self.stats["magicDef"] = randint(2, 5)
 
@@ -98,7 +98,7 @@ class GnarledStaff(Item):
     super().__init__()
     self.name = "Gnarled Staff"
     self.equipSlot = "weapon"
-    self.stats["maxMagic"] = randint(5, 10)
+    self.stats["maxAbilityPoints"] = randint(5, 10)
     self.stats["intellect"] = randint(8, 15)
     self.stats["strength"] = randint(3, 5)
 
@@ -108,7 +108,7 @@ class GreenRing(Item):
     self.name = "Green Ring"
     self.equipSlot = "ring"
     self.stats["maxHealth"] = randint(8, 15)
-    self.stats["maxMagic"] = randint(5, 10)
+    self.stats["maxAbilityPoints"] = randint(5, 10)
     self.stats["physicalDef"] = randint(3, 7)
     self.stats["magicDef"] = randint(3, 7)
 
@@ -136,7 +136,7 @@ class WitchHat(Item):
     self.name = "Witch Hat"
     self.equipSlot = "head"
     self.stats["maxHealth"] = randint(7, 15)
-    self.stats["maxMagic"] = randint(3, 6)
+    self.stats["maxAbilityPoints"] = randint(3, 6)
     self.stats["intellect"] = randint(3, 6)
     self.stats["magicDef"] = randint(2, 4)
 
@@ -146,7 +146,7 @@ class MysticCap(Item):
     self.name = "Mystic Cap"
     self.equipSlot = "head"
     self.stats["maxHealth"] = randint(14, 21)
-    self.stats["maxMagic"] = randint(5, 9)
+    self.stats["maxAbilityPoints"] = randint(5, 9)
     self.stats["intellect"] = randint(2, 4)
     self.stats["magicDef"] = randint(3, 6)
 
@@ -174,7 +174,7 @@ class WitchRobe(Item):
     self.name = "Witch Robe"
     self.equipSlot = "body"
     self.stats["maxHealth"] = randint(14, 21)
-    self.stats["maxMagic"] = randint(5, 10)
+    self.stats["maxAbilityPoints"] = randint(5, 10)
     self.stats["intellect"] = randint(3, 7)
     self.stats["magicDef"] = randint(3, 6)
 
@@ -184,7 +184,7 @@ class MysticGarb(Item):
     self.name = "Mystic Garb"
     self.equipSlot = "body"
     self.stats["maxHealth"] = randint(20, 30)
-    self.stats["maxMagic"] = randint(10, 15)
+    self.stats["maxAbilityPoints"] = randint(10, 15)
     self.stats["intellect"] = randint(2, 5)
     self.stats["magicDef"] = randint(5, 8)
     self.stats["physicalDef"] = randint(5, 8)
@@ -212,7 +212,7 @@ class WitchSlippers(Item):
     self.name = "Witch Slippers"
     self.equipSlot = "feet"
     self.stats["maxHealth"] = randint(5, 10)
-    self.stats["maxMagic"] = randint(3, 7)
+    self.stats["maxAbilityPoints"] = randint(3, 7)
     self.stats["magicDef"] = randint(2, 5)
 
 class MysticSandals(Item):
@@ -247,7 +247,7 @@ class WitchPants(Item):
     self.name = "Witch Pants"
     self.equipSlot = "legs"
     self.stats["maxHealth"] = randint(10, 15)
-    self.stats["maxMagic"] = randint(4, 8)
+    self.stats["maxAbilityPoints"] = randint(4, 8)
     self.stats["intellect"] = randint(4, 7)
     self.stats["magicDef"] = randint(3, 6)
 
@@ -257,7 +257,7 @@ class MysticSlacks(Item):
     self.name = "Mystic Slacks"
     self.equipSlot = "legs"
     self.stats["maxHealth"] = randint(14, 21)
-    self.stats["maxMagic"] = randint(5, 10)
+    self.stats["maxAbilityPoints"] = randint(5, 10)
     self.stats["intellect"] = randint(2, 5)
     self.stats["magicDef"] = randint(4, 7)
 
@@ -284,7 +284,7 @@ class WitchStaff(Item):
     super().__init__()
     self.name = "Witch Staff"
     self.equipSlot = "weapon"
-    self.stats["maxMagic"] = randint(15, 20)
+    self.stats["maxAbilityPoints"] = randint(15, 20)
     self.stats["intellect"] = randint(30, 40)
     self.stats["strength"] = randint(5, 8)
 
@@ -293,7 +293,7 @@ class MysticRod(Item):
     super().__init__()
     self.name = "Mystic Rod"
     self.equipSlot = "weapon"
-    self.stats["maxMagic"] = randint(20, 30)
+    self.stats["maxAbilityPoints"] = randint(20, 30)
     self.stats["intellect"] = randint(20, 30)
     self.stats["strength"] = randint(8, 12)
     self.stats["physicalDef"] = randint(3, 7)
@@ -316,7 +316,7 @@ class WhiteRing(Item):
     self.name = "White Ring"
     self.equipSlot = "ring"
     self.stats["maxHealth"] = randint(30, 50)
-    self.stats["maxMagic"] = randint(15, 20)
+    self.stats["maxAbilityPoints"] = randint(15, 20)
     self.stats["intellect"] = randint(5, 15)
     self.stats["strength"] = -15
     self.stats["magicDef"] = randint(5, 15)
@@ -328,7 +328,7 @@ class StrangeRing(Item):
     self.name = "Strange Ring"
     self.equipSlot = "ring"
     self.stats["maxHealth"] = randint(-25, 25)
-    self.stats["maxMagic"] = randint(-5, 5)
+    self.stats["maxAbilityPoints"] = randint(-5, 5)
     self.stats["strength"] = randint(-5, 5)
     self.stats["intellect"] = randint(-5, 5)
 
@@ -348,7 +348,7 @@ class NullFragment(Item):
     self.name = "Null Fragment"
     self.equipSlot = choice(["head", "body", "legs", "feet"])
     self.stats["maxHealth"] = randint(15, 30)
-    self.stats["maxMagic"] = randint(5, 10)
+    self.stats["maxAbilityPoints"] = randint(5, 10)
     self.stats["intellect"] = randint(8, 12)
     self.stats["physicalDef"] = randint(4, 8)
     self.stats["magicDef"] = randint(8, 12)
@@ -359,7 +359,7 @@ class VoidFragment(Item):
     self.name = "Void Fragment"
     self.equipSlot = choice(["head", "body", "legs", "feet"])
     self.stats["maxHealth"] = randint(20, 35)
-    self.stats["maxMagic"] = randint(3, 8)
+    self.stats["maxAbilityPoints"] = randint(3, 8)
     self.stats["strength"] = randint(3, 7)
     self.stats["intellect"] = randint(4, 9)
     self.stats["physicalDef"] = randint(6, 10)
@@ -371,7 +371,7 @@ class ChromaticRing(Item):
     self.name = "Chromatic Ring"
     self.equipSlot = "ring"
     self.stats["maxHealth"] = randint(50, 100)
-    self.stats["maxMagic"] = randint(-25, 50)
+    self.stats["maxAbilityPoints"] = randint(-25, 50)
     self.stats["strength"] = randint(-15, 25)
     self.stats["intellect"] = randint(-15, 25)
     self.stats["physicalDef"] = randint(5, 15)
@@ -383,7 +383,7 @@ class UnwieldlyEnd(Item):
     self.name = "Unwieldly End"
     self.equipSlot = "weapon"
     self.stats["maxHealth"] = randint(-150, 150)
-    self.stats["maxMagic"] = randint(5, 15)
+    self.stats["maxAbilityPoints"] = randint(5, 15)
     self.stats["strength"] = randint(-30, 50)
     self.stats["intellect"] = randint(-30, 50)
 
@@ -393,7 +393,7 @@ class FragmentOfHope(Item):
     self.name = "Fragment of Hope"
     self.equipSlot = choice(["head", "body", "legs", "feet"])
     self.stats["maxHealth"] = randint(50, 150)
-    self.stats["maxMagic"] = randint(25, 50)
+    self.stats["maxAbilityPoints"] = randint(25, 50)
     self.stats["strength"] = randint(15, 25)
     self.stats["intellect"] = randint(15, 25)
     self.stats["physicalDef"] = randint(5, 15)
