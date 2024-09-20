@@ -32,18 +32,18 @@ location = locations.TownOfRespite()
 
 while player.health > 0:
   PrintText.Print_with_delay(f"You are walking around the {location.name}.\n")
-  print("Actions:\n  'e' - explore\n  'i' - inspect stats and equipment\n  'l' - leave\n")
-
-  if len(player.unlockedJobs) > 1:
-    print("  'c' - change current job")
+  print("Actions:\n  1 - explore\n  2 - inspect stats and equipment\n  3 - leave")
 
   if location.name == "Town of Respite":
-    print("  'r' - rest at the inn and save game\n  'q' - quit game\n")
+    print("  4 - rest at the inn and save game")
+    if len(player.unlockedJobs) > 1:
+      print("  5 - change job\n")
+    print("  Q - quit game\n")
 
   userInputAction = input("What do you want to do? -> ")
   ConsoleCommands.clear_console()
 
-  if userInputAction == "e":
+  if userInputAction == "1":
     Draw.exploring()
     location.explore()
 
@@ -62,35 +62,35 @@ while player.health > 0:
       found_treasure.Treasure.equip_item(location.treasure, player)
       location.treasure = None
 
-  elif userInputAction == "l":
+  elif userInputAction == "3":
     Draw.open_map()
     PrintText.Print_with_delay("There are a few interesting locations nearby...\n")
-    print("Locations:\n  't' - Town of Respite\n  'f' - Fields of Beginning (levels 1 - 5)\n  'm' - Middling Marrow (levels 6 - 10)\n  'k' - Keep of the End (levels 11 - 15)\n")
+    print("Locations:\n  1 - Town of Respite\n  2 - Fields of Beginning (levels 1 - 5)\n  3 - Middling Marrow (levels 6 - 10)\n  4 - Keep of the End (levels 11 - 15)\n")
     userInputLocation = input("Where would you like to go? -> ")
     ConsoleCommands.clear_console()
 
-    if userInputLocation == "t":
+    if userInputLocation == "1":
       Draw.travelling()
       PrintText.Print_with_delay(f"You leave the {location.name} and head towards the Town of Respite\n")
       Draw.welcome()
       Draw.town_of_respite()
       location = locations.TownOfRespite()
 
-    elif userInputLocation == "f":
+    elif userInputLocation == "2":
       Draw.travelling()
       PrintText.Print_with_delay(f"You leave the {location.name} and head towards the Fields of Beginning\n")
       Draw.welcome()
       Draw.fields_of_beginning()
       location = locations.FieldsOfBeginning()
 
-    elif userInputLocation == "m":
+    elif userInputLocation == "3":
       Draw.travelling()
       PrintText.Print_with_delay(f"You leave the {location.name} and head towards the Middling Marsh\n")
       Draw.welcome()
       Draw.middling_marsh()
       location = locations.MiddlingMarsh()
 
-    elif userInputLocation == "k":
+    elif userInputLocation == "4":
       Draw.travelling()
       PrintText.Print_with_delay(f"You leave the {location.name} and head towards the Keep of the End\n")
       Draw.welcome()
@@ -100,7 +100,7 @@ while player.health > 0:
     else:
       PrintText.Print_with_delay("That place doesn't exist!\n")
 
-  elif userInputAction == "r" and location.name == "Town of Respite":
+  elif userInputAction == "4" and location.name == "Town of Respite":
     Draw.rest()
     PrintText.Print_with_delay("Your health and magic are restored!\n")
     player.rest()
@@ -111,14 +111,14 @@ while player.health > 0:
       fileLocation = f"file{fileNumber}"
     game_state.GameState.save_game(fileLocation, player)
 
-  elif userInputAction == "i":
+  elif userInputAction == "2":
     PrintText.Print_with_delay("You inspect yourself and your equipment\n")
     Draw.stat_heading()
     player.display_stats()
     Draw.equipment_heading()
     player.display_equipment()
 
-  elif userInputAction == "c":
+  elif userInputAction == "5":
     PrintText.Print_with_delay("You can switch your current job to any of these:\n")
     jobs = []
     for jobName in player.unlockedJobs:
@@ -129,7 +129,7 @@ while player.health > 0:
     Draw.job_changed()
     player.switch_job(jobs[userInputJob])
 
-  elif userInputAction == "q":
+  elif userInputAction == "Q":
     player.health = 0
 
   else:
