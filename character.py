@@ -14,7 +14,7 @@ class NewPlayerCharacter:
     self.experience = 0
     self.experienceNeeded = 100
     self.baseMaxHealth = randint(40, 60)
-    self.baseMaxMagic = randint(10, 15)
+    self.baseMaxAbilityPoints = randint(10, 15)
     self.baseStrength = randint(10, 15)
     self.baseIntellect = randint(10, 15)
     self.basePhysicalDef = 0
@@ -26,15 +26,15 @@ class NewPlayerCharacter:
                       "feet": None,
                       "ring": None}
     self.totalEquipmentStats = {"maxHealth": 0,
-                                "maxMagic": 0,
+                                "maxAbilityPoints": 0,
                                 "strength": 0,
                                 "intellect": 0,
                                 "physicalDef": 0,
                                 "magicDef": 0}
     self.maxHealth = self.baseMaxHealth
-    self.maxMagic = self.baseMaxMagic
+    self.maxAbilityPoints = self.baseMaxAbilityPoints
     self.health = self.maxHealth
-    self.magic = self.maxMagic
+    self.abilityPoints = self.maxAbilityPoints
     self.strength = self.baseStrength
     self.intellect = self.baseIntellect
     self.physicalDef = 0
@@ -42,15 +42,15 @@ class NewPlayerCharacter:
 
   def calculate_stats(self):
     self.maxHealth = self.baseMaxHealth * self.job.healthMultiplier // 1 + self.totalEquipmentStats["maxHealth"]
-    self.maxMagic = self.baseMaxMagic * self.job.magicMultiplier // 1 + self.totalEquipmentStats["maxMagic"]
+    self.maxAbilityPoints = self.baseMaxAbilityPoints * self.job.abilityPointsMultiplier // 1 + self.totalEquipmentStats["maxAbilityPoints"]
     self.strength = self.baseStrength * self.job.strengthMultiplier // 1 + self.totalEquipmentStats["strength"]
     self.intellect = self.baseIntellect * self.job.intellectMultiplier // 1 + self.totalEquipmentStats["intellect"]
     self.physicalDef = self.basePhysicalDef + self.totalEquipmentStats["physicalDef"] + self.job.physicalDef
     self.magicDef = self.baseMagicDef + self.totalEquipmentStats["magicDef"] + self.job.magicDef
     if self.health > self.maxHealth:
       self.health = self.maxHealth
-    if self.magic > self.maxMagic:
-      self.magic = self.maxMagic
+    if self.abilityPoints > self.maxAbilityPoints:
+      self.abilityPoints = self.maxAbilityPoints
 
   def unequip_item(self, item: Item):
     slot = item.equipSlot
@@ -88,7 +88,7 @@ class NewPlayerCharacter:
     PrintText.Print_with_delay(f"Job Level: {self.job.skillLevel}\n")
     PrintText.Print_with_delay(f"Job Points to Next Skill Level: {self.job.skillPointsNeeded - self.job.skillPoints}\n")
     PrintText.Print_with_delay(f"Health: {self.health}/{self.maxHealth}\n")
-    PrintText.Print_with_delay(f"Magic: {self.magic}/{self.maxMagic}\n")
+    PrintText.Print_with_delay(f"Ability Points: {self.abilityPoints}/{self.maxAbilityPoints}\n")
     PrintText.Print_with_delay(f"Strength: {self.strength}\n")
     PrintText.Print_with_delay(f"Intellect: {self.intellect}\n")
     PrintText.Print_with_delay(f"Physical Defense: {self.physicalDef}\n")
@@ -103,7 +103,7 @@ class NewPlayerCharacter:
 
   def rest(self):
     self.health = self.maxHealth
-    self.magic = self.maxMagic
+    self.abilityPoints = self.maxAbilityPoints
 
   def unlock_job(self, jobObject, jobName):
     self.unlockedJobs[jobName] = jobObject()
@@ -130,9 +130,9 @@ class NewPlayerCharacter:
     self.level += 1
     self.experienceNeeded += 100 + self.experienceNeeded * 0.25 // 1
     self.baseMaxHealth += randint(5, 10)
-    self.baseMaxMagic += randint(1, 3)
+    self.baseMaxAbilityPoints += randint(1, 3)
     self.baseHealth = self.maxHealth
-    self.baseMagic = self.maxMagic
+    self.baseAbilityPoints = self.maxAbilityPoints
     self.baseStrength += randint(1, 3)
     self.baseIntellect += randint(1, 3)
     self.calculate_stats()
