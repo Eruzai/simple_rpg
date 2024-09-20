@@ -18,8 +18,8 @@ class GameState:
       'experienceNeeded': playerInfo.experienceNeeded,
       'baseMaxHealth': playerInfo.baseMaxHealth,
       'health': playerInfo.health,
-      'baseMaxMagic': playerInfo.baseMaxMagic,
-      'magic': playerInfo.magic,
+      'baseMaxAbilityPoints': playerInfo.baseMaxAbilityPoints,
+      'abilityPoints': playerInfo.abilityPoints,
       'baseStrength': playerInfo.baseStrength,
       'baseIntellect': playerInfo.baseIntellect,
       'basePhysicalDef': playerInfo.basePhysicalDef,
@@ -44,8 +44,8 @@ class GameState:
       playerInfo.experienceNeeded = data['experienceNeeded']
       playerInfo.baseMaxHealth = data['baseMaxHealth']
       playerInfo.health = data['health']
-      playerInfo.baseMaxMagic = data['baseMaxMagic']
-      playerInfo.magic = data['magic']
+      playerInfo.baseMaxAbilityPoints = data['baseMaxAbilityPoints']
+      playerInfo.abilityPoints = data['abilityPoints']
       playerInfo.baseStrength = data['baseStrength']
       playerInfo.baseIntellect = data['baseIntellect']
       playerInfo.basePhysicalDef = data['basePhysicalDef']
