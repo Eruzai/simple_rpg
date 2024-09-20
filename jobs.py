@@ -38,7 +38,7 @@ class Novice(Job):
     self.unlockableJobs = {"Magician": Magician, "Fighter": Fighter}
     self.unlockableAbilities = [abilities.LuckyStrike, abilities.DoubleStrike]
     self.healthMultiplier = 1
-    self.magicMultiplier = 1
+    self.abilityPointsMultiplier = 1
     self.strengthMultiplier = 1
     self.intellectMultiplier = 1
     self.physicalDef = 0
@@ -52,7 +52,7 @@ class Magician(Job):
     self.startingAbility = abilities.QuickCast()
     self.unlockableAbilities = [abilities.MagicBlast, abilities.FocusMagic]
     self.healthMultiplier = 1.25
-    self.magicMultiplier = 1.5
+    self.abilityPointsMultiplier = 1.5
     self.strengthMultiplier = 1
     self.intellectMultiplier = 1.5
     self.physicalDef = 5
@@ -66,7 +66,7 @@ class Fighter(Job):
     self.startingAbility = abilities.RapidStrikes()
     self.unlockableAbilities = [abilities.WildStrikes, abilities.FocusStrike]
     self.healthMultiplier = 1.5
-    self.magicMultiplier = 1
+    self.abilityPointsMultiplier = 1
     self.strengthMultiplier = 1.5
     self.intellectMultiplier = 1
     self.physicalDef = 15
@@ -76,8 +76,10 @@ class Wizard(Job):
   def __init__(self):
     super().__init__()
     self.name = "Wizard"
+    self.startingAbility = abilities.ChaoticMagic()
+    self.unlockableAbilities = [abilities.ArcaneBolt, abilities.DarkBolt]
     self.healthMultiplier = 1.5
-    self.magicMultiplier = 2
+    self.abilityPointsMultiplier = 2
     self.strengthMultiplier = 1.25
     self.intellectMultiplier = 2.25
     self.physicalDef = 15
@@ -87,8 +89,10 @@ class Sage(Job):
   def __init__(self):
     super().__init__()
     self.name = "Sage"
+    self.startingAbility = abilities.ArcaneFlood()
+    self.unlockableAbilities = [abilities.Drain, abilities.Erase]
     self.healthMultiplier = 1.75
-    self.magicMultiplier = 2
+    self.abilityPointsMultiplier = 2
     self.strengthMultiplier = 1.25
     self.intellectMultiplier = 2
     self.physicalDef = 10
@@ -98,8 +102,10 @@ class Warrior(Job):
   def __init__(self):
     super().__init__()
     self.name = "Warrior"
+    self.startingAbility = abilities.DoubleCleave()
+    self.unlockableAbilities = [abilities.BladeDance, abilities.InvigoratingShout]
     self.healthMultiplier = 2
-    self.magicMultiplier = 1
+    self.abilityPointsMultiplier = 1
     self.strengthMultiplier = 2.5
     self.intellectMultiplier = 1
     self.physicalDef = 25
@@ -109,8 +115,10 @@ class Berserker(Job):
   def __init__(self):
     super().__init__()
     self.name = "Berserker"
+    self.startingAbility = abilities.FuriousCleave()
+    self.unlockableAbilities = [abilities.EnragedFlurry, abilities.BerserkSlash]
     self.healthMultiplier = 2.5
-    self.magicMultiplier = 1
+    self.abilityPointsMultiplier = 1
     self.strengthMultiplier = 2
     self.intellectMultiplier = 0.5
     self.physicalDef = 35
