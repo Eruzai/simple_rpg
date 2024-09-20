@@ -29,7 +29,7 @@ class Fight:
     while encounter and player.health > 0:
       PrintText.Print_with_delay(f"You have {player.health}/{player.maxHealth} HP.\n")
       PrintText.Print_with_delay(f"You have {player.abilityPoints}/{player.maxAbilityPoints} AP.\n\n")
-      print("Actions:\n  1 - fight\n  2 - inspect enemy\n  3 - run away\n")
+      print("Actions:\n  1 - Fight\n  2 - Inspect enemies\n  3 - Run away\n")
       userInputAction = input("What do you do? -> ")
       ConsoleCommands.clear_console()
 
