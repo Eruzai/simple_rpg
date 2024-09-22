@@ -193,7 +193,7 @@ class FocusStrike:
 class ChaoticMagic:
   def __init__(self):
     self.name = "Chaotic Magic"
-    self.multiplier = 0.3
+    self.multiplier = 0.5
     self.abilityCost = 10
   
   def execute(self, encounter, player):
@@ -227,7 +227,7 @@ class DarkBolt:
     attackPower = player.intellect
     AttackMethods.all_target_attack(self, encounter, self.name, "magical", attackPower, self.numberOfAttacks, self.multiplier, self.splashMultiplier)
     selfHarm = attackPower * 0.8 // 1
-    PrintText.Print_with_delay(f"You recieve recoil damage!")
+    PrintText.Print_with_delay(f"You recieve recoil damage!\n")
     player.damage_taken(selfHarm, "magical")
     player.abilityPoints -= self.abilityCost
 
@@ -256,7 +256,7 @@ class Drain:
     attackPower = player.intellect
     AttackMethods.all_target_attack(self, encounter, self.name, "magical", attackPower, self.numberOfAttacks, self.multiplier, self.splashMultiplier)
     healAmount = attackPower * choice([0.05, 0.075, 0.1, 0.125, 0.15]) * len(encounter) // 1
-    PrintText.Print_with_delay(f"You steal {healAmount} health from enemies!")
+    PrintText.Print_with_delay(f"You steal {healAmount} health from enemies!\n")
     player.health += healAmount
     if player.health > player.maxHealth:
       player.health = player.maxHealth
@@ -312,7 +312,7 @@ class InvigoratingShout:
     attackPower = player.intellect
     AttackMethods.all_target_attack(self, encounter, self.name, "physical", attackPower, self.numberOfAttacks, self.multiplier, self.splashMultiplier)
     healAmount = attackPower * choice([0.05, 0.075, 0.1, 0.125, 0.15]) * len(encounter) // 1
-    PrintText.Print_with_delay(f"You restore {healAmount} magic!")
+    PrintText.Print_with_delay(f"You restore {healAmount} AP!\n")
     player.abilityPoints += healAmount
     if player.abilityPoints > player.maxAbilityPoints:
       player.abilityPoints = player.maxAbilityPoints
@@ -341,7 +341,7 @@ class EnragedFlurry:
     numberOfAttacks = randint(3, 10)
     AttackMethods.single_target_attack(self, encounter, self.name, "physical", attackPower, numberOfAttacks, self.multiplier)
     selfHarm = attackPower * 0.1 * numberOfAttacks // 1
-    PrintText.Print_with_delay(f"You recieve recoil damage!")
+    PrintText.Print_with_delay(f"You recieve recoil damage!\n")
     player.damage_taken(selfHarm, "physical")
     player.abilityPoints -= self.abilityCost
 
@@ -356,6 +356,6 @@ class BerserkSlash:
     attackPower = player.strength
     AttackMethods.single_target_attack(self, encounter, self.name, "physical", attackPower, self.numberOfAttacks, self.multiplier)
     selfHarm = attackPower
-    PrintText.Print_with_delay(f"You recieve recoil damage!")
+    PrintText.Print_with_delay(f"You recieve recoil damage!\n")
     player.damage_taken(selfHarm, "physical")
     player.abilityPoints -= self.abilityCost
