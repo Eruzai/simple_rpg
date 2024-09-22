@@ -115,6 +115,7 @@ while player.health > 0:
     PrintText.Print_with_delay("You inspect yourself and your equipment\n")
     Draw.stat_heading()
     player.display_stats()
+    player.display_abilites()
     Draw.equipment_heading()
     player.display_equipment()
 
