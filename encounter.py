@@ -17,6 +17,7 @@ class Fight:
     for abilityName, abilityObject in player.abilities.items():
       abilities.append(abilityName)
       print(f"  {len(abilities)} - {abilityName} - {abilityObject.abilityCost} AP cost")
+    PrintText.Print_with_delay(f"You have {player.abilityPoints}/{player.maxAbilityPoints} AP\n")
     userInputAbility = int(input("Choose an ability -> ")) - 1
     chosenAbility = player.abilities[abilities[userInputAbility]]
     if chosenAbility.abilityCost > player.abilityPoints:
