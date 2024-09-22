@@ -100,6 +100,11 @@ class NewPlayerCharacter:
       item_name = item.name if item is not None else "None"
       PrintText.Print_with_delay(f"{slot}: {item_name}\n")
     print("")
+  
+  def display_abilites(self):
+    PrintText.Print_with_delay(f"{self.name} can use these abilites:\n")
+    for ability in self.abilities:
+      PrintText.Print_with_delay(f"  {ability}\n")
 
   def rest(self):
     self.health = self.maxHealth
@@ -119,12 +124,10 @@ class NewPlayerCharacter:
   def switch_job(self, jobName):
     self.remove_abilities(self.job.unlockedAbilities)
     self.job = self.unlockedJobs[jobName]
-    if hasattr(self.job, 'startingAbility'):
-      self.abilities[self.job.startingAbility.name] = self.job.startingAbility
-      self.job.unlockedAbilities[self.job.startingAbility.name] = self.job.startingAbility
     self.add_abilities(self.job.unlockedAbilities)
     self.calculate_stats()
     self.display_stats()
+    self.display_abilites()
 
   def level_up(self):
     self.level += 1
