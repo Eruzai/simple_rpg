@@ -1,5 +1,5 @@
 from ascii_art import Draw
-from enemies import Enemy
+from enemies import Enemy as Foes
 from character import NewPlayerCharacter as Character
 from print_delay import PrintText
 from console import ConsoleCommands
@@ -26,7 +26,7 @@ class Fight:
     else:
       player.abilities[abilities[userInputAbility]].execute(encounter, player)
     
-  def battle(self, encounter: Enemy, player: Character):
+  def battle(self, encounter: Foes, player: Character):
     while encounter and player.health > 0:
       PrintText.Print_with_delay(f"You have {player.health}/{player.maxHealth} HP.\n")
       PrintText.Print_with_delay(f"You have {player.abilityPoints}/{player.maxAbilityPoints} AP.\n\n")
@@ -77,18 +77,10 @@ class Fight:
       
       Draw.enemy_attack()
       for enemy in encounter:
-        damage = enemy.strength
-        attackType = "physical"
-        if enemy.strength == 0:
-          damage = enemy.intellect
-          attackType = "magical"
-        if enemy.strength and enemy.intellect:
-          attackType = choice(["physical", "magical"])
-        if attackType == "magical":
-          damage = enemy.intellect
-        
-        PrintText.Print_with_delay(f"{enemy.name} attacks you with a {attackType} attack!\n")
-        player.damage_taken(damage, attackType)
+        enemyAbility = enemy.abilities[choice(enemy.abilityChanceArray)]
+        PrintText.Print_with_delay(f"{enemy.name} uses {enemyAbility.name}!\n")
+        enemyAbility.execute(player, enemy, encounter)
         if player.health <= 0:
           Draw.defeat()
           PrintText.Print_with_delay(f"{player.name} has been defeated! Your adventure has ended!\n")
+          break
