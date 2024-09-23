@@ -28,20 +28,20 @@ class DamageOverTime(StatusEffect):
   def cancel_effect(self, target):
     PrintText.Print_with_delay(f"{target.name} is no longer poisoned!\n")
 
-class Boost(StatusEffect):
-  def __init__(self, name, activeTurns, statToBoost, boostAmount):
+class StatAlteration(StatusEffect):
+  def __init__(self, name, activeTurns, statToAdjust, adjustAmount):
     super().__init__()
     self.name = name
     self.counter = activeTurns
-    self.statName = statToBoost
-    self.boost = boostAmount
+    self.statName = statToAdjust
+    self.adjust = adjustAmount
 
   def execute(self, target):
     attribute = getattr(target, self.statName)
-    setattr(target, self.statName, attribute + self.boost)
+    setattr(target, self.statName, attribute + self.adjust)
     PrintText.Print_with_delay(f"{target.name} increases its {self.statName}!\n")
 
   def cancel_effect(self, target):
     attribute = getattr(target, self.statName)
-    setattr(target, self.statName, attribute - self.boost)
+    setattr(target, self.statName, attribute - self.adjust)
     PrintText.Print_with_delay(f"{target.name} is no longer under the effects of {self.name}!\n")
