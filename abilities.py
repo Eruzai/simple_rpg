@@ -28,14 +28,14 @@ class AttackMethods:
   def single_target_attack(self, encounter, name, attackType, attackDamage, numberOfAttacks, multiplier):
     AttackMethods.choose_target(self, encounter)
     Draw.attack()
-    damage = attackDamage * multiplier // 1
+    damage = attackDamage * multiplier
     PrintText.Print_with_delay(f"You attack {self.target.name} with {name}!\n")
     for n in range(numberOfAttacks):
       self.target.damage_taken(damage, attackType)
   
   def random_targets_attack(self, encounter, name, attackType, attackDamage, numberOfAttacks, multiplier):
     Draw.attack()
-    damage = attackDamage * multiplier // 1
+    damage = attackDamage * multiplier
     for n in range(numberOfAttacks):
       AttackMethods.random_target(self, encounter)
       PrintText.Print_with_delay(f"Your {name} hits {self.target.name}!\n")
@@ -44,8 +44,8 @@ class AttackMethods:
   def random_secondary_target_attack(self, encounter, name, attackType, attackDamage, numberOfAttacks, primaryMultiplier, secondaryMultiplier):
     AttackMethods.choose_target(self, encounter)
     Draw.attack()
-    damage = attackDamage * primaryMultiplier // 1
-    splashDamage = attackDamage * secondaryMultiplier // 1
+    damage = attackDamage * primaryMultiplier
+    splashDamage = attackDamage * secondaryMultiplier
     for n in range(numberOfAttacks):
       PrintText.Print_with_delay(f"You attack {self.target.name} with {name}!\n")
       self.target.damage_taken(damage, attackType)
@@ -57,8 +57,8 @@ class AttackMethods:
   def all_target_attack(self, encounter, name, attackType, attackDamage, numberOfAttacks, primaryMultiplier, secondaryMultiplier):
     AttackMethods.choose_target(self, encounter)
     Draw.attack()
-    damage = attackDamage * primaryMultiplier // 1
-    splashDamage = attackDamage * secondaryMultiplier // 1
+    damage = attackDamage * primaryMultiplier
+    splashDamage = attackDamage * secondaryMultiplier
     for n in range(numberOfAttacks):
       PrintText.Print_with_delay(f"You target {self.target.name} with {name}!\n")
       self.target.damage_taken(damage, attackType)
@@ -226,7 +226,7 @@ class DarkBolt:
   def execute(self, encounter, player):
     attackPower = player.intellect
     AttackMethods.all_target_attack(self, encounter, self.name, "magical", attackPower, self.numberOfAttacks, self.multiplier, self.splashMultiplier)
-    selfHarm = attackPower * 0.8 // 1
+    selfHarm = attackPower * 0.8
     PrintText.Print_with_delay(f"You recieve recoil damage!\n")
     player.damage_taken(selfHarm, "magical")
     player.abilityPoints -= self.abilityCost
@@ -254,8 +254,14 @@ class Drain:
   
   def execute(self, encounter, player):
     attackPower = player.intellect
+    startingHealth = 0
+    for enemy in encounter:
+      startingHealth += enemy.health
     AttackMethods.all_target_attack(self, encounter, self.name, "magical", attackPower, self.numberOfAttacks, self.multiplier, self.splashMultiplier)
-    healAmount = attackPower * choice([0.05, 0.075, 0.1, 0.125, 0.15]) * len(encounter) // 1
+    remainingHealth = 0
+    for enemy in encounter:
+      remainingHealth += enemy.health
+    healAmount = startingHealth - remainingHealth * 0.25 // 1
     PrintText.Print_with_delay(f"You steal {healAmount} health from enemies!\n")
     player.health += healAmount
     if player.health > player.maxHealth:
@@ -310,8 +316,14 @@ class InvigoratingShout:
   
   def execute(self, encounter, player):
     attackPower = player.intellect
+    startingHealth = 0
+    for enemy in encounter:
+      startingHealth += enemy.health
     AttackMethods.all_target_attack(self, encounter, self.name, "physical", attackPower, self.numberOfAttacks, self.multiplier, self.splashMultiplier)
-    healAmount = attackPower * choice([0.05, 0.075, 0.1, 0.125, 0.15]) * len(encounter) // 1
+    remainingHealth = 0
+    for enemy in encounter:
+      remainingHealth += enemy.health
+    healAmount = startingHealth - remainingHealth * 0.25 // 1
     PrintText.Print_with_delay(f"You restore {healAmount} AP!\n")
     player.abilityPoints += healAmount
     if player.abilityPoints > player.maxAbilityPoints:
@@ -340,7 +352,7 @@ class EnragedFlurry:
     attackPower = player.strength
     numberOfAttacks = randint(3, 10)
     AttackMethods.single_target_attack(self, encounter, self.name, "physical", attackPower, numberOfAttacks, self.multiplier)
-    selfHarm = attackPower * 0.1 * numberOfAttacks // 1
+    selfHarm = attackPower * 0.1 * numberOfAttacks
     PrintText.Print_with_delay(f"You recieve recoil damage!\n")
     player.damage_taken(selfHarm, "physical")
     player.abilityPoints -= self.abilityCost
