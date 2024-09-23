@@ -1,3 +1,4 @@
+import enemy_abilities
 from ascii_art import Draw
 from print_delay import PrintText
 from random import randint, choice
@@ -12,6 +13,8 @@ class Enemy:
     self.intellect = 0
     self.physicalDef = 0
     self.magicDef = 0
+    self.abilities = [enemy_abilities.BasicAttack()]
+    self.abilityChanceArray = [0]
 
   def damage_taken(self, basedamage, attackType):
     damage = basedamage * choice([0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.5]) // 1
@@ -43,6 +46,8 @@ class Rat(Enemy):
     self.level = randint(1, 2)
     self.health = 2
     self.strength = 1
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Nibble(), enemy_abilities.Bite()]
+    self.abilityChanceArray = [0, 0, 1, 1, 2]
     for _ in range(self.level):
       self.experience += 2
       self.health += randint(1, 2)
@@ -55,6 +60,8 @@ class RabidDog(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Rabid Dog"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Bite(), enemy_abilities.Howl()]
+    self.abilityChanceArray = [0, 0, 1, 1, 2]
     self.level = randint(1, 3)
     self.experience = 8
     self.health = 4
@@ -71,6 +78,8 @@ class TinySlime(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Tiny Slime"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Dissolve(), enemy_abilities.Divide()]
+    self.abilityChanceArray = [0, 0, 1, 1, 2]
     self.level = randint(1, 3)
     self.experience = 5
     self.health = 8
@@ -104,6 +113,8 @@ class SmallSlime(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Small Slime"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Dissolve(), enemy_abilities.Divide()]
+    self.abilityChanceArray = [0, 0, 1, 1, 2]
     self.level = randint(1, 3)
     self.experience = 10
     self.health = 10
@@ -122,6 +133,8 @@ class Slime(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Slime"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Dissolve(), enemy_abilities.Divide()]
+    self.abilityChanceArray = [0, 0, 1, 1, 2]
     self.level = randint(1, 5)
     self.experience = 15
     self.health = 12
@@ -140,6 +153,8 @@ class Goblin(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Goblin"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.DoubleSlash(), enemy_abilities.Boost()]
+    self.abilityChanceArray = [0, 1, 2]
     self.level = randint(3, 5)
     self.experience = 15
     self.health = 8
@@ -190,6 +205,8 @@ class ShinySlime(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Shiny Slime"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.BasicMagicAttack(), enemy_abilities.Dissolve(), enemy_abilities.RapidDivision()]
+    self.abilityChanceArray = [0, 1, 2, 2, 3]
     self.level = randint(5, 7)
     self.experience = 50
     self.health = 20
