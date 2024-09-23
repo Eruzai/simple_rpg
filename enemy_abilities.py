@@ -1,6 +1,7 @@
 from random import randint, choice
 import copy
 from print_delay import PrintText
+import status_effects
 
 class Summon:
   def execute(encounter, enemyToSummon):
@@ -117,11 +118,10 @@ class DoubleSlash:
     for n in range(numberOfAttacks):
       player.damage_taken(damage, "physical")
 
-class Boost:
+class GoblinDance:
   def __init__(self):
-    self.name = "Boost"
+    self.name = "Goblin Dance"
 
   def execute(self, player, enemy, encounter):
-    enemy.strength += 5
-    PrintText.Print_with_delay(f"{enemy.name}'s strength increases!\n")
-    
+    effect = status_effects.Boost(self.name, 3, "strength", 10)
+    enemy.apply_status_effect(effect)
