@@ -15,6 +15,15 @@ class Enemy:
     self.magicDef = 0
     self.abilities = [enemy_abilities.BasicAttack()]
     self.abilityChanceArray = [0]
+    self.statusEffects = {}
+
+  def apply_status_effect(self, effect):
+    self.statusEffects[effect.name] = effect
+    effect.execute(self)
+
+  def clear_status_effect(self, effect):
+    effect.cancel_effect(self)
+    del self.statusEffects[effect.name]
 
   def damage_taken(self, basedamage, attackType):
     damage = basedamage * choice([0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.5]) // 1

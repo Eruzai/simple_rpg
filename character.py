@@ -10,6 +10,7 @@ class NewPlayerCharacter:
     self.unlockedJobs = {"Novice": jobs.Novice()}
     self.job = self.unlockedJobs["Novice"]
     self.abilities = {"Attack": abilities.Attack(), "Magic Bolt": abilities.MagicBolt()}
+    self.statusEffects = {}
     self.level = 1
     self.experience = 0
     self.experienceNeeded = 100
@@ -141,3 +142,11 @@ class NewPlayerCharacter:
     self.calculate_stats()
     self.rest()
     self.display_stats()
+
+  def apply_status_effect(self, effect):
+    self.statusEffects[effect.name] = effect
+    effect.execute(self)
+
+  def clear_status_effect(self, effect):
+    effect.cancel_effect(self)
+    del self.statusEffects[effect.name]
