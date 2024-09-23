@@ -73,8 +73,8 @@ class Fight:
     elif userInputAction == "3":
       Draw.escape()
       PrintText.Print_with_delay(f"You escaped!\n")
-      for statusEffect in player.statusEffects:
-        player.clear_status_effect(statusEffect)
+      for index in range(len(player.statusEffects) -1, -1, -1):
+        player.clear_status_effect[index]
       encounter = None
       return False
     else:
@@ -94,8 +94,8 @@ class Fight:
       if self.all_enemies_defeated(encounter, player):
         break
 
-      for statusName in player.statusEffects:
-        player.statusEffects[statusName].count_down(player)
+      for index in range(len(player.statusEffects) -1, -1, -1):
+        player.statusEffects[index].count_down(player)
         if self.player_defeated(player):
           break
       
@@ -109,8 +109,8 @@ class Fight:
         if self.player_defeated(player):
           break
 
-        for statusName in enemy.statusEffects:
-          enemy.statusEffects[statusName].count_down(enemy)
+        for index in range(len(enemy.statusEffects) -1, -1, -1):
+          enemy.statusEffects[index].count_down(enemy)
 
         self.handle_defeated_enemies(encounter)
 
