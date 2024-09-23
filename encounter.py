@@ -94,8 +94,8 @@ class Fight:
       if self.all_enemies_defeated(encounter, player):
         break
 
-      for statusEffect in player.statusEffects:
-        statusEffect.count_down(player)
+      for statusName in player.statusEffects:
+        player.statusEffects[statusName].count_down(player)
         if self.player_defeated(player):
           break
       
@@ -109,8 +109,8 @@ class Fight:
         if self.player_defeated(player):
           break
 
-        for statusEffect in enemy.statusEffects:
-          statusEffect.count_down(enemy)
+        for statusName in enemy.statusEffects:
+          enemy.statusEffects[statusName].count_down(enemy)
 
         self.handle_defeated_enemies(encounter)
 
