@@ -79,6 +79,7 @@ class Fight:
       return False
     else:
       PrintText.Print_with_delay("That's not a valid action\n")
+      self.choose_action(encounter, player)
     
   def battle(self, encounter: Foes, player: Character):
     while encounter and player.health > 0:
@@ -112,6 +113,6 @@ class Fight:
           statusEffect.count_down(enemy)
 
         self.handle_defeated_enemies(encounter)
-        
+
         if self.all_enemies_defeated(encounter, player):
           break
