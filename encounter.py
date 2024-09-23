@@ -30,7 +30,7 @@ class Fight:
   def all_enemies_defeated(self, encounter, player):
     if len(encounter) == 0:
       Draw.victory()
-      PrintText.Print_with_delay("All enemies have been vanquished!\n")
+      PrintText.Print_with_delay("All enemies have been defeated!\n")
       PrintText.Print_with_delay(f"You gain {self.experienceEarned} experience points and {self.jobPointsEarned} Job Skill Points!\n")
       player.experience += self.experienceEarned
       player.job.skillPoints += self.jobPointsEarned
