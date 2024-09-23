@@ -11,10 +11,10 @@ class Treasure():
     slot = treasure.equipSlot
     if player.equipment[slot]:
       equipedItem = player.equipment[slot]
-      PrintText.Print_with_delay("Currently equiped item:\n")
-      equipedItem.item_stats()
       PrintText.Print_with_delay("Found item:\n")
       treasure.item_stats()
+      PrintText.Print_with_delay("Currently equiped item:\n")
+      equipedItem.item_stats()
       PrintText.Print_with_delay(f"Would you like to replace your equiped {equipedItem.name} with found {treasure.name}?\n")
       userEquipChoice = input("'y' or 'n' -> ")
       ConsoleCommands.clear_console()
