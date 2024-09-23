@@ -13,17 +13,35 @@ class StatusEffect:
     if self.counter <= 0:
       target.clear_status_effect(self)
 
-class Poison(StatusEffect):
-  def __init__(self, activeTurns):
+class DamageOverTime(StatusEffect):
+  def __init__(self, name, activeTurns, damage):
     super().__init__()
+    self.name = name
     self.counter = activeTurns
-    self.name = "Poison"
     self.repeating = True
+    self.damage = damage
 
   def execute(self, target):
-    damage = target.health * 0.05 // 1
-    target.health -= damage
-    PrintText.Print_with_delay(f"{target.name} suffers {damage} poison damage")
+    target.health -= self.damage
+    PrintText.Print_with_delay(f"{target.name} suffers {self.damage} damage from {self.name}\n")
 
   def cancel_effect(self, target):
-    PrintText.Print_with_delay(f"{target.name} is no longer poisoned!")
+    PrintText.Print_with_delay(f"{target.name} is no longer poisoned!\n")
+
+class Boost(StatusEffect):
+  def __init__(self, name, activeTurns, statToBoost, boostAmount):
+    super().__init__()
+    self.name = name
+    self.counter = activeTurns
+    self.statName = statToBoost
+    self.boost = boostAmount
+
+  def execute(self, target):
+    attribute = getattr(target, self.statName)
+    setattr(target, self.statName, attribute + self.boost)
+    PrintText.Print_with_delay(f"{target.name} increases its {self.statName}!\n")
+
+  def cancel_effect(self, target):
+    attribute = getattr(target, self.statName)
+    setattr(target, self.statName, attribute - self.boost)
+    PrintText.Print_with_delay(f"{target.name} is no longer under the effects of {self.name}!\n")
