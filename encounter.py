@@ -104,10 +104,14 @@ class Fight:
         enemyAbility = enemy.abilities[choice(enemy.abilityChanceArray)]
         PrintText.Print_with_delay(f"{enemy.name} uses {enemyAbility.name}!\n")
         enemyAbility.execute(player, enemy, encounter)
+
         if self.player_defeated(player):
           break
+
         for statusEffect in enemy.statusEffects:
           statusEffect.count_down(enemy)
+
         self.handle_defeated_enemies(encounter)
+        
         if self.all_enemies_defeated(encounter, player):
           break
