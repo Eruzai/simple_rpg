@@ -223,8 +223,8 @@ class ShinySlime(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Shiny Slime"
-    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.BasicMagicAttack(), enemy_abilities.Dissolve(), enemy_abilities.RapidDivision()]
-    self.abilityChanceArray = [0, 1, 2, 2, 3]
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.BasicMagicAttack(), enemy_abilities.Dissolve(), enemy_abilities.AcidSplash(), enemy_abilities.RapidDivision()]
+    self.abilityChanceArray = [0, 1, 2, 3, 4]
     self.level = randint(5, 7)
     self.experience = 50
     self.health = 20

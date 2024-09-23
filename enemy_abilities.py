@@ -188,3 +188,15 @@ class Dissolve:
     effect2 = status_effects.StatAlteration(self.name, 2, "physicalDef", 15)
     player.apply_status_effect(effect1)
     enemy.apply_status_effect(effect2)
+
+class AcidSplash:
+  def __init__(self):
+    self.name = "Acid Splash"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.intellect
+    damageOverTime = player.maxHealth * 0.05 // 1
+    player.damage_taken(damage, "magical")
+    adjustment = player.magicalDef * 0.5 // 1
+    effect = status_effects.StatAlterWithDOT(self.name, 3, damageOverTime, "magicalDef", -adjustment)
+    player.apply_status_effect(effect)
