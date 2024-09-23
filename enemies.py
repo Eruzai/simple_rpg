@@ -15,15 +15,20 @@ class Enemy:
     self.magicDef = 0
     self.abilities = [enemy_abilities.BasicAttack()]
     self.abilityChanceArray = [0]
-    self.statusEffects = {}
+    self.statusEffects = []
 
   def apply_status_effect(self, effect):
-    self.statusEffects[effect.name] = effect
-    effect.execute(self)
+    effectExists = next((statusEffect for statusEffect in self.statusEffects if statusEffect.name == effect.name), None)
+    if effectExists:
+      effectExists.counter = effect.counter
+    else:
+      self.statusEffects.append(effect)
+      effect.execute(self)
 
   def clear_status_effect(self, effect):
+    index = next((i for i, statusEffect in enumerate(self.statusEffects) if statusEffect.name == effect.name), -1)
     effect.cancel_effect(self)
-    del self.statusEffects[effect.name]
+    del self.statusEffects[index]
 
   def damage_taken(self, basedamage, attackType):
     damage = basedamage * choice([0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.5]) // 1
@@ -162,7 +167,7 @@ class Goblin(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Goblin"
-    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.DoubleSlash(), enemy_abilities.Boost()]
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.DoubleSlash(), enemy_abilities.GoblinDance()]
     self.abilityChanceArray = [0, 1, 2]
     self.level = randint(3, 5)
     self.experience = 15
