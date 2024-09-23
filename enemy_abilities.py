@@ -87,12 +87,12 @@ class Howl:
     from enemies import RabidDog as foe
     Summon.execute(encounter, foe())
 
-class Dissolve:
+class Absorb:
   def __init__(self):
-    self.name = "Dissolve"
+    self.name = "Absorb"
 
   def execute(self, player, enemy, encounter):
-    damage = enemy.strength * 1.5
+    damage = enemy.strength
     health = player.health
     player.damage_taken(damage, "physical")
     healthRestored = health - player.health
@@ -123,5 +123,68 @@ class GoblinDance:
     self.name = "Goblin Dance"
 
   def execute(self, player, enemy, encounter):
-    effect = status_effects.Boost(self.name, 3, "strength", 10)
-    enemy.apply_status_effect(effect)
+    effect = status_effects.StatAlteration(self.name, 3, "strength", 5)
+    for enemy in encounter:
+      enemy.apply_status_effect(effect)
+
+class InjectVenom:
+  def __init__(self):
+    self.name = "Inject Venom"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.strength
+    damageOverTime = player.maxHealth * 0.05 // 1
+    player.damage_taken(damage, "physical")
+    effect = status_effects.DamageOverTime(self.name, 3, damageOverTime)
+    player.apply_status_effect(effect)
+
+class CorrosiveBite:
+  def __init__(self):
+    self.name = "Corrosive Bite"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.strength
+    adjustment = player.physicalDef * 0.5 // 1
+    player.damage_taken(damage, "physical")
+    effect = status_effects.StatAlteration(self.name, 3, "physicalDef", -adjustment)
+    player.apply_status_effect(effect)
+
+class WindStorm:
+  def __init__(self):
+    self.name = "Wind Storm"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.intellect * 0.3
+    numberOfAttacks = randint(2, 5)
+    for n in range(numberOfAttacks):
+      player.damage_taken(damage, "magical")
+    adjustment = player.magicalDef * 0.5 // 1
+    effect1 = status_effects.StatAlteration(self.name, 3, "magicalDef", -adjustment)
+    effect2 = status_effects.StatAlteration(self.name, 3, "intellect", 5)
+    player.apply_status_effect(effect1)
+    enemy.apply_status_effect(effect2)
+
+class WindSlash:
+  def __init__(self):
+    self.name = "Wind Slash"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.intellect * 1.2
+    player.damage_taken(damage, "magical")
+
+class Dissolve:
+  def __init__(self):
+    self.name = "Dissolve"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.strength
+    health = player.health
+    player.damage_taken(damage, "physical")
+    healthRestored = health - player.health
+    PrintText.Print_with_delay(f"{enemy.name} regenerates {healthRestored} hp!\n")
+    enemy.health += healthRestored
+    adjustment = player.physicalDef * 0.5 // 1
+    effect1 = status_effects.StatAlteration(self.name, 5, "physicalDef", -adjustment)
+    effect2 = status_effects.StatAlteration(self.name, 2, "physicalDef", 15)
+    player.apply_status_effect(effect1)
+    enemy.apply_status_effect(effect2)

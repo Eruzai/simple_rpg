@@ -92,7 +92,7 @@ class TinySlime(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Tiny Slime"
-    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Dissolve(), enemy_abilities.Divide()]
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Absorb(), enemy_abilities.Divide()]
     self.abilityChanceArray = [0, 0, 1, 1, 2]
     self.level = randint(1, 3)
     self.experience = 5
@@ -127,7 +127,7 @@ class SmallSlime(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Small Slime"
-    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Dissolve(), enemy_abilities.Divide()]
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Absorb(), enemy_abilities.Divide()]
     self.abilityChanceArray = [0, 0, 1, 1, 2]
     self.level = randint(1, 3)
     self.experience = 10
@@ -138,7 +138,7 @@ class SmallSlime(Enemy):
       self.experience += 3
       self.health += randint(3, 5)
       self.strength += randint(1, 2)
-      self.physicalDef += randint(3, 5)
+      self.physicalDef += randint(1, 3)
 
   def draw(self):
     Draw.small_slime()
@@ -147,7 +147,7 @@ class Slime(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Slime"
-    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Dissolve(), enemy_abilities.Divide()]
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Absorb(), enemy_abilities.Divide()]
     self.abilityChanceArray = [0, 0, 1, 1, 2]
     self.level = randint(1, 5)
     self.experience = 15
@@ -158,7 +158,7 @@ class Slime(Enemy):
       self.experience += 3
       self.health += randint(4, 6)
       self.strength += randint(1, 3)
-      self.physicalDef += randint(4, 6)
+      self.physicalDef += randint(1, 3)
 
   def draw(self):
     Draw.slime()
@@ -185,6 +185,8 @@ class SmallSpider(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Small Spider"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.CorrosiveBite(), enemy_abilities.InjectVenom()]
+    self.abilityChanceArray = [0, 1, 2]
     self.level = randint(1, 3)
     self.experience = 12
     self.health = 12
@@ -201,16 +203,18 @@ class WindElemental(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Wind Elemental"
+    self.abilities = [enemy_abilities.BasicMagicAttack(), enemy_abilities.WindSlash(), enemy_abilities.WindStorm()]
+    self.abilityChanceArray = [0, 1, 2, 2]
     self.level = randint(3, 5)
     self.experience = 20
     self.health = 15
     self.intellect = 5
-    self.magicDef = 35
+    self.physicalDef = 35
     for _ in range(self.level):
       self.experience += 4
       self.health += randint(3, 5)
       self.intellect += randint(2, 4)
-      self.magicDef += randint(3, 7)
+      self.physicalDef += randint(3, 7)
 
   def draw(self):
     Draw.wind_elemental()
@@ -233,8 +237,8 @@ class ShinySlime(Enemy):
       self.health += randint(4, 7)
       self.strength += randint(4, 7)
       self.intellect += randint(4, 7)
-      self.physicalDef += randint(3, 7)
-      self.magicDef += randint(3, 7)
+      self.physicalDef += randint(1, 3)
+      self.magicDef += randint(1, 3)
 
   def draw(self):
     Draw.shiny_slime()
