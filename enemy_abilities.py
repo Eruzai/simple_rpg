@@ -32,7 +32,7 @@ class Consume:
       targetIndex = choice(choices)
       target = encounter[targetIndex]
       attackingEnemy.health += target.health
-      PrintText.Print_with_delay(f"{attackingEnemy.name} has consumed {target.name} to regain {target.health} hp!\n")
+      PrintText.Print_with_delay(f"{attackingEnemy.name} has consumed {target.name} to gain {target.health} hp!\n")
       del encounter[targetIndex]
     else:
       PrintText.Print_with_delay(f"There are no monsters to consume. {attackingEnemy.name} attacks you instead!\n")
@@ -40,7 +40,7 @@ class Consume:
       health = player.health
       player.damage_taken(damage, "physical")
       healthRestored = health - player.health
-      PrintText.Print_with_delay(f"{attackingEnemy.name} regenerates {healthRestored} hp!\n")
+      PrintText.Print_with_delay(f"{attackingEnemy.name} gains {healthRestored} hp!\n")
       attackingEnemy.health += healthRestored
 
 class Flee:
@@ -153,9 +153,9 @@ class CorrosiveBite:
 
   def execute(self, player, enemy, encounter):
     damage = enemy.strength
-    adjustment = player.physicalDef // 2
+    adjustment = player.physicalDef // -2
     player.damage_taken(damage, "physical")
-    effect = status_effects.StatAlteration(self.name, 3, "physicalDef", -adjustment)
+    effect = status_effects.StatAlteration(self.name, 3, "physicalDef", adjustment)
     player.apply_status_effect(effect)
 
 class WindStorm:
@@ -167,8 +167,8 @@ class WindStorm:
     numberOfAttacks = randint(2, 5)
     for n in range(numberOfAttacks):
       player.damage_taken(damage, "magical")
-    adjustment = player.magicalDef // 2
-    effect1 = status_effects.StatAlteration(self.name, 3, "magicalDef", -adjustment)
+    adjustment = player.magicDef // -2
+    effect1 = status_effects.StatAlteration(self.name, 3, "magicDef", adjustment)
     effect2 = status_effects.StatAlteration(self.name, 3, "intellect", 5)
     player.apply_status_effect(effect1)
     enemy.apply_status_effect(effect2)
@@ -192,8 +192,8 @@ class Dissolve:
     healthRestored = health - player.health
     PrintText.Print_with_delay(f"{enemy.name} regenerates {healthRestored} hp!\n")
     enemy.health += healthRestored
-    adjustment = player.physicalDef // 2
-    effect1 = status_effects.StatAlteration(self.name, 5, "physicalDef", -adjustment)
+    adjustment = player.physicalDef // -2
+    effect1 = status_effects.StatAlteration(self.name, 5, "physicalDef", adjustment)
     effect2 = status_effects.StatAlteration(self.name, 2, "physicalDef", 15)
     player.apply_status_effect(effect1)
     enemy.apply_status_effect(effect2)
@@ -206,8 +206,8 @@ class AcidSplash:
     damage = enemy.intellect
     damageOverTime = player.maxHealth * 0.05 // 1
     player.damage_taken(damage, "magical")
-    adjustment = player.magicalDef // 2
-    effect = status_effects.StatAlterWithDOT(self.name, 3, damageOverTime, "magicalDef", -adjustment)
+    adjustment = player.magicDef // -2
+    effect = status_effects.StatAlterWithDOT(self.name, 3, damageOverTime, "magicDef", adjustment)
     player.apply_status_effect(effect)
 
 class VenomSplash:
@@ -215,11 +215,11 @@ class VenomSplash:
     self.name = "Venom Splash"
 
   def execute(self, player, enemy, encounter):
-    damage = enemy.physical * 0.8
+    damage = enemy.strength * 0.8
     damageOverTime = player.maxHealth * 0.05 // 1
     player.damage_taken(damage, "physical")
-    adjustment = player.physicalDef // 2
-    effect = status_effects.StatAlterWithDOT(self.name, 3, damageOverTime, "physicalDef", -adjustment)
+    adjustment = player.physicalDef // -2
+    effect = status_effects.StatAlterWithDOT(self.name, 3, damageOverTime, "physicalDef", adjustment)
     player.apply_status_effect(effect)
 
 class Skitter:
@@ -242,6 +242,7 @@ class Rot:
       Summon.execute(encounter, foe())
     damageOverTime = player.maxHealth // 10
     effect = status_effects.DamageOverTime(self.name, 2, damageOverTime)
+    player.apply_status_effect(effect)
 
 class DarkBite:
   def __init__(self):
@@ -308,11 +309,11 @@ class Tangle:
     self.name = "Tangle"
 
   def execute(self, player, enemy, encounter):
-    damage = enemy.physical * 0.8
+    damage = enemy.strength * 0.8
     damageOverTime = player.maxHealth * 0.03 // 1
     player.damage_taken(damage, "physical")
-    adjustment = player.strength // 2
-    effect = status_effects.StatAlterWithDOT(self.name, 5, damageOverTime, "strength", -adjustment)
+    adjustment = player.strength // -2
+    effect = status_effects.StatAlterWithDOT(self.name, 5, damageOverTime, "strength", adjustment)
     player.apply_status_effect(effect)
 
 class Bind:
@@ -320,11 +321,11 @@ class Bind:
     self.name = "Bind"
 
   def execute(self, player, enemy, encounter):
-    damage = enemy.physical * 0.8
+    damage = enemy.strength * 0.8
     damageOverTime = player.maxHealth * 0.03 // 1
     player.damage_taken(damage, "physical")
-    adjustment = player.physicalDef // 2
-    effect = status_effects.StatAlterWithDOT(self.name, 5, damageOverTime, "physicalDef", -adjustment)
+    adjustment = player.physicalDef // -2
+    effect = status_effects.StatAlterWithDOT(self.name, 5, damageOverTime, "physicalDef", adjustment)
     player.apply_status_effect(effect)
 
 class DeathRattle:
