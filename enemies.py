@@ -61,7 +61,7 @@ class Rat(Enemy):
     self.health = 2
     self.strength = 1
     self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Nibble(), enemy_abilities.Bite()]
-    self.abilityChanceArray = [0, 0, 1, 1, 2]
+    self.abilityChanceArray = [0, 1, 2]
     for _ in range(self.level):
       self.experience += 2
       self.health += randint(1, 2)
@@ -168,7 +168,7 @@ class Goblin(Enemy):
     super().__init__()
     self.name = "Goblin"
     self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.DoubleSlash(), enemy_abilities.GoblinDance()]
-    self.abilityChanceArray = [0, 1, 2]
+    self.abilityChanceArray = [0, 0, 1, 2]
     self.level = randint(3, 5)
     self.experience = 15
     self.health = 8
@@ -204,7 +204,7 @@ class WindElemental(Enemy):
     super().__init__()
     self.name = "Wind Elemental"
     self.abilities = [enemy_abilities.BasicMagicAttack(), enemy_abilities.WindSlash(), enemy_abilities.WindStorm()]
-    self.abilityChanceArray = [0, 1, 2, 2]
+    self.abilityChanceArray = [0, 0, 1, 2, 2]
     self.level = randint(3, 5)
     self.experience = 20
     self.health = 15
@@ -247,6 +247,8 @@ class MarshSpider(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Marsh Spider"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.VenomSplash(), enemy_abilities.Skitter()]
+    self.abilityChanceArray = [0, 0, 0, 1, 2]
     self.level = randint(5, 8)
     self.experience = 25
     self.health = 12
@@ -265,6 +267,8 @@ class Zombie(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Zombie"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Rot(), enemy_abilities.Consume()]
+    self.abilityChanceArray = [0, 0, 1, 1, 2]
     self.level = randint(5, 8)
     self.experience = 30
     self.health = 15
@@ -283,6 +287,8 @@ class GiantRat(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Giant Rat"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Nibble(), enemy_abilities.CorrosiveBite()]
+    self.abilityChanceArray = [0, 1, 2]
     self.level = randint(5, 8)
     self.experience = 25
     self.health = 8
@@ -299,14 +305,18 @@ class DarkSerpent(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Dark Serpent"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.InjectVenom(), enemy_abilities.DarkBite()]
+    self.abilityChanceArray = [0, 1, 2]
     self.level = randint(6, 9)
     self.experience = 40
     self.health = 10
     self.strength = 5
+    self.magicDef = 10
     for _ in range(self.level):
       self.experience += 8
       self.health += randint(1, 3)
       self.strength += randint(2, 4)
+      self.magicDef += randint(1, 3)
 
   def draw(self):
     Draw.dark_serpent()
@@ -315,18 +325,18 @@ class Witch(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Witch"
+    self.abilities = [enemy_abilities.BasicMagicAttack(), enemy_abilities.WitchBolt(), enemy_abilities.SummonFamiliars()]
+    self.abilityChanceArray = [0, 0, 1, 2]
     self.level = randint(7, 10)
     self.experience = 75
     self.health = 15
-    self.strength = 5
     self.intellect = 10
-    self.magicDef = 30
+    self.magicDef = 25
     for _ in range(self.level):
       self.experience += 10
       self.health += randint(3, 5)
-      self.strength += randint(1, 3)
       self.intellect += randint(3, 6)
-      self.magicDef += randint(3, 5)
+      self.magicDef += randint(1, 3)
 
   def draw(self):
     Draw.witch()
@@ -335,6 +345,8 @@ class WretchedCrow(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "WretchedCrow"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Curse(), enemy_abilities.Blessing()]
+    self.abilityChanceArray = [0, 0, 0, 1, 2]
     self.level = randint(6, 8)
     self.experience = 75
     self.health = 10
@@ -344,7 +356,7 @@ class WretchedCrow(Enemy):
       self.experience += 5
       self.health += randint(2, 4)
       self.strength += randint(2, 3)
-      self.physicalDef += randint(3, 5)
+      self.physicalDef += randint(1, 3)
 
   def draw(self):
     Draw.wretched_crow()
@@ -353,13 +365,15 @@ class MarshHorror(Enemy):
   def __init__(self):
     super().__init__()
     self.name = "Marsh Horror"
+    self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Tangle(), enemy_abilities.Bind(), enemy_abilities.Consume(), enemy_abilities.DeathRattle()]
+    self.abilityChanceArray = [0, 0, 1, 2, 3, 4]
     self.level = randint(10, 12)
     self.experience = 400
     self.health = 50
     self.strength = 5
     self.intellect = 2
-    self.physicalDef = 40
-    self.magicDef = 25
+    self.physicalDef = 20
+    self.magicDef = 40
     for _ in range(self.level):
       self.experience += 10
       self.health += randint(5, 8)

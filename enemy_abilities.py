@@ -24,15 +24,24 @@ class Consume:
     self.name = "Consume"
 
   def execute(self, player, attackingEnemy, encounter):
-    choices = []
-    for index, enemy in enumerate(encounter):
-      if enemy is not attackingEnemy:
-        choices.append(index)
-    targetIndex = choice(choices)
-    target = encounter[targetIndex]
-    attackingEnemy.health += target.health
-    PrintText.Print_with_delay(f"{attackingEnemy.name} has consumed {target.name} to regain {target.health} hp!\n")
-    del encounter[targetIndex]
+    if len(encounter) > 1:
+      choices = []
+      for index, enemy in enumerate(encounter):
+        if enemy is not attackingEnemy:
+          choices.append(index)
+      targetIndex = choice(choices)
+      target = encounter[targetIndex]
+      attackingEnemy.health += target.health
+      PrintText.Print_with_delay(f"{attackingEnemy.name} has consumed {target.name} to regain {target.health} hp!\n")
+      del encounter[targetIndex]
+    else:
+      PrintText.Print_with_delay(f"There are no monsters to consume. {attackingEnemy.name} attacks you instead!\n")
+      damage = attackingEnemy.strength
+      health = player.health
+      player.damage_taken(damage, "physical")
+      healthRestored = health - player.health
+      PrintText.Print_with_delay(f"{attackingEnemy.name} regenerates {healthRestored} hp!\n")
+      attackingEnemy.health += healthRestored
 
 class Flee:
   def __init__(self):
@@ -144,7 +153,7 @@ class CorrosiveBite:
 
   def execute(self, player, enemy, encounter):
     damage = enemy.strength
-    adjustment = player.physicalDef * 0.5 // 1
+    adjustment = player.physicalDef // 2
     player.damage_taken(damage, "physical")
     effect = status_effects.StatAlteration(self.name, 3, "physicalDef", -adjustment)
     player.apply_status_effect(effect)
@@ -154,11 +163,11 @@ class WindStorm:
     self.name = "Wind Storm"
 
   def execute(self, player, enemy, encounter):
-    damage = enemy.intellect * 0.3
+    damage = enemy.intellect // 3
     numberOfAttacks = randint(2, 5)
     for n in range(numberOfAttacks):
       player.damage_taken(damage, "magical")
-    adjustment = player.magicalDef * 0.5 // 1
+    adjustment = player.magicalDef // 2
     effect1 = status_effects.StatAlteration(self.name, 3, "magicalDef", -adjustment)
     effect2 = status_effects.StatAlteration(self.name, 3, "intellect", 5)
     player.apply_status_effect(effect1)
@@ -183,7 +192,7 @@ class Dissolve:
     healthRestored = health - player.health
     PrintText.Print_with_delay(f"{enemy.name} regenerates {healthRestored} hp!\n")
     enemy.health += healthRestored
-    adjustment = player.physicalDef * 0.5 // 1
+    adjustment = player.physicalDef // 2
     effect1 = status_effects.StatAlteration(self.name, 5, "physicalDef", -adjustment)
     effect2 = status_effects.StatAlteration(self.name, 2, "physicalDef", 15)
     player.apply_status_effect(effect1)
@@ -197,6 +206,137 @@ class AcidSplash:
     damage = enemy.intellect
     damageOverTime = player.maxHealth * 0.05 // 1
     player.damage_taken(damage, "magical")
-    adjustment = player.magicalDef * 0.5 // 1
+    adjustment = player.magicalDef // 2
     effect = status_effects.StatAlterWithDOT(self.name, 3, damageOverTime, "magicalDef", -adjustment)
     player.apply_status_effect(effect)
+
+class VenomSplash:
+  def __init__(self):
+    self.name = "Venom Splash"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.physical * 0.8
+    damageOverTime = player.maxHealth * 0.05 // 1
+    player.damage_taken(damage, "physical")
+    adjustment = player.physicalDef // 2
+    effect = status_effects.StatAlterWithDOT(self.name, 3, damageOverTime, "physicalDef", -adjustment)
+    player.apply_status_effect(effect)
+
+class Skitter:
+  def __init__(self):
+    self.name = "Skitter"
+    
+  def execute(self, player, enemy, encounter):
+    from enemies import SmallSpider as foe
+    Summon.execute(encounter, foe())
+    Summon.execute(encounter, foe())
+
+class Rot:
+  def __init__(self):
+    self.name = "Rot"
+    
+  def execute(self, player, enemy, encounter):
+    from enemies import Zombie as foe
+    chance = choice([False, False, True])
+    if chance:
+      Summon.execute(encounter, foe())
+    damageOverTime = player.maxHealth // 10
+    effect = status_effects.DamageOverTime(self.name, 2, damageOverTime)
+
+class DarkBite:
+  def __init__(self):
+    self.name = "Dark Bite"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.strength * 1.2
+    damageOverTime = player.maxHealth // 2
+    player.damage_taken(damage, "physical")
+    effect = status_effects.DamageOverTime(self.name, 5, damageOverTime)
+    player.apply_status_effect(effect)
+
+class SummonFamiliars:
+  def __init__(self):
+    self.name = "Summon Familiars"
+    
+  def execute(self, player, enemy, encounter):
+    chance = randint(1, 3)
+    from enemies import WretchedCrow as foe
+    for n in range(chance):
+      Summon.execute(encounter, foe())
+
+class WitchBolt:
+  def __init__(self):
+    self.name = "Witch Bolt"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.intellect * 1.25
+    player.damage_taken(damage, "magical")
+    player.abilityPoints -= 5
+    PrintText.Print_with_delay(f"{player.name} has lost 5 AP!\n")
+
+class Curse:
+  def __init__(self):
+    self.name = "Curse"
+
+  def execute(self, player, enemy, encounter):
+    effect1 = status_effects.StatAlteration("Magic Down", 3, "intellect", -10)
+    effect2 = status_effects.StatAlteration("Attack Down", 3, "strength", -10)
+    effect3 = status_effects.StatAlteration("Magic Def Down", 3, "magicDef", -10)
+    effect4 = status_effects.StatAlteration("Physical Def Down", 3, "physicalDef", -10)
+    player.apply_status_effect(effect1)
+    player.apply_status_effect(effect2)
+    player.apply_status_effect(effect3)
+    player.apply_status_effect(effect4)
+
+class Blessing:
+  def __init__(self):
+    self.name = "Blessing"
+
+  def execute(self, player, enemy, encounter):
+    effect1 = status_effects.StatAlteration("Magic Up", 3, "intellect", 10)
+    effect2 = status_effects.StatAlteration("Attack Up", 3, "strength", 10)
+    effect3 = status_effects.StatAlteration("Magic Def Up", 3, "magicDef", 10)
+    effect4 = status_effects.StatAlteration("Physical Def Up", 3, "physicalDef", 10)
+    for enemy in encounter:
+      enemy.apply_status_effect(effect1)
+      enemy.apply_status_effect(effect2)
+      enemy.apply_status_effect(effect3)
+      enemy.apply_status_effect(effect4)
+
+class Tangle:
+  def __init__(self):
+    self.name = "Tangle"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.physical * 0.8
+    damageOverTime = player.maxHealth * 0.03 // 1
+    player.damage_taken(damage, "physical")
+    adjustment = player.strength // 2
+    effect = status_effects.StatAlterWithDOT(self.name, 5, damageOverTime, "strength", -adjustment)
+    player.apply_status_effect(effect)
+
+class Bind:
+  def __init__(self):
+    self.name = "Bind"
+
+  def execute(self, player, enemy, encounter):
+    damage = enemy.physical * 0.8
+    damageOverTime = player.maxHealth * 0.03 // 1
+    player.damage_taken(damage, "physical")
+    adjustment = player.physicalDef // 2
+    effect = status_effects.StatAlterWithDOT(self.name, 5, damageOverTime, "physicalDef", -adjustment)
+    player.apply_status_effect(effect)
+
+class DeathRattle:
+  def __init__(self):
+    self.name = "Death Rattle"
+    
+  def execute(self, player, enemy, encounter):
+    from enemies import MarshSpider as foe1
+    from enemies import GiantRat as foe2
+    from enemies import DarkSerpent as foe3
+    from enemies import WretchedCrow as foe4
+    chance = randint(1, 2)
+    chanceArray = [foe1, foe2, foe3, foe4]
+    for n in range(chance):
+      Summon.execute(encounter, choice(chanceArray)())
