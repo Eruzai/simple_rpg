@@ -35,7 +35,7 @@ class StatAlteration(StatusEffect):
     self.counter = activeTurns
     self.statName = statToAdjust
     self.adjust = adjustAmount
-    if adjustAmount < 0:
+    if self.adjust <= 0:
       self.message = "has decreased"
     else:
       self.message = "has increased"
@@ -60,7 +60,7 @@ class StatAlterWithDOT(StatusEffect):
     self.adjust = adjustAmount
     self.repeating = True
     self.statsNotAdjusted = True
-    if adjustAmount < 0:
+    if adjustAmount <= 0:
       self.message = "has decreased"
     else:
       self.message = "has increased"
