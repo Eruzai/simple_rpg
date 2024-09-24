@@ -9,14 +9,14 @@ Game features:
  - abilities have costs and some unique effects
  - multiple locations
  - enemies unique to locations
- - fight groups of enemies!
+ - fight groups of enemies
  - abilities can target multiple enemies
+ - enemies have abilities
+ - status effects that persist for a number of turns
+ - damage over time abilities
  - treasures
  - equipable items
  - ascii art
-
- Known issues:
-  - incorrect action prompts can cause game to crash in some situations
 
 To play:
 1. clone/fork repo
