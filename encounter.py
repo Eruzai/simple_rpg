@@ -74,7 +74,7 @@ class Fight:
       Draw.escape()
       PrintText.Print_with_delay(f"You escaped!\n")
       for index in range(len(player.statusEffects) -1, -1, -1):
-        player.clear_status_effect[index]
+        player.clear_status_effect(player.statusEffects[index])
       encounter = None
       return False
     else:
