@@ -49,7 +49,7 @@ class Magician(Job):
     super().__init__()
     self.name = "Magician"
     self.unlockableJobs = {"Wizard": Wizard, "Sage": Sage}
-    self.unlockedAbilities = {"Lucky Strike": abilities.LuckyStrike, "Quick Cast": abilities.QuickCast()}
+    self.unlockedAbilities = {"Lucky Strike": abilities.LuckyStrike(), "Quick Cast": abilities.QuickCast()}
     self.unlockableAbilities = [abilities.MagicBlast, abilities.FocusMagic]
     self.healthMultiplier = 1.25
     self.abilityPointsMultiplier = 1.5
@@ -63,7 +63,7 @@ class Fighter(Job):
     super().__init__()
     self.name = "Fighter"
     self.unlockableJobs = {"Warrior": Warrior, "Berserker": Berserker}
-    self.unlockedAbilities = {"Double Strike": abilities.DoubleStrike, "Rapid Strikes": abilities.RapidStrikes()}
+    self.unlockedAbilities = {"Double Strike": abilities.DoubleStrike(), "Rapid Strikes": abilities.RapidStrikes()}
     self.unlockableAbilities = [abilities.WildStrikes, abilities.FocusStrike]
     self.healthMultiplier = 1.5
     self.abilityPointsMultiplier = 1
@@ -76,7 +76,7 @@ class Wizard(Job):
   def __init__(self):
     super().__init__()
     self.name = "Wizard"
-    self.unlockedAbilities = {"Lucky Strike": abilities.LuckyStrike, "Quick Cast": abilities.QuickCast(), "Focus Magic": abilities.FocusMagic(), "Chaotic Magic": abilities.ChaoticMagic()}
+    self.unlockedAbilities = {"Lucky Strike": abilities.LuckyStrike(), "Quick Cast": abilities.QuickCast(), "Focus Magic": abilities.FocusMagic(), "Chaotic Magic": abilities.ChaoticMagic()}
     self.unlockableAbilities = [abilities.ArcaneBolt, abilities.DarkBolt]
     self.healthMultiplier = 1.5
     self.abilityPointsMultiplier = 2
@@ -89,7 +89,7 @@ class Sage(Job):
   def __init__(self):
     super().__init__()
     self.name = "Sage"
-    self.unlockedAbilities = {"Lucky Strike": abilities.LuckyStrike, "Quick Cast": abilities.QuickCast(), "Magic Blast": abilities.MagicBlast(), "Arcane Flood": abilities.ArcaneFlood()}
+    self.unlockedAbilities = {"Lucky Strike": abilities.LuckyStrike(), "Quick Cast": abilities.QuickCast(), "Magic Blast": abilities.MagicBlast(), "Arcane Flood": abilities.ArcaneFlood()}
     self.unlockableAbilities = [abilities.Drain, abilities.Erase]
     self.healthMultiplier = 1.75
     self.abilityPointsMultiplier = 2
@@ -102,7 +102,7 @@ class Warrior(Job):
   def __init__(self):
     super().__init__()
     self.name = "Warrior"
-    self.unlockedAbilities = {"Double Strike": abilities.DoubleStrike, "Rabid Strikes": abilities.RapidStrikes(), "Wild Strikes": abilities.WildStrikes(), "Double Cleave": abilities.DoubleCleave()}
+    self.unlockedAbilities = {"Double Strike": abilities.DoubleStrike(), "Rabid Strikes": abilities.RapidStrikes(), "Wild Strikes": abilities.WildStrikes(), "Double Cleave": abilities.DoubleCleave()}
     self.unlockableAbilities = [abilities.BladeDance, abilities.InvigoratingShout]
     self.healthMultiplier = 2
     self.abilityPointsMultiplier = 1
@@ -115,7 +115,7 @@ class Berserker(Job):
   def __init__(self):
     super().__init__()
     self.name = "Berserker"
-    self.unlockedAbilities = {"Double Strike": abilities.DoubleStrike, "Rabid Strikes": abilities.RapidStrikes(), "Focus Strike": abilities.FocusStrike(), "Furious Cleave": abilities.FuriousCleave()}
+    self.unlockedAbilities = {"Double Strike": abilities.DoubleStrike(), "Rabid Strikes": abilities.RapidStrikes(), "Focus Strike": abilities.FocusStrike(), "Furious Cleave": abilities.FuriousCleave()}
     self.unlockableAbilities = [abilities.EnragedFlurry, abilities.BerserkSlash]
     self.healthMultiplier = 2.5
     self.abilityPointsMultiplier = 1
