@@ -5,6 +5,7 @@ class StatusEffect:
     self.counter = 0
     self.name = None
     self.repeating = False
+    self.firstApplication = True
 
   def count_down(self, target):
     self.counter -= 1
@@ -26,7 +27,7 @@ class DamageOverTime(StatusEffect):
     PrintText.Print_with_delay(f"{target.name} suffers {self.damage} damage from {self.name}\n")
 
   def cancel_effect(self, target):
-    PrintText.Print_with_delay(f"{target.name} is no longer suffering from {self.name}!\n")
+    self.repeating = False
 
 class StatAlteration(StatusEffect):
   def __init__(self, name, activeTurns, statToAdjust, adjustAmount):
@@ -43,38 +44,13 @@ class StatAlteration(StatusEffect):
   def execute(self, target):
     attribute = getattr(target, self.statName)
     setattr(target, self.statName, attribute + self.adjust)
-    PrintText.Print_with_delay(f"{target.name} {self.message} {self.statName}!\n")
-
-  def cancel_effect(self, target):
-    attribute = getattr(target, self.statName)
-    setattr(target, self.statName, attribute - self.adjust)
-    PrintText.Print_with_delay(f"{target.name} is no longer under the effects of {self.name}!\n")
-
-class StatAlterWithDOT(StatusEffect):
-  def __init__(self, name, activeTurns, damage, statToAdjust, adjustAmount):
-    super().__init__()
-    self.name = name
-    self.counter = activeTurns
-    self.statName = statToAdjust
-    self.damage = damage
-    self.adjust = adjustAmount
-    self.repeating = True
-    self.statsNotAdjusted = True
-    if adjustAmount <= 0:
-      self.message = "has decreased"
-    else:
-      self.message = "has increased"
-
-  def execute(self, target):
-    if self.statsNotAdjusted:
-      attribute = getattr(target, self.statName)
-      setattr(target, self.statName, attribute + self.adjust)
+    newAttribute = getattr(target, self.statName)
+    if newAttribute < 0:
+      self.adjust -= newAttribute
+      setattr(target, self.statName, 0)
+    if self.firstApplication:
       PrintText.Print_with_delay(f"{target.name} {self.message} {self.statName}!\n")
-      self.statsNotAdjusted = False
-    target.health -= self.damage
-    PrintText.Print_with_delay(f"{target.name} suffers {self.damage} damage from {self.name}\n")
 
   def cancel_effect(self, target):
     attribute = getattr(target, self.statName)
     setattr(target, self.statName, attribute - self.adjust)
-    PrintText.Print_with_delay(f"{target.name} is no longer under the effects of {self.name}!\n")
