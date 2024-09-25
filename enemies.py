@@ -273,7 +273,7 @@ class Zombie(Enemy):
     super().__init__()
     self.name = "Zombie"
     self.abilities = [enemy_abilities.BasicAttack(), enemy_abilities.Rot(), enemy_abilities.Consume()]
-    self.abilityChanceArray = [0, 0, 1, 1, 2]
+    self.abilityChanceArray = [0, 1, 1, 2]
     self.level = randint(5, 8)
     self.experience = 30
     self.health = 15

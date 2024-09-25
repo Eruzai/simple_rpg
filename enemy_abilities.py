@@ -240,7 +240,7 @@ class Rot:
     self.name = "Rot"
     
   def execute(self, player, enemy, encounter):
-    from enemies import Zombie as foe
+    from enemies import GiantRat as foe
     chance = choice([False, False, True])
     if chance:
       Summon.execute(encounter, foe())
