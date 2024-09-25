@@ -207,8 +207,10 @@ class AcidSplash:
     damageOverTime = player.maxHealth * 0.05 // 1
     player.damage_taken(damage, "magical")
     adjustment = player.magicDef // -2
-    effect = status_effects.StatAlterWithDOT(self.name, 3, damageOverTime, "magicDef", adjustment)
-    player.apply_status_effect(effect)
+    effect1 = status_effects.StatAlteration(self.name, 3, "magicDef", adjustment)
+    effect2 = status_effects.DamageOverTime("Acid", 3, damageOverTime)
+    player.apply_status_effect(effect1)
+    player.apply_status_effect(effect2)
 
 class VenomSplash:
   def __init__(self):
@@ -219,8 +221,10 @@ class VenomSplash:
     damageOverTime = player.maxHealth * 0.05 // 1
     player.damage_taken(damage, "physical")
     adjustment = player.physicalDef // -2
-    effect = status_effects.StatAlterWithDOT(self.name, 3, damageOverTime, "physicalDef", adjustment)
-    player.apply_status_effect(effect)
+    effect1 = status_effects.StatAlteration(self.name, 3, "physicalDef", adjustment)
+    effect2 = status_effects.DamageOverTime("Venom", 3, damageOverTime)
+    player.apply_status_effect(effect1)
+    player.apply_status_effect(effect2)
 
 class Skitter:
   def __init__(self):
@@ -280,10 +284,13 @@ class Curse:
     self.name = "Curse"
 
   def execute(self, player, enemy, encounter):
+    damage = player.maxHealth * 0.03 // 1
     effect1 = status_effects.StatAlteration("Magic Down", 3, "intellect", -10)
     effect2 = status_effects.StatAlteration("Attack Down", 3, "strength", -10)
     effect3 = status_effects.StatAlteration("Magic Def Down", 3, "magicDef", -10)
     effect4 = status_effects.StatAlteration("Physical Def Down", 3, "physicalDef", -10)
+    effect5 = status_effects.DamageOverTime(self.name, 3, damage)
+    player.apply_status_effect(effect5)
     player.apply_status_effect(effect1)
     player.apply_status_effect(effect2)
     player.apply_status_effect(effect3)
@@ -313,8 +320,10 @@ class Tangle:
     damageOverTime = player.maxHealth * 0.03 // 1
     player.damage_taken(damage, "physical")
     adjustment = player.strength // -2
-    effect = status_effects.StatAlterWithDOT(self.name, 5, damageOverTime, "strength", adjustment)
-    player.apply_status_effect(effect)
+    effect1 = status_effects.StatAlteration("Tangling Vines", 5, "strength", adjustment)
+    effect2 = status_effects.DamageOverTime(self.name, 3, damageOverTime)
+    player.apply_status_effect(effect1)
+    player.apply_status_effect(effect2)
 
 class Bind:
   def __init__(self):
@@ -325,8 +334,10 @@ class Bind:
     damageOverTime = player.maxHealth * 0.03 // 1
     player.damage_taken(damage, "physical")
     adjustment = player.physicalDef // -2
-    effect = status_effects.StatAlterWithDOT(self.name, 5, damageOverTime, "physicalDef", adjustment)
-    player.apply_status_effect(effect)
+    effect1 = status_effects.StatAlteration("Binding Vines", 5, damageOverTime, "physicalDef", adjustment)
+    effect2 = status_effects.DamageOverTime(self.name, 3, damageOverTime)
+    player.apply_status_effect(effect1)
+    player.apply_status_effect(effect2)
 
 class DeathRattle:
   def __init__(self):
