@@ -18,16 +18,21 @@ class Enemy:
     self.statusEffects = []
 
   def apply_status_effect(self, effect):
-    effectExists = next((statusEffect for statusEffect in self.statusEffects if statusEffect.name == effect.name), None)
+    search = next(((i, statusEffect) for i, statusEffect in enumerate(self.statusEffects) if statusEffect.name == effect.name), (None, None))
+    index, effectExists = search
     if effectExists:
-      effectExists.counter = effect.counter
-    else:
-      self.statusEffects.append(effect)
-      effect.execute(self)
+      effect.counter += effectExists.counter
+      effect.firstApplication = False
+      effectExists.cancel_effect(self)
+      del self.statusEffects[index]
+      PrintText.Print_with_delay(f"{effect.name}'s active time has been increased!\n")
+    self.statusEffects.append(effect)
+    effect.execute(self)
 
   def clear_status_effect(self, effect):
     index = next((i for i, statusEffect in enumerate(self.statusEffects) if statusEffect.name == effect.name), -1)
     effect.cancel_effect(self)
+    PrintText.Print_with_delay(f"{self.name} is no longer under the effects of {effect.name}!\n")
     del self.statusEffects[index]
 
   def damage_taken(self, basedamage, attackType):
