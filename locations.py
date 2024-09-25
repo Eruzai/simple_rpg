@@ -97,7 +97,7 @@ class MiddlingMarsh(Location):
                     enemies.Witch,
                     enemies.WretchedCrow,
                     enemies.MarshHorror]
-    self.encounterArray = [[0, 0, 0], [0, 1,], [1, 1], [1, 2, 2], [2, 2], [0, 2], [3, 3], [3, 0], [3, 4], [4, 0, 0], [4, 4], [4, 5, 5], [5, 5, 5], [5, 5, 1], [3, 4], [2, 2, 6]]
+    self.encounterArray = [[0, 0, 0], [1, 0], [1, 1], [1, 2, 2], [2, 2], [0, 2], [3, 3], [3, 0], [3, 4], [4, 0, 0], [4, 4], [4, 5, 5], [5, 5, 5], [1, 5, 5], [3, 4], [2, 2, 6]]
     self.treasures = [equipment.HornedHelm,
                       equipment.HeavyHelm,
                       equipment.WitchHat,
